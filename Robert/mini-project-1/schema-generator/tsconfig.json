@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "module": "nodenext",
+    "noImplicitAny": true,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "outDir": "built",
+    "sourceMap": true,
+    "moduleResolution": "nodenext"
+  },
+  "include": [
+    "src/**/*"
+  ]
+}
