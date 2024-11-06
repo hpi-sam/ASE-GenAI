@@ -191,6 +191,8 @@ ChatGPT:
 >     f.foreign_likes >= t.total_likes / 2
 > ORDER BY 
 >     CAST(f.foreign_likes AS FLOAT) / t.total_likes DESC;
+> ```
+>
 > Explanation:
 > TotalLikes CTE: Same as before, filtering messages with more than 100 characters and at least 20 likes.
 > ForeignLikes CTE: Adds ROW_NUMBER() to find the first foreign like per message and counts foreign likes.
