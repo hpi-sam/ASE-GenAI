@@ -4,11 +4,18 @@
 * 2 team members only with basic SQL knowledge who did not use this knowledge for multiple years
 * 1 team member intermediate SQL knowledge. While many of the concepts were known the member had no experience with complex queries.
 
-## Steps in development
-* First create query without foreign like count
-* Then add foreign like count
-* Difficult task (took about 2 hours)
-* It took a long time to get the idea with the SQL Case expression and exclude friends of friends
+## Task 1.1
+
+### Steps
+- First create query without foreign like count. This was easy and only took a few minutes.
+- Then add foreign like count
+
+### Time & Difficulty
+- First we did not notice that the foreign like count includes friends of friends.
+- It took a long time to get the idea with the SQL Case expression to get the foreign like count. This was the most difficult part.
+- We also made a lot of mistakes until we got the correct join for the foreign like count.
+- Further we forgot to cast the sum the foreign like count to float to get the correct ratio.
+- Difficult task (took about 2 hours)
 
 ## Task 1.2
 
