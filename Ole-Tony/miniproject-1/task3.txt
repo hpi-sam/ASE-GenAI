@@ -1,4 +1,4 @@
-                                                            QUERY PLAN                                                             
+3.1                                                            QUERY PLAN (SQL)                                                         
 -----------------------------------------------------------------------------------------------------------------------------------
  Sort  (cost=483489.38..483555.63 rows=26500 width=72)
    Sort Key: (((fl.foreign_likes)::double precision / (fm.total_likes)::double precision)) DESC
@@ -80,3 +80,77 @@
    Functions: 105
    Options: Inlining false, Optimization false, Expressions true, Deforming true
 (79 rows)
+
+
+                                                            QUERY PLAN (ChatGPT)                                                             
+-----------------------------------------------------------------------------------------------------------------------------------
+
+Sort  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+  Sort Key: (ffl.foreign_likes::double precision / ffl.total_likes::double precision) DESC
+  ->  Hash Join  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+        Hash Cond: (ffl.first_liker = p.p_personid)
+        ->  CTE Scan on firstforeignlikes ffl  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+        ->  Hash  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+              ->  Seq Scan on person p  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+
+CTE FilteredMessages
+->  GroupAggregate  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+      Group Key: m.m_messageid, m.m_creatorid
+      Filter: (count(l.l_personid) >= 20)
+      ->  Hash Join  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+            Hash Cond: (m.m_messageid = l.l_messageid)
+            ->  Seq Scan on message m  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+                  Filter: (m_length > 100)
+            ->  Seq Scan on likes l  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+
+CTE Friends
+->  Hash Join  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+      Hash Cond: (k.k_person1id = fm.m_creatorid)
+      ->  CTE Scan on filteredmessages fm  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+      ->  Seq Scan on knows k  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+
+CTE Connections
+->  Append  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+      ->  Hash Join  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+            Hash Cond: (k.k_person1id = f.friend_id)
+            ->  Seq Scan on knows k  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+            ->  CTE Scan on friends f  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+      ->  CTE Scan on friends f  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+
+CTE ForeignLikes
+->  HashAggregate  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+      Group Key: l.l_messageid
+      ->  Hash Join  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+            Hash Cond: ((l.l_messageid = c.message_id) AND (l.l_personid = c.person_id))
+            ->  Seq Scan on likes l  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+            ->  Hash  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+                  ->  CTE Scan on connections c  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+
+CTE RelevantMessages
+->  Hash Join  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+      Hash Cond: (fl.message_id = fm.m_messageid)
+      Filter: (fl.foreign_likes >= (fm.total_likes / 2))
+      ->  CTE Scan on foreignlikes fl  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+      ->  CTE Scan on filteredmessages fm  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+
+CTE FirstForeignLikes
+->  Hash Join  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+      Hash Cond: (sfl.message_id = rm.message_id)
+      ->  Subquery Scan on sfl  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+            ->  Unique  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+                  ->  Sort  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+                        Sort Key: l.l_messageid, l.l_creationdate
+                        ->  Hash Join  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+                              Hash Cond: ((l.l_messageid = c.message_id) AND (l.l_personid = c.person_id))
+                              ->  Seq Scan on likes l  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+                              ->  Hash  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+                                    ->  CTE Scan on connections c  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+      ->  CTE Scan on relevantmessages rm  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+
+
+3.2
+Taking a look at both plans that were created, we think that ChatGPTs seems somewhat plausible, at least as an approximation. It captures the broad structure of the query, such as using CTEs for FilteredMessages or Friends. However, the CTE FirstForeignLike doesn't appear in the actual execution plan at all. Sometimes ChatGPT predicts the correct operations such as joins, filtering or aggregations. However it doesn't use PostgreSQL-specific optimizations like Merge Anti Join. 
+It is good that the specific values such as cost or rows are left blank (XXX) instead of filling in random values, as ChatGPT had no access to the database.
+The query execution is already a highly automated process in PostgreSQL. The execution plan is automatically generated, specifically optimized for the specific query and dataset. To do so, it evaluates multiple plans and chooses the one with the lowest estimated cost. Using adaptive features like Merge Anti Join or JIT compilation can also enhance performance. 
+All of this happens automatically, making manual execution plan generation mostly unnecessary.
+There is a significant difference in writing a query like in task 1 and 2 or generating an execution plan for a query that already exists. While it is possible to write a query using some automation, there was still the need for us to analyze the queries that were written by ChatGPT, and then fix what little things it might have missed. The generation of the execution plan, using PostgreSQL, was as simple as adding EXPLAIN ANALYZE to it and then waiting a few minutes for it to finish analyzing. This task is one that does not require any human interaction, while the writing of the queries still needed human supervision.
