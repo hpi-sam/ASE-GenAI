@@ -36,7 +36,8 @@ Overall the degree of automation in query execution is already very high in Post
 
 However, Looking at the Tasks 1 and 2, the LLM has proven to be a great automation solution if time - and not the gain of knowledge on SQL - is of the essence.
 The degree of automation is lower in these tasks, as the results needs to be tested and understood by the user.
-A possible reason is the potential large input space for each Task, which makes it hard to predict the correct output.
+A possible reason is the potential endless input space for each Task, which makes it hard to predict the correct output.
+On the other side the input space for the creation of an execution plan is limited to the syntax provided by postgresql.
 
 
 Conclusion:

@@ -74,6 +74,6 @@ We used the `EXPLAIN` command to get the execution plan of the query from Task 2
 The execution plan shows the steps the database takes to execute the query.
 The query is quite complex and involves multiple subqueries and joins.
 We can first see that the CTE known relationships is used to find the friends of friends with an estimated cost of 311642.62.
-This is done almost at the beginning as the result is used in multiple places.
-When looking at the dalibo visualization we can see that the most expensive operations (e.g. Sort) are often done in the beginning or directly following a join.
+This is done at the beginning as the result is used in multiple places.
+When looking at the dalibo visualization we can see, that the most expensive operations (e.g. Sort) are often done in the beginning or directly following a join.
 Overall it can be seen that many of the steps are reordered and are not executed in the order they are written in the query.
