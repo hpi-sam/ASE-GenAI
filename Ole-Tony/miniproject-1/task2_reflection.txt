@@ -21,6 +21,14 @@ the generated output but we were really impressed to see how easy it was to get 
 done. Additionally we also renounced to optimize the queries after getting a valid solution.
 The LLM would potentially help a lot here if the correct prompts are used.
 
+With our query from 1. as basis it were a bit more tricky but also takes only a few minutes.
+We used the same prompted as above but first provided our query as basis. At first we get A
+syntax error for the query which was easy to fix, but after that we got 0 rows as results.
+I simply prompted : "I get 0 results, but it should be 9 rows. You did something wrong" and
+the LLM replied with the correct solution which this time also is very fast. This is likly
+due to the fact we apply the filter for the messages very early and our solution from 1 was
+used as the baseline.
+
 SUMMARY 1-2
 We were impressed of the skills of the LLM in writing SQL querries even if the task is
 not so easy. But we also see how important clear and correct prompting is and for difficult
