@@ -1,0 +1,62 @@
+1.3
+Our team did not have a lot of previous experience with query development.
+While we both took a basic database module, which was 4 years ago at the beginning
+of our bachelor's, implementing SQL queries rarely appeared in other lectures. Nevertheless
+Tony worked a bit with writing simple SQL queries with SQLAlchemy for a RESTAPI and in some
+lectures SQL queries with JOINs etc. were used to explain theoretical concepts. Except that
+we haven't frequently used SQL and would rank our skills in writing SQL querries as
+very basic. We know the basic operations quite well and can understand task pretty
+good but especially when it comes to debugging or finding an error our skills lack behind.
+For the first task, we split it into subtasks. First, we filtered the messages, so
+that only messages with length larger than 100 symbols and with at least 20 likes are
+selected. Once we have the filtered messages, we then try to get all the friends, and
+after this all the other connections (friends of friends). With our SQL experience,
+this task did not present us with any major challenges. But to get the foreignlikes was
+quite more challenging. Because we know what to didn't know a good way to get the solution.
+We were looking for a high-performance and elegant way to count the number of foreign likes
+and total likes, but in our opinion we have not found one. We spent a lot of time trying to
+get this to work rather than looking for an easy solution first, which took us multiple hours
+to get it done. Something that we found rather frustrating was the fact that we could only use
+the PSQL shell - this was making the debugging process a little tricky at times. One of the
+biggest problems we faced was the way that the likes table works - it uses both the messageid
+and the personid as a key. For a long time, we were trying to join this table using only the
+message id.
+
+Using ChatGPT (daily free buget of GPT-4) as a LLM, we were not very successful at the beginning. After prompting it to
+solve this task and giving it the sql schema, it failed to produce a correct output or it tooked to
+long so that we need to interrupted the process instead of waiting till the end (more than 5min).
+After finetuning our prompt we decided to giv only the relevant attributes and table for the task,
+so that the prompt to start the conversation was the description of the task and
+
+"""Implement the query
+
+The following relations are given:
+message: m_messagid, m_creatorid, m_length
+likes: l_messageid, l_personid, 
+knows: k_person1id, k_person2id"""
+
+In the beginning, it produced an output that took to long and we stopped the execution. After
+that we propted that the LLM should optimize the produced code and apply the filter at the beginning.
+Firstly the solution looked promising, however the foreign_likes count was wrong. We looked over
+the produced code and identified the weaknesses and errors in the code and gave new instructions to
+the llm. In particular we prompted:
+
+"""It looks like this is not correct yet:
+
+WHERE 
+    (k.k_person1id = l.l_personid AND k.k_person2id = fm.creator_id)
+    OR (k.k_person2id = l.l_personid AND k.k_person1id = fm.creator_id)
+
+A forgein person is a person which the creator not know and and all person who the creator know also
+don't know this person.
+The solution needs to be improved"""
+
+After that the code produced a simple syntax error which was easy to fix and the results were correct
+except of the select in the end, because the likes ratio were not needed. We manually corrected the
+Select statement and get the final results. Overall the way of achieving the solution was way more
+easy than without guideance but only because we know what the errors in the produced code were.
+Otherwise the LLM could not find to a solution. In the beginning and after the successful run we
+tried getting a correct solution without our help but never get one. We also tried out multiple LLM,
+for example Gemini and Claude.
+Additionally we experienced that our query is faster than the generated one. In both cases we stopped
+optimizing after the query produced correct results.

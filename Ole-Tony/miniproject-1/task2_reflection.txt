@@ -1,0 +1,39 @@
+For this task we also spend a lot of time for our own solution. The main problem was
+that some of the first liker in the output were correct and some not. We identified, 
+that we produced to many tuple in a join leading to including likes from not foreign
+persons, but as described in 1. we struggled a lot in debugging the query. Here more
+SQL experience would have helped us a lot. With the LLM it was very easy this time.
+After the correct solution from 1. we prompted:
+
+"""Now we want to extend the querry:
+
+“For each message, also return the full name of the first foreign person who liked the
+message and the time when they created the like.”
+
+here the
+- person table with: p_personid, p_firstname, p_lastname
+- likes table with: l_personid, l_messageid, l_creationdate
+
+get relevant"""
+
+It directly produced the correct solutions. Our query still beat the performance of
+the generated output but we were really impressed to see how easy it was to get the job
+done. Additionally we also renounced to optimize the queries after getting a valid solution.
+The LLM would potentially help a lot here if the correct prompts are used.
+
+With our query from 1. as basis it were a bit more tricky but also takes only a few minutes.
+We used the same prompted as above but first provided our query as basis. At first we get A
+syntax error for the query which was easy to fix, but after that we got 0 rows as results.
+I simply prompted : "I get 0 results, but it should be 9 rows. You did something wrong" and
+the LLM replied with the correct solution which this time also is very fast. This is likly
+due to the fact we apply the filter for the messages very early and our solution from 1 was
+used as the baseline.
+
+SUMMARY 1-2
+We were impressed of the skills of the LLM in writing SQL querries even if the task is
+not so easy. But we also see how important clear and correct prompting is and for difficult
+tasks expert knowledge is needed to guide the LLM to a correct solution. We think LLM can
+do a good job here but a skilled developer would likly outperform the LLM easily. Compared
+to us with only basic coding knowledge in SQL, increased knowledge of understanding SQL as
+well as logical knowledge and a good understanding of the tasks and the necessary execution
+steps, we expierienced it as a good tool to get much faster to a solution.
