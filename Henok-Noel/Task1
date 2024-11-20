@@ -1,1 +1,12 @@
+1.1:
+1.2:
+1.3: We head quite a bit of theoretical knowledge stemming from courses such as DBS1, DBS2 or the Build your
+own Database seminar but rarely applied any of that. So we knew the basic syntax and operations but had no real
+practise. For 1.1 we started with developing a query for finding the total likes and then for the larger part of
+determining foreign likes we first wrote the query to find friends, then used this to determine the likes which
+were not made by friends and thereby calculated the foreign like count. There we wrote smaller subqueries each time
+and validated them using the data. We used a bit more than 3 hours for this as there was a lot of debugging and 
+rewriting involved which increased the difficulty.
 
+We wrote the queries in a text editor and then pasted them to the terminal for validation. The terminals response
+helped a little in discovering syntax errors.
