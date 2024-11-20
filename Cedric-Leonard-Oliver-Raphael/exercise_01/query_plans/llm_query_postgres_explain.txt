@@ -1,0 +1,106 @@
+                                                                                                  QUERY PLAN                                                                                                   
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Sort  (cost=21390981.25..21390983.09 rows=736 width=72)
+   Sort Key: (((COALESCE(flc.foreign_like_count, '0'::bigint))::double precision / (ml.total_likes)::double precision)) DESC
+   CTE message_likes
+     ->  GroupAggregate  (cost=11530.16..11679.29 rows=2209 width=24)
+           Group Key: m.m_messageid, m.m_creatorid
+           Filter: (count(DISTINCT l.l_personid) >= 20)
+           ->  Sort  (cost=11530.16..11546.73 rows=6628 width=24)
+                 Sort Key: m.m_messageid, m.m_creatorid
+                 ->  Hash Join  (cost=8840.39..11109.47 rows=6628 width=24)
+                       Hash Cond: (l.l_messageid = m.m_messageid)
+                       ->  Seq Scan on likes l  (cost=0.00..1792.40 rows=109440 width=16)
+                       ->  Hash  (cost=8623.30..8623.30 rows=17367 width=16)
+                             ->  Seq Scan on message m  (cost=0.00..8623.30 rows=17367 width=16)
+                                   Filter: (m_length > 100)
+   CTE likers
+     ->  Hash Join  (cost=3802.40..5866.20 rows=33396 width=32)
+           Hash Cond: (ml_1.m_messageid = l_1.l_messageid)
+           ->  CTE Scan on message_likes ml_1  (cost=0.00..44.18 rows=2209 width=16)
+           ->  Hash  (cost=1792.40..1792.40 rows=109440 width=24)
+                 ->  Seq Scan on likes l_1  (cost=0.00..1792.40 rows=109440 width=24)
+   CTE foreign_likers
+     ->  Merge Anti Join  (cost=21367216.05..21367591.16 rows=25047 width=24)
+           Merge Cond: ((l_2.m_messageid = l_3.m_messageid) AND (l_2.liker_id = l_3.liker_id))
+           ->  Sort  (cost=3177.19..3260.68 rows=33396 width=24)
+                 Sort Key: l_2.m_messageid, l_2.liker_id
+                 ->  CTE Scan on likers l_2  (cost=0.00..667.92 rows=33396 width=24)
+           ->  Sort  (cost=21364038.85..21364058.51 rows=7864 width=16)
+                 Sort Key: l_3.m_messageid, l_3.liker_id
+                 ->  HashAggregate  (cost=21363372.73..21363451.37 rows=7864 width=16)
+                       Group Key: l_3.m_messageid, l_3.liker_id
+                       ->  Append  (cost=757.58..21363333.41 rows=7864 width=16)
+                             ->  Unique  (cost=757.58..758.83 rows=163 width=16)
+                                   ->  Sort  (cost=757.58..757.99 rows=167 width=16)
+                                         Sort Key: l_3.m_messageid, l_3.liker_id
+                                         ->  CTE Scan on likers l_3  (cost=0.00..751.41 rows=167 width=16)
+                                               Filter: (liker_id = m_creatorid)
+                             ->  Unique  (cost=21150436.63..21150444.29 rows=1021 width=16)
+                                   ->  Sort  (cost=21150436.63..21150439.19 rows=1021 width=16)
+                                         Sort Key: l_4.m_messageid, l_4.liker_id
+                                         ->  Nested Loop  (cost=0.00..21150385.61 rows=1021 width=16)
+                                               Join Filter: (((k.k_person1id = l_4.m_creatorid) AND (k.k_person2id = l_4.liker_id)) OR ((k.k_person2id = l_4.m_creatorid) AND (k.k_person1id = l_4.liker_id)))
+                                               ->  CTE Scan on likers l_4  (cost=0.00..667.92 rows=33396 width=24)
+                                               ->  Materialize  (cost=0.00..602.19 rows=28146 width=16)
+                                                     ->  Seq Scan on knows k  (cost=0.00..461.46 rows=28146 width=16)
+                             ->  HashAggregate  (cost=105972.77..106006.17 rows=3340 width=16)
+                                   Group Key: l_5.m_messageid, l_5.liker_id
+                                   ->  Merge Join  (cost=100193.76..105848.49 rows=24855 width=16)
+                                         Merge Cond: ((k1.k_person2id = k2.k_person1id) AND (l_5.liker_id = k2.k_person2id))
+                                         ->  Sort  (cost=97652.22..99383.92 rows=692678 width=24)
+                                               Sort Key: k1.k_person2id, l_5.liker_id
+                                               ->  Merge Join  (cost=5718.73..16249.63 rows=692678 width=24)
+                                                     Merge Cond: (k1.k_person1id = l_5.m_creatorid)
+                                                     ->  Sort  (cost=2541.54..2611.90 rows=28146 width=16)
+                                                           Sort Key: k1.k_person1id
+                                                           ->  Seq Scan on knows k1  (cost=0.00..461.46 rows=28146 width=16)
+                                                     ->  Sort  (cost=3177.19..3260.68 rows=33396 width=24)
+                                                           Sort Key: l_5.m_creatorid
+                                                           ->  CTE Scan on likers l_5  (cost=0.00..667.92 rows=33396 width=24)
+                                         ->  Sort  (cost=2541.54..2611.90 rows=28146 width=16)
+                                               Sort Key: k2.k_person1id, k2.k_person2id
+                                               ->  Seq Scan on knows k2  (cost=0.00..461.46 rows=28146 width=16)
+                             ->  HashAggregate  (cost=105972.77..106006.17 rows=3340 width=16)
+                                   Group Key: l_6.m_messageid, l_6.liker_id
+                                   ->  Merge Join  (cost=100193.76..105848.49 rows=24855 width=16)
+                                         Merge Cond: ((k1_1.k_person1id = k2_1.k_person2id) AND (l_6.liker_id = k2_1.k_person1id))
+                                         ->  Sort  (cost=97652.22..99383.92 rows=692678 width=24)
+                                               Sort Key: k1_1.k_person1id, l_6.liker_id
+                                               ->  Merge Join  (cost=5718.73..16249.63 rows=692678 width=24)
+                                                     Merge Cond: (k1_1.k_person2id = l_6.m_creatorid)
+                                                     ->  Sort  (cost=2541.54..2611.90 rows=28146 width=16)
+                                                           Sort Key: k1_1.k_person2id
+                                                           ->  Seq Scan on knows k1_1  (cost=0.00..461.46 rows=28146 width=16)
+                                                     ->  Sort  (cost=3177.19..3260.68 rows=33396 width=24)
+                                                           Sort Key: l_6.m_creatorid
+                                                           ->  CTE Scan on likers l_6  (cost=0.00..667.92 rows=33396 width=24)
+                                         ->  Sort  (cost=2541.54..2611.90 rows=28146 width=16)
+                                               Sort Key: k2_1.k_person2id, k2_1.k_person1id
+                                               ->  Seq Scan on knows k2_1  (cost=0.00..461.46 rows=28146 width=16)
+   ->  Hash Right Join  (cost=4969.98..5809.56 rows=736 width=72)
+         Hash Cond: (fl.m_messageid = ml.m_messageid)
+         ->  Hash Left Join  (cost=2385.30..3201.04 rows=125 width=28)
+               Hash Cond: (fl.liker_id = p.p_personid)
+               ->  Subquery Scan on fl  (cost=2330.92..3144.95 rows=125 width=24)
+                     Filter: (fl.rn = 1)
+                     ->  WindowAgg  (cost=2330.92..2831.86 rows=25047 width=32)
+                           ->  Sort  (cost=2330.92..2393.54 rows=25047 width=24)
+                                 Sort Key: fl_1.m_messageid, fl_1.l_creationdate
+                                 ->  CTE Scan on foreign_likers fl_1  (cost=0.00..500.94 rows=25047 width=24)
+               ->  Hash  (cost=35.28..35.28 rows=1528 width=20)
+                     ->  Seq Scan on person p  (cost=0.00..35.28 rows=1528 width=20)
+         ->  Hash  (cost=2575.48..2575.48 rows=736 width=24)
+               ->  Hash Left Join  (cost=2525.27..2575.48 rows=736 width=24)
+                     Hash Cond: (ml.m_messageid = flc.m_messageid)
+                     Filter: ((COALESCE(flc.foreign_like_count, '0'::bigint))::numeric >= ((ml.total_likes)::numeric / 2.0))
+                     ->  CTE Scan on message_likes ml  (cost=0.00..44.18 rows=2209 width=16)
+                     ->  Hash  (cost=2522.77..2522.77 rows=200 width=16)
+                           ->  Subquery Scan on flc  (cost=2330.92..2522.77 rows=200 width=16)
+                                 ->  GroupAggregate  (cost=2330.92..2520.77 rows=200 width=16)
+                                       Group Key: fl_2.m_messageid
+                                       ->  Sort  (cost=2330.92..2393.54 rows=25047 width=16)
+                                             Sort Key: fl_2.m_messageid
+                                             ->  CTE Scan on foreign_likers fl_2  (cost=0.00..500.94 rows=25047 width=16)
+(102 rows)
+
