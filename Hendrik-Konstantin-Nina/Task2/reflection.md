@@ -23,38 +23,29 @@
 
 ## Task 2.2
 
-- Again, usage of Copilot Chat with the Claude 3.5 Sonnet (Preview) model
+Again, we used Copilot Chat with the Claude 3.5 Sonnet (Preview) model for the reasons mentioned in 1.2.
 
 ### Steps
 
-- Have the create_tables.sql file (specification of which tables are in the database) and the query_1-2.sql file (query from previous task) open
-- Copy the new query/task description description from the PDF
-- Set context (Short comment that query needs to be extended)
-- Review the LLM response
+1. Give Copilot reference to the files:
+   - `create_tables.sql` (specification of tables in the database)
+   - `query_1-2.sql`(query from task 1.2)
+2. Copy the new query description from the PDF
+3. Set the context – short commment that the query needs to be extended
+4. Review the LLM response
 
 ### Time & Difficulty
 
-- Time to get the correct query: ~2 minutes
-- Time to understand/review the LLM response and check correctness: ~2 minutes
-- Again, very easy task
+Also with this task, compared to the previous task (2.1), it was very easy to complete. The provided query was correct without any further specification needed, so the entire process only took about 2 minutes. As we only extended the previous query from 1.2, we already knew the structure of the query. This made the process of understanding the LLM's changes much faster (about 2 minutes).
 
 ### Interaction with the LLM
 
-- Quality of LLM response was very good
-  - Again, precise description of intent
-  - Made plan on how to change the query
-  - Clean code
-  - Summarized main code changes to the query
-- Explanation of the query was precise, easy to understand
-- Had to prompt only once to get the correct query (no misunderstandings)
+As first part of the response, the LLM provided a list of changes that need to be made to the query. This was follwed by the extended query. At last, the LLM provided a summary of the main code changes to the query. The quality of the LLM response was very good. The plan on how to change the query was precise and easy to understand. The code was clean and the explanation of what parts of the query were changed was very helpful when trying to understand the generated SQL query. We only had to prompt the LLM once to get the correct query, and there were no misunderstandings.
 
 ### Iterative Query Development Process
 
-- Using the LLM to generate initial query drafts based on task descriptions
-- Iteratively refining the query with the LLM's assistance
-- Breaking down complex queries into manageable parts
-- Continuously reviewing and validating the LLM's output to ensure accuracy and correctness
-- Let the LLM explain and document query changes
-- Can significantly reduce development time and can improve the quality of the final query (if supervised correctly)
-- Integration into IDE's for faster interaction time, streamline process (Copilot Chat / Copilot Edits)
-  - Allows for more complex/broader tasks and changes (e.g. add table xxx with columns yyy and include in query zzz)
+The iterative query development process can be significantly enhanced by integrating automation provided by LLMs into the workflow. This begins with using the LLM to generate initial query drafts based on task descriptions, which serves as a foundational starting point. The process then becomes a cycle of refinement, where the LLM assists in modifying and improving the query iteratively based on the developer's input. Throughout this process, continuous review and validation of the LLM’s output are critical to ensuring accuracy and adherence to the initial specifications.
+
+Furthermore, as experienced in this mini-project, this automation can significantly reduce development time while simultaneously improving the quality of the final query, provided the outputs are supervised effectively.
+
+Integration into IDE's through tools like Copilot Chat or Copilot Edits further streamlines the process by enabling faster interactions and more seamless execution of complex or broader tasks, especially when the changes touch deeply integrated parts of the project or stretch across multiple files.

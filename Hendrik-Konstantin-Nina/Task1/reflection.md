@@ -22,27 +22,19 @@
 
 ## Task 1.2
 
-- Usage of Copilot Chat with the Claude 3.5 Sonnet (Preview) model because:
-  - Easy to give context through code/files
-  - Claude yields better and faster results (from my experience)
+For this task, we chose to use Copilot Chat due to the seamless integration with the IDE and the availability of the Claude 3.5 Sonnet model. This allowed us to directly reference files from the project, enabling a more interactive and iterative query development process. We chose to use the Claude model, as from personal experience, it yields better and faster results compared to other models, when it comes to coding tasks.
 
 ### Steps
 
-- Open the create_tables.sql file (specification of which tables are in the database)
-- Copy the query/task description description from the PDF
-- Set the reference file and the query description into context (one short sentence)
-- Review the LLM response
+1. Open the `create_tables.sql` file (the specification tables in the database)
+2. Copy the query description from the PDF
+3. Set the reference file and the query description into context
+4. Review the LLM response
 
 ### Time & Difficulty
 
-- Time to get the correct query: ~2 minutes
-- Time to understand/review the LLM response and check correctness: 10-20 minutes
-- Very easy task
+Unlike the previous task (1.1), this one was straightforward and easy to complete. The LLM provided a precise description of the intent and the resulting query was correct and did not need any further changes. The code was clean and easy to understand, and the explanation of the query was concise. The time to get the correct query was approximately 2 minutes, and the time to understand and review the LLM response was around 10 minutes.
 
 ### Interaction with the LLM
 
-- Quality of LLM response was very good
-  - Precise description of intent and resulting query
-  - Clean code
-- Explanation of the query was precise, easy to understand
-- Had to prompt only once to get the correct query (no misunderstandings)
+The quality of the LLM response was very good. Firstly, the LLM provided a description of intent, which helped us understand the different parts of the query. The code generated was very clear, making it easy to link the different parts of the query to the task description. We only had to prompt the LLM once to get the correct query, and there were no misunderstandings. Compared to the previous task, we needed much less knowledge of different concepts and possibilities in SQL to get the correct query.
