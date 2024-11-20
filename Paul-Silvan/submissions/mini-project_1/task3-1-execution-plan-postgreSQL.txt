@@ -1,0 +1,85 @@
+Sort  (cost=148005.40..148005.52 rows=48 width=96) (actual time=2974.874..2994.351 rows=9 loops=1)
+   Sort Key: (((flc.foreign_likes)::numeric / ((count(*)))::numeric)) DESC
+   Sort Method: quicksort  Memory: 25kB
+   CTE creator_friends
+     ->  Seq Scan on knows  (cost=0.00..461.46 rows=28146 width=16) (actual time=0.030..1.994 rows=28146 loops=1)
+   CTE foreign_likes
+     ->  Merge Anti Join  (cost=117656.97..126482.50 rows=82080 width=24) (actual time=1730.061..2444.677 rows=3439 loops=1)
+           Merge Cond: ((l.l_personid = creator_friends.friend_id) AND (m_1.m_creatorid = creator_friends.creator_id))
+           ->  Sort  (cost=30678.45..30952.05 rows=109440 width=32) (actual time=331.802..365.637 rows=109440 loops=1)
+                 Sort Key: l.l_personid, m_1.m_creatorid
+                 Sort Method: external merge  Disk: 4512kB
+                 ->  Hash Join  (cost=12908.74..18896.94 rows=109440 width=32) (actual time=192.460..278.215 rows=109440 loops=1)
+                       Hash Cond: (l.l_messageid = m_1.m_messageid)
+                       ->  Seq Scan on likes l  (cost=0.00..1798.40 rows=109440 width=24) (actual time=0.017..12.857 rows=109440 loops=1)
+                       ->  Hash  (cost=7923.44..7923.44 rows=286744 width=16) (actual time=191.210..191.211 rows=286744 loops=1)
+                             Buckets: 262144  Batches: 4  Memory Usage: 5425kB
+                             ->  Seq Scan on message m_1  (cost=0.00..7923.44 rows=286744 width=16) (actual time=0.098..40.590 rows=286744 loops=1)
+           ->  Unique  (cost=86978.52..91568.01 rows=611932 width=16) (actual time=1398.172..1928.504 rows=811751 loops=1)
+                 ->  Sort  (cost=86978.52..88508.35 rows=611932 width=16) (actual time=1398.170..1691.131 rows=1630851 loops=1)
+                       Sort Key: creator_friends.friend_id, creator_friends.creator_id
+                       Sort Method: external merge  Disk: 41568kB
+                       ->  Append  (cost=0.00..17704.64 rows=611932 width=16) (actual time=0.035..402.094 rows=1630920 loops=1)
+                             ->  CTE Scan on creator_friends  (cost=0.00..562.92 rows=28146 width=16) (actual time=0.034..8.222 rows=28146 loops=1)
+                             ->  Merge Join  (cost=5184.54..14082.06 rows=583786 width=16) (actual time=23.062..293.896 rows=1602774 loops=1)
+                                   Merge Cond: (k.k_person1id = cf.friend_id)
+                                   ->  Sort  (cost=2541.54..2611.90 rows=28146 width=16) (actual time=14.988..18.448 rows=28146 loops=1)
+                                         Sort Key: k.k_person1id
+                                         Sort Method: quicksort  Memory: 1868kB
+                                         ->  Seq Scan on knows k  (cost=0.00..461.46 rows=28146 width=16) (actual time=0.056..1.769 rows=28146 loops=1)
+                                   ->  Sort  (cost=2643.00..2713.36 rows=28146 width=16) (actual time=7.996..102.342 rows=1602772 loops=1)
+                                         Sort Key: cf.friend_id
+                                         Sort Method: quicksort  Memory: 1868kB
+                                         ->  CTE Scan on creator_friends cf  (cost=0.00..562.92 rows=28146 width=16) (actual time=0.006..2.026 rows=28146 loops=1)
+->  Hash Join  (cost=13918.85..21060.10 rows=48 width=96) (actual time=2973.845..2994.257 rows=9 loops=1)
+         Hash Cond: (fl.foreign_person_id = p.p_personid)
+         ->  Nested Loop  (cost=13864.47..21004.46 rows=48 width=40) (actual time=2901.177..2921.575 rows=9 loops=1)
+               Join Filter: (likes.l_messageid = fl.message_id)
+               Rows Removed by Join Filter: 3231
+               ->  Unique  (cost=8341.27..8751.67 rows=200 width=24) (actual time=2454.982..2455.751 rows=360 loops=1)
+                     ->  Sort  (cost=8341.27..8546.47 rows=82080 width=24) (actual time=2454.981..2455.493 rows=3439 loops=1)
+                           Sort Key: fl.message_id, fl.like_time
+                           Sort Method: quicksort  Memory: 258kB
+                           ->  CTE Scan on foreign_likes fl  (cost=0.00..1641.60 rows=82080 width=24) (actual time=1730.066..2452.094 rows=3439 loops=1)
+               ->  Materialize  (cost=5523.20..12106.91 rows=48 width=40) (actual time=0.465..1.293 rows=9 loops=360)
+                     ->  Hash Join  (cost=5523.20..12106.67 rows=48 width=40) (actual time=112.116..410.167 rows=9 loops=1)
+                           Hash Cond: (likes.l_messageid = flc.message_id)
+                           Join Filter: (flc.foreign_likes >= ((count(*)) / 2))
+                           Rows Removed by Join Filter: 12
+                           ->  Gather  (cost=3464.70..10047.79 rows=145 width=24) (actual time=111.155..409.280 rows=345 loops=1)
+                                 Workers Planned: 2
+                                 Workers Launched: 2
+                                 ->  Hash Join  (cost=2464.70..9033.29 rows=60 width=24) (actual time=187.153..243.814 rows=115 loops=3)
+                                       Hash Cond: (m.m_messageid = likes.l_messageid)
+                                       ->  Parallel Seq Scan on message m  (cost=0.00..6549.46 rows=7288 width=8) (actual time=37.459..93.368 rows=5815 loops=3)
+                                             Filter: (m_length > 100)
+                                             Rows Removed by Filter: 89766
+                                       ->  Hash  (cost=2434.92..2434.92 rows=2382 width=16) (actual time=149.618..149.619 rows=1597 loops=3)
+                                             Buckets: 4096  Batches: 1  Memory Usage: 107kB
+                                             ->  HashAggregate  (cost=2345.60..2434.92 rows=2382 width=16) (actual time=135.373..149.366 rows=1597 loops=3)
+                                                   Group Key: likes.l_messageid
+                                                   Filter: (count(*) >= 20)
+                                                   Batches: 1  Memory Usage: 1425kB
+                                                   Rows Removed by Filter: 11523
+                                                   Worker 0:  Batches: 1  Memory Usage: 1425kB
+                                                   Worker 1:  Batches: 1  Memory Usage: 1425kB
+                                                   ->  Seq Scan on likes  (cost=0.00..1798.40 rows=109440 width=8) (actual time=0.042..29.311 rows=109440 loops=3)
+   ->  Hash  (cost=2056.00..2056.00 rows=200 width=16) (actual time=0.723..0.727 rows=360 loops=1)
+                                 Buckets: 1024  Batches: 1  Memory Usage: 25kB
+                                 ->  Subquery Scan on flc  (cost=2052.00..2056.00 rows=200 width=16) (actual time=0.607..0.661 rows=360 loops=1)
+                                       ->  HashAggregate  (cost=2052.00..2054.00 rows=200 width=16) (actual time=0.604..0.636 rows=360 loops=1)
+                                             Group Key: fl_1.message_id
+                                             Batches: 1  Memory Usage: 77kB
+                                             ->  CTE Scan on foreign_likes fl_1  (cost=0.00..1641.60 rows=82080 width=8) (actual time=0.001..0.170 rows=3439 loops=1)
+         ->  Hash  (cost=35.28..35.28 rows=1528 width=20) (actual time=72.633..72.635 rows=1528 loops=1)
+               Buckets: 2048  Batches: 1  Memory Usage: 101kB
+               ->  Seq Scan on person p  (cost=0.00..35.28 rows=1528 width=20) (actual time=72.269..72.446 rows=1528 loops=1)
+ Planning Time: 2.709 ms
+ JIT:
+   Functions: 122
+   Options: Inlining false, Optimization false, Expressions true, Deforming true
+   Timing: Generation 4.139 ms, Inlining 0.000 ms, Optimization 1.992 ms, Emission 177.034 ms, Total 183.166 ms
+ Execution Time: 3084.699 ms
+(82 rows)
+
+

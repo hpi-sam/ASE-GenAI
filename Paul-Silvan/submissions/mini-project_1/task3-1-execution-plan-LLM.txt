@@ -1,0 +1,52 @@
+
+-- Execution Plan (Estimated)
+
+CTE Scan on message_likes  (cost=1000.00..3000.00 rows=2000 width=16)
+  ->  GroupAggregate  (cost=1000.00..2500.00 rows=2000 width=16)
+      ->  Seq Scan on likes  (cost=0.00..500.00 rows=100000 width=8)
+          Filter: (COUNT(*) >= 20)
+
+CTE Scan on creator_friends  (cost=500.00..1500.00 rows=15000 width=8)
+  ->  Seq Scan on knows  (cost=0.00..400.00 rows=30000 width=8)
+
+CTE Scan on friends_of_friends  (cost=600.00..1800.00 rows=10000 width=8)
+  ->  Hash Join  (cost=200.00..800.00 rows=10000 width=8)
+      ->  Seq Scan on knows  (cost=0.00..400.00 rows=30000 width=8)
+      ->  Hash  (cost=200.00..200.00 rows=15000 width=8)
+          ->  CTE Scan on creator_friends  (cost=0.00..500.00 rows=15000 width=8)
+
+CTE Scan on extended_network  (cost=1500.00..2500.00 rows=20000 width=8)
+  ->  Append  (cost=500.00..1500.00 rows=20000 width=8)
+      ->  Seq Scan on creator_friends  (cost=0.00..400.00 rows=15000 width=8)
+      ->  Seq Scan on friends_of_friends  (cost=0.00..500.00 rows=10000 width=8)
+
+CTE Scan on foreign_likes  (cost=2000.00..5000.00 rows=100000 width=12)
+  ->  Hash Join  (cost=1500.00..4000.00 rows=100000 width=12)
+      ->  Seq Scan on likes  (cost=0.00..500.00 rows=100000 width=12)
+      ->  Hash  (cost=1000.00..1000.00 rows=20000 width=8)
+          ->  CTE Scan on extended_network  (cost=0.00..500.00 rows=20000 width=8)
+
+CTE Scan on first_foreign_likes  (cost=5000.00..7000.00 rows=50000 width=16)
+  ->  Unique  (cost=5000.00..6000.00 rows=50000 width=16)
+      ->  Sort  (cost=4000.00..5000.00 rows=100000 width=16)
+          ->  CTE Scan on foreign_likes  (cost=0.00..5000.00 rows=100000 width=12)
+
+CTE Scan on foreign_like_counts  (cost=1500.00..2500.00 rows=100000 width=8)
+  ->  GroupAggregate  (cost=1500.00..2000.00 rows=100000 width=8)
+      ->  CTE Scan on foreign_likes  (cost=0.00..5000.00 rows=100000 width=12)
+
+CTE Scan on filtered_messages  (cost=3000.00..7000.00 rows=5000 width=40)
+  ->  Hash Join  (cost=2500.00..6000.00 rows=5000 width=40)
+      ->  Hash Join  (cost=1500.00..3500.00 rows=5000 width=40)
+          ->  Seq Scan on filtered_messages  (cost=0.00..3000.00 rows=5000 width=16)
+          ->  Seq Scan on message  (cost=0.00..2000.00 rows=10000 width=16)
+      ->  Seq Scan on person  (cost=0.00..300.00 rows=5000 width=16)
+
+Final Output Sort  (cost=5000.00..5200.00 rows=5000 width=40)
+  ->  Sort  (cost=5000.00..5200.00 rows=5000 width=40)
+      ->  Hash Join  (cost=2500.00..6000.00 rows=5000 width=40)
+          ->  Hash Join  (cost=1500.00..3500.00 rows=5000 width=40)
+              ->  Seq Scan on filtered_messages  (cost=0.00..3000.00 rows=5000 width=16)
+              ->  Seq Scan on message  (cost=0.00..2000.00 rows=10000 width=16)
+          ->  Seq Scan on person  (cost=0.00..300.00 rows=5000 width=16)
+
