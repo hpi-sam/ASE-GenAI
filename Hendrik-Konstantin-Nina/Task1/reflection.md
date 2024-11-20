@@ -1,24 +1,24 @@
 # Reflection Task 1
 
 ## Prior Knowledge
-
+Before starting the tasks we had the following knowledge:
 - 2 team members only with basic SQL knowledge who did not use this knowledge for multiple years
-- 1 team member intermediate SQL knowledge. While many of the concepts were known the member had no experience with complex queries.
+- 1 team member intermediate SQL knowledge. While many of the concepts were known the member had no experience with complex queries
 
 ## Task 1.1
 
 ### Steps
-
-- First create query without foreign like count. This was easy and only took a few minutes.
-- Then add foreign like count
+To simlify the task we decided to split the task into two parts.
+We first created the query without the foreign like count as we identified this as the most difficult part.
+After we had the query without the foreign like count we added the foreign like count.
 
 ### Time & Difficulty
-
-- First we did not notice that the foreign like count includes friends of friends.
-- It took a long time to get the idea with the SQL Case expression to get the foreign like count. This was the most difficult part.
-- We also made a lot of mistakes until we got the correct join for the foreign like count.
-- Further we forgot to cast the sum the foreign like count to float to get the correct ratio.
-- Difficult task (took about 2 hours)
+Overall we consider the task as difficult, especially the part with the foreign like count.
+It took us especially long to get the idea with the SQL Case expression to get the foreign like count.
+This was the most difficult part.
+We also made a lot of mistakes until we got the correct join for the foreign like count.
+Lastly we forgot to cast the sum the foreign like count to float to get the correct ratio.
+Overall the task took about 2,5 hours.
 
 ## Task 1.2
 
