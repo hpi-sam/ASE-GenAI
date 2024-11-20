@@ -1,0 +1,65 @@
+
+                                                            QUERY PLAN (ChatGPT)                                                             
+-----------------------------------------------------------------------------------------------------------------------------------
+
+Sort  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+  Sort Key: (ffl.foreign_likes::double precision / ffl.total_likes::double precision) DESC
+  ->  Hash Join  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+        Hash Cond: (ffl.first_liker = p.p_personid)
+        ->  CTE Scan on firstforeignlikes ffl  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+        ->  Hash  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+              ->  Seq Scan on person p  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+
+CTE FilteredMessages
+->  GroupAggregate  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+      Group Key: m.m_messageid, m.m_creatorid
+      Filter: (count(l.l_personid) >= 20)
+      ->  Hash Join  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+            Hash Cond: (m.m_messageid = l.l_messageid)
+            ->  Seq Scan on message m  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+                  Filter: (m_length > 100)
+            ->  Seq Scan on likes l  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+
+CTE Friends
+->  Hash Join  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+      Hash Cond: (k.k_person1id = fm.m_creatorid)
+      ->  CTE Scan on filteredmessages fm  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+      ->  Seq Scan on knows k  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+
+CTE Connections
+->  Append  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+      ->  Hash Join  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+            Hash Cond: (k.k_person1id = f.friend_id)
+            ->  Seq Scan on knows k  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+            ->  CTE Scan on friends f  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+      ->  CTE Scan on friends f  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+
+CTE ForeignLikes
+->  HashAggregate  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+      Group Key: l.l_messageid
+      ->  Hash Join  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+            Hash Cond: ((l.l_messageid = c.message_id) AND (l.l_personid = c.person_id))
+            ->  Seq Scan on likes l  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+            ->  Hash  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+                  ->  CTE Scan on connections c  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+
+CTE RelevantMessages
+->  Hash Join  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+      Hash Cond: (fl.message_id = fm.m_messageid)
+      Filter: (fl.foreign_likes >= (fm.total_likes / 2))
+      ->  CTE Scan on foreignlikes fl  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+      ->  CTE Scan on filteredmessages fm  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+
+CTE FirstForeignLikes
+->  Hash Join  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+      Hash Cond: (sfl.message_id = rm.message_id)
+      ->  Subquery Scan on sfl  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+            ->  Unique  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+                  ->  Sort  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+                        Sort Key: l.l_messageid, l.l_creationdate
+                        ->  Hash Join  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+                              Hash Cond: ((l.l_messageid = c.message_id) AND (l.l_personid = c.person_id))
+                              ->  Seq Scan on likes l  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+                              ->  Hash  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+                                    ->  CTE Scan on connections c  (cost=XXXXX..XXXXX rows=XXX width=XXX)
+      ->  CTE Scan on relevantmessages rm  (cost=XXXXX..XXXXX rows=XXX width=XXX)

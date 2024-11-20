@@ -1,0 +1,83 @@
+3.1                                                            QUERY PLAN (SQL)                                                         
+-----------------------------------------------------------------------------------------------------------------------------------
+ Sort  (cost=483489.38..483555.63 rows=26500 width=72)
+   Sort Key: (((fl.foreign_likes)::double precision / (fm.total_likes)::double precision)) DESC
+   CTE filteredmessages
+     ->  HashAggregate  (cost=11184.57..11268.02 rows=2225 width=24)
+           Group Key: m.m_messageid, m.m_creatorid
+           Filter: (count(l_1.l_personid) >= 20)
+           ->  Hash Join  (cost=8858.94..11134.50 rows=6676 width=24)
+                 Hash Cond: (l_1.l_messageid = m.m_messageid)
+                 ->  Seq Scan on likes l_1  (cost=0.00..1798.40 rows=109440 width=16)
+                 ->  Hash  (cost=8640.30..8640.30 rows=17491 width=16)
+                       ->  Seq Scan on message m  (cost=0.00..8640.30 rows=17491 width=16)
+                             Filter: (m_length > 100)
+   CTE friends
+     ->  Hash Join  (cost=813.29..2270.46 rows=46149 width=24)
+           Hash Cond: (fm_1.m_creatorid = k.k_person1id)
+           ->  CTE Scan on filteredmessages fm_1  (cost=0.00..44.50 rows=2225 width=16)
+           ->  Hash  (cost=461.46..461.46 rows=28146 width=16)
+                 ->  Seq Scan on knows k  (cost=0.00..461.46 rows=28146 width=16)
+   CTE connections
+     ->  Unique  (cost=144642.92..152167.98 rows=1003341 width=16)
+           ->  Sort  (cost=144642.92..147151.27 rows=1003341 width=16)
+                 Sort Key: f.m_messageid, k_1.k_person2id
+                 ->  Append  (cost=7039.69..27477.98 rows=1003341 width=16)
+                       ->  Merge Join  (cost=7039.69..21538.30 rows=957192 width=16)
+                             Merge Cond: (k_1.k_person1id = f.friend_id)
+                             ->  Sort  (cost=2541.54..2611.90 rows=28146 width=16)
+                                   Sort Key: k_1.k_person1id
+                                   ->  Seq Scan on knows k_1  (cost=0.00..461.46 rows=28146 width=16)
+                             ->  Sort  (cost=4498.15..4613.52 rows=46149 width=16)
+                                   Sort Key: f.friend_id
+                                   ->  CTE Scan on friends f  (cost=0.00..922.98 rows=46149 width=16)
+                       ->  CTE Scan on friends f_1  (cost=0.00..922.98 rows=46149 width=16)
+   CTE foreignlikes
+     ->  GroupAggregate  (cost=150062.67..159000.86 rows=7146 width=16)
+           Group Key: l_2.l_messageid
+           ->  Merge Anti Join  (cost=150062.67..158519.00 rows=82080 width=16)
+                 Merge Cond: ((l_2.l_messageid = c_1.message_id) AND (l_2.l_personid = c_1.person_id))
+                 ->  Sort  (cost=12830.91..13104.51 rows=109440 width=16)
+                       Sort Key: l_2.l_messageid, l_2.l_personid
+                       ->  Seq Scan on likes l_2  (cost=0.00..1798.40 rows=109440 width=16)
+                 ->  Sort  (cost=137231.76..139740.11 rows=1003341 width=16)
+                       Sort Key: c_1.message_id, c_1.person_id
+                       ->  CTE Scan on connections c_1  (cost=0.00..20066.82 rows=1003341 width=16)
+   ->  Hash Join  (cost=145222.03..156835.15 rows=26500 width=72)
+         Hash Cond: (l.l_personid = p.p_personid)
+         ->  Merge Join  (cost=145167.65..156151.39 rows=26500 width=40)
+               Merge Cond: (fm.m_messageid = fl.message_id)
+               Join Filter: (fl.foreign_likes >= (fm.total_likes / 2))
+               ->  Merge Join  (cost=144567.29..153955.48 rows=2225 width=40)
+                     Merge Cond: (l.l_messageid = fm.m_messageid)
+                     ->  Unique  (cost=144399.08..153664.57 rows=7146 width=24)
+                           ->  Incremental Sort  (cost=144399.08..153561.97 rows=41040 width=24)
+                                 Sort Key: l.l_messageid, l.l_creationdate
+                                 Presorted Key: l.l_messageid
+                                 ->  Merge Anti Join  (cost=144397.89..152388.58 rows=41040 width=24)
+                                       Merge Cond: ((l.l_messageid = c.message_id) AND (l.l_personid = c.person_id))
+                                       ->  Sort  (cost=7166.13..7302.93 rows=54720 width=24)
+                                             Sort Key: l.l_messageid, l.l_personid
+                                             ->  Hash Join  (cost=165.29..2859.73 rows=54720 width=24)
+                                                   Hash Cond: (l.l_messageid = foreignlikes.message_id)
+                                                   ->  Seq Scan on likes l  (cost=0.00..1798.40 rows=109440 width=24)
+                                                   ->  Hash  (cost=162.79..162.79 rows=200 width=8)
+                                                         ->  HashAggregate  (cost=160.79..162.79 rows=200 width=8)
+                                                               Group Key: foreignlikes.message_id
+                                                               ->  CTE Scan on foreignlikes  (cost=0.00..142.92 rows=7146 width=8)
+                                       ->  Sort  (cost=137231.76..139740.11 rows=1003341 width=16)
+                                             Sort Key: c.message_id, c.person_id
+                                             ->  CTE Scan on connections c  (cost=0.00..20066.82 rows=1003341 width=16)
+                     ->  Sort  (cost=168.21..173.77 rows=2225 width=16)
+                           Sort Key: fm.m_messageid
+                           ->  CTE Scan on filteredmessages fm  (cost=0.00..44.50 rows=2225 width=16)
+               ->  Sort  (cost=600.37..618.23 rows=7146 width=16)
+                     Sort Key: fl.message_id
+                     ->  CTE Scan on foreignlikes fl  (cost=0.00..142.92 rows=7146 width=16)
+         ->  Hash  (cost=35.28..35.28 rows=1528 width=20)
+               ->  Seq Scan on person p  (cost=0.00..35.28 rows=1528 width=20)
+ JIT:
+   Functions: 105
+   Options: Inlining false, Optimization false, Expressions true, Deforming true
+(79 rows)
+
