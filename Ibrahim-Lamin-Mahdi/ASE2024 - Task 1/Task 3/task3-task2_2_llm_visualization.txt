@@ -1,0 +1,3 @@
+task2_2 LLM Generated for LLM SQL Query
+
+https://explain.dalibo.com/plan/ge682847dgg9452a#plan
