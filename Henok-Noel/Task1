@@ -55,7 +55,9 @@
   WHERE total_likers.like_count <= foreign_likers.like_count * 2
   ORDER by foreign_like_ratio DESC;
 
-1.2: ChatGPT's final (not quite correct) query is the following:
+1.2:
+The Chat : https://chatgpt.com/share/673dd69d-5650-800b-97df-1d03e6a3c876
+ChatGPT's final (not quite correct) query is the following:
 
   WITH direct_friends AS (
     -- Get direct friends of the creator of each message
