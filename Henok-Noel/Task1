@@ -1,4 +1,60 @@
-1.1:
+1.1: We struggled a while to come up with the right query. The 'friend of a friend' logic produced some problems for us. Our end query is
+
+  SELECT
+    total_likers.messageid,
+    total_likers.like_count,
+    foreign_likers.like_count,
+    foreign_likers.like_count / CAST(total_likers.like_count AS float) AS foreign_like_ratio
+  FROM (
+    SELECT
+      m_messageid AS messageid,
+      COUNT(l_personid) AS like_count
+    FROM message
+    INNER JOIN likes
+    ON l_messageid = m_messageid
+    WHERE m_length > 100
+    GROUP BY m_messageid
+    HAVING COUNT(l_personid) >= 20
+  ) AS total_likers
+  INNER JOIN (
+    SELECT messageid, COUNT(DISTINCT(l_personid)) as like_count
+    FROM (
+      SELECT
+        m_messageid AS messageid,
+        l_personid
+      FROM (
+        message
+        INNER JOIN likes
+        ON l_messageid = m_messageid
+      )
+      EXCEPT (
+        SELECT
+          m_messageid AS messageid,
+          l_personid
+        FROM (
+          message
+          INNER JOIN likes
+          ON l_messageid = m_messageid
+        )
+        INNER JOIN (
+          SELECT
+            k0.k_person1id AS personid,
+            k0.k_person2id AS friendid,
+            k1.k_person2id AS friendfriendid
+          FROM knows AS k0
+          INNER JOIN knows AS k1
+          ON k0.k_person2id = k1.k_person1id
+        ) AS friends
+        ON friends.personid = m_creatorid
+        AND (friends.friendid = l_personid OR friends.friendfriendid = l_personid)
+      )
+    )
+    GROUP BY messageid
+  ) AS foreign_likers
+  ON foreign_likers.messageid = total_likers.messageid
+  WHERE total_likers.like_count <= foreign_likers.like_count * 2
+  ORDER by foreign_like_ratio DESC;
+
 1.2:
 1.3: We head quite a bit of theoretical knowledge stemming from courses such as DBS1, DBS2 or the Build your
 own Database seminar but rarely applied any of that. So we knew the basic syntax and operations but had no real
