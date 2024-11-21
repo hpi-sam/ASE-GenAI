@@ -1,1 +1,305 @@
+2.1: Our extension of our query is as follows:
+  SELECT
+    total_likers.messageid,
+    total_likers.like_count,
+    foreign_likers.like_count,
+    foreign_likers.like_count / CAST(total_likers.like_count AS float) AS foreign_like_ratio,
+    CONCAT(p_firstname, ' ', p_lastname) AS full_name,
+    l_creationdate
+  FROM (
+    SELECT
+      m_messageid AS messageid,
+      COUNT(l_personid) AS like_count
+    FROM message
+    INNER JOIN likes
+    ON l_messageid = m_messageid
+    WHERE m_length > 100
+    GROUP BY m_messageid
+    HAVING COUNT(l_personid) >= 20
+  ) AS total_likers
+  INNER JOIN (
+    SELECT messageid, COUNT(DISTINCT(l_personid)) as like_count, MIN(l_creationdate) AS min_creationdate
+    FROM (
+      SELECT
+        m_messageid AS messageid,
+        l_personid,
+        l_creationdate
+      FROM (
+        message
+        INNER JOIN likes
+        ON l_messageid = m_messageid
+      )
+      EXCEPT (
+        SELECT
+          m_messageid AS messageid,
+          l_personid,
+          l_creationdate
+        FROM (
+          message
+          INNER JOIN likes
+          ON l_messageid = m_messageid
+        )
+        INNER JOIN (
+          SELECT
+            k0.k_person1id AS personid,
+            k0.k_person2id AS friendid,
+            k1.k_person2id AS friendfriendid
+          FROM knows AS k0
+          INNER JOIN knows AS k1
+          ON k0.k_person2id = k1.k_person1id
+        ) AS friends
+        ON friends.personid = m_creatorid
+        AND (friends.friendid = l_personid OR friends.friendfriendid = l_personid)
+      )
+    )
+    GROUP BY messageid
+  ) AS foreign_likers
+  ON foreign_likers.messageid = total_likers.messageid
+  INNER JOIN likes
+  ON foreign_likers.min_creationdate = l_creationdate
+  AND foreign_likers.messageid = l_messageid
+  INNER JOIN person
+  ON l_personid = p_personid
+  WHERE total_likers.like_count <= foreign_likers.like_count * 2
+  ORDER by foreign_like_ratio DESC;
 
+Our extension of ChatGPT's version looks as follows:
+
+WITH direct_friends AS (
+    -- Get direct friends of the creator of each message
+    SELECT DISTINCT k.k_person2id AS friend_id, m.m_messageid
+    FROM knows k
+    JOIN message m ON k.k_person1id = m.m_creatorid
+),
+friends_of_friends AS (
+    -- Get friends of the direct friends of the creator
+    SELECT DISTINCT k.k_person2id AS fof_id, df.m_messageid
+    FROM knows k
+    JOIN direct_friends df ON k.k_person1id = df.friend_id
+),
+non_foreign_likes AS (
+    -- Combine the creator, direct friends, and friends of friends
+    SELECT DISTINCT l.l_personid, m.m_messageid
+    FROM likes l
+    JOIN message m ON l.l_messageid = m.m_messageid
+    LEFT JOIN direct_friends df ON l.l_personid = df.friend_id AND l.l_messageid = df.m_messageid
+    LEFT JOIN friends_of_friends fof ON l.l_personid = fof.fof_id AND l.l_messageid = fof.m_messageid
+    WHERE l.l_personid = m.m_creatorid OR df.friend_id IS NOT NULL OR fof.fof_id IS NOT NULL
+)
+SELECT 
+    m.m_messageid AS message_id,
+    COUNT(l.l_personid) AS total_likes,
+    SUM(CASE WHEN l.l_personid NOT IN (
+        SELECT l_personid
+        FROM non_foreign_likes
+        WHERE m_messageid = m.m_messageid
+    ) THEN 1 ELSE 0 END) AS foreign_likes,
+    SUM(CASE WHEN l.l_personid NOT IN (
+        SELECT l_personid
+        FROM non_foreign_likes
+        WHERE m_messageid = m.m_messageid
+    ) THEN 1 ELSE 0 END) * 1.0 / COUNT(l.l_personid) AS foreign_ratio
+FROM 
+    message m
+JOIN 
+    likes l ON l.l_messageid = m.m_messageid
+WHERE 
+    m.m_length > 100
+GROUP BY 
+    m.m_messageid
+HAVING 
+    COUNT(l.l_personid) >= 20 AND 
+    SUM(CASE WHEN l.l_personid NOT IN (
+        SELECT l_personid
+        FROM non_foreign_likes
+        WHERE m_messageid = m.m_messageid
+    ) THEN 1 ELSE 0 END) >= COUNT(l.l_personid) / 2
+ORDER BY 
+    foreign_ratio DESC;
+
+2.2: ChatGPT's extension of our query looks as follows:
+
+SELECT
+    total_likers.messageid,
+    total_likers.like_count,
+    foreign_likers.like_count,
+    foreign_likers.like_count / CAST(total_likers.like_count AS float) AS foreign_like_ratio,
+    first_foreign_details.first_foreign_liker,
+    first_foreign_details.first_like_time
+FROM (
+    SELECT
+        m_messageid AS messageid,
+        COUNT(l_personid) AS like_count
+    FROM message
+    INNER JOIN likes
+    ON l_messageid = m_messageid
+    WHERE m_length > 100
+    GROUP BY m_messageid
+    HAVING COUNT(l_personid) >= 20
+) AS total_likers
+INNER JOIN (
+    SELECT messageid, COUNT(DISTINCT(l_personid)) as like_count
+    FROM (
+        SELECT
+            m_messageid AS messageid,
+            l_personid,
+            l_time
+        FROM (
+            message
+            INNER JOIN likes
+            ON l_messageid = m_messageid
+        )
+        EXCEPT (
+            SELECT
+                m_messageid AS messageid,
+                l_personid,
+                NULL AS l_time
+            FROM (
+                message
+                INNER JOIN likes
+                ON l_messageid = m_messageid
+            )
+            INNER JOIN (
+                SELECT
+                    k0.k_person1id AS personid,
+                    k0.k_person2id AS friendid,
+                    k1.k_person2id AS friendfriendid
+                FROM knows AS k0
+                INNER JOIN knows AS k1
+                ON k0.k_person2id = k1.k_person1id
+            ) AS friends
+            ON friends.personid = m_creatorid
+            AND (friends.friendid = l_personid OR friends.friendfriendid = l_personid)
+        )
+    )
+    GROUP BY messageid
+) AS foreign_likers
+ON foreign_likers.messageid = total_likers.messageid
+LEFT JOIN (
+    SELECT 
+        fl.messageid,
+        p.p_fullname AS first_foreign_liker,
+        fl.first_like_time
+    FROM (
+        SELECT 
+            m_messageid AS messageid,
+            l_personid,
+            MIN(l_time) AS first_like_time
+        FROM (
+            message
+            INNER JOIN likes
+            ON l_messageid = m_messageid
+        )
+        EXCEPT (
+            SELECT
+                m_messageid AS messageid,
+                l_personid,
+                NULL AS l_time
+            FROM (
+                message
+                INNER JOIN likes
+                ON l_messageid = m_messageid
+            )
+            INNER JOIN (
+                SELECT
+                    k0.k_person1id AS personid,
+                    k0.k_person2id AS friendid,
+                    k1.k_person2id AS friendfriendid
+                FROM knows AS k0
+                INNER JOIN knows AS k1
+                ON k0.k_person2id = k1.k_person1id
+            ) AS friends
+            ON friends.personid = m_creatorid
+            AND (friends.friendid = l_personid OR friends.friendfriendid = l_personid)
+        )
+        GROUP BY m_messageid, l_personid
+    ) AS fl
+    INNER JOIN person p
+    ON fl.l_personid = p.p_personid
+) AS first_foreign_details
+ON total_likers.messageid = first_foreign_details.messageid
+WHERE total_likers.like_count <= foreign_likers.like_count * 2
+ORDER BY foreign_like_ratio DESC;
+
+ChatGPT's extension of its query looks as follows:
+
+WITH direct_friends AS (
+    SELECT DISTINCT k.k_person2id AS friend_id, m.m_messageid
+    FROM knows k
+    JOIN message m ON k.k_person1id = m.m_creatorid
+),
+friends_of_friends AS (
+    SELECT DISTINCT k.k_person2id AS fof_id, df.m_messageid
+    FROM knows k
+    JOIN direct_friends df ON k.k_person1id = df.friend_id
+),
+non_foreign_likes AS (
+    SELECT DISTINCT l.l_personid, m.m_messageid
+    FROM likes l
+    JOIN message m ON l.l_messageid = m.m_messageid
+    LEFT JOIN direct_friends df ON l.l_personid = df.friend_id AND l.l_messageid = df.m_messageid
+    LEFT JOIN friends_of_friends fof ON l.l_personid = fof.fof_id AND l.l_messageid = fof.m_messageid
+    WHERE l.l_personid = m.m_creatorid OR df.friend_id IS NOT NULL OR fof.fof_id IS NOT NULL
+),
+first_foreign_like AS (
+    SELECT 
+        l.l_messageid,
+        MIN(l.l_time) AS first_like_time
+    FROM likes l
+    WHERE l.l_personid NOT IN (
+        SELECT l_personid
+        FROM non_foreign_likes
+        WHERE l_messageid = l.l_messageid
+    )
+    GROUP BY l.l_messageid
+),
+foreign_likes_details AS (
+    SELECT 
+        fl.l_messageid,
+        fl.l_personid AS liker_id,
+        p.p_fullname AS liker_fullname,
+        fl.l_time AS like_time
+    FROM likes fl
+    JOIN person p ON fl.l_personid = p.p_personid
+    JOIN first_foreign_like ffl ON fl.l_messageid = ffl.l_messageid AND fl.l_time = ffl.first_like_time
+)
+SELECT 
+    m.m_messageid AS message_id,
+    COUNT(l.l_personid) AS total_likes,
+    SUM(CASE WHEN l.l_personid NOT IN (
+        SELECT l_personid
+        FROM non_foreign_likes
+        WHERE m_messageid = m.m_messageid
+    ) THEN 1 ELSE 0 END) AS foreign_likes,
+    SUM(CASE WHEN l.l_personid NOT IN (
+        SELECT l_personid
+        FROM non_foreign_likes
+        WHERE m_messageid = m.m_messageid
+    ) THEN 1 ELSE 0 END) * 1.0 / COUNT(l.l_personid) AS foreign_ratio,
+    fld.liker_fullname AS first_foreign_liker,
+    fld.like_time AS first_foreign_like_time
+FROM 
+    message m
+JOIN 
+    likes l ON l.l_messageid = m.m_messageid
+LEFT JOIN 
+    foreign_likes_details fld ON m.m_messageid = fld.l_messageid
+WHERE 
+    m.m_length > 100
+GROUP BY 
+    m.m_messageid, fld.liker_fullname, fld.like_time
+HAVING 
+    COUNT(l.l_personid) >= 20 AND 
+    SUM(CASE WHEN l.l_personid NOT IN (
+        SELECT l_personid
+        FROM non_foreign_likes
+        WHERE m_messageid = m.m_messageid
+    ) THEN 1 ELSE 0 END) >= COUNT(l.l_personid) / 2
+ORDER BY 
+    foreign_ratio DESC;
+
+2.3: It was harder for us to extend ChatGPT's version as it was using different SQL elements than we (namely materialized sub-queries and sum-case constructs). Our own query could be extended
+rather quickly. ChatGPT did a decent job at extending its own query sticking to the style of making another subquery with the missing information and incorporating that into the main query.
+As there were already problems with the original query, these minor bugs stayed in the query. Worst case was the extension of our query by ChatGPT. Chat was basically generating the same
+query like the extension of its own and did not take into account the different structure of our query. After prompt and explicit request not to change anything, only add, ChatGPT was
+able to adhere to our style, however, still making syntactic errors.
