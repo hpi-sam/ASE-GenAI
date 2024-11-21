@@ -1,0 +1,28 @@
+name: db-controller
+
+services:
+  postgres:
+    container_name: postgres
+    hostname: postgres
+    image: postgres:16
+    shm_size: 8G
+    ports:
+      - 5432:5432
+    volumes:
+      - ./data/postgres/:/var/lib/postgresql/data
+      - ./schema-generator/sql/:/app/sql/
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+  schema-generator:
+    container_name: schema-generator
+    build: ./schema-generator
+
