@@ -9,15 +9,16 @@ from (
 		on m.m_messageid = l.l_messageid
 	) m
 	where m.m_length >= 100 and l_personid in (
-		select p.p_personid as pid from person p 
+		select p.p_personid as pid from person p
 		where p.p_personid not in (
-				select k.k_person2id as pid from knows k 
-				where k.k_person1id = m.m_creatorid 
+				select k.k_person2id as pid from knows k
+				where k.k_person1id = m.m_creatorid
 			union
 				select k.k_person1id as pid from knows k
-				where k.k_person2id = m.m_creatorid 
+				where k.k_person2id = m.m_creatorid
 			union
-				select m.m_creatorid 
+				select m.m_creatorid
+
 		)
 	)
 	group by m.m_messageid
