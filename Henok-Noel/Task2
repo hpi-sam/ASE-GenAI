@@ -299,4 +299,7 @@ ORDER BY
     foreign_ratio DESC;
 
 2.3: It was harder for us to extend ChatGPT's version as it was using different SQL elements than we (namely materialized sub-queries and sum-case constructs). Our own query could be extended
-rather quickly. ChatGPT did a decent job at extending its own query sticking to the style of making another subquery with the missing information and incorporating that into the main query. As there were already problems with the original query, these minor bugs stayed in the query. Worst case was the extension of our query by ChatGPT. Chat was basically generating the same query like the extension of its own and did not take into account the different structure of our query. Even on prompt and explicit request not to change anything, only add, ChatGPT was more rewriting the query than extending it.
+rather quickly. ChatGPT did a decent job at extending its own query sticking to the style of making another subquery with the missing information and incorporating that into the main query.
+As there were already problems with the original query, these minor bugs stayed in the query. Worst case was the extension of our query by ChatGPT. Chat was basically generating the same
+query like the extension of its own and did not take into account the different structure of our query. After prompt and explicit request not to change anything, only add, ChatGPT was
+able to adhere to our style, however, still making syntactic errors.
