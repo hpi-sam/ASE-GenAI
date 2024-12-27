@@ -5,9 +5,31 @@ from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import classification_report, confusion_matrix
 import numpy as np
+from openai import OpenAI
+
+from dotenv import load_dotenv
+
+OPENAI_API_KEY = load_dotenv()
 
 ANSWERS_FILE = "./data/answerList_data.csv"
 CODE_FILES = glob("./data/*.java")
+
+def openai_explanation(text):
+    role = """
+        1. You are a developer that explains code to developers. Your task is to fix bugs. If you cannot fix the bug from the information available to you, say it!
+        2. Don't say that you are going to give an answer now, but give the answer straight away. I want to act like a human answered this not a machine. 
+    """
+
+    client = OpenAI(api_key=OPENAI_API_KEY)
+    response = client.chat.completions.create(
+        model="gpt-4o",
+        messages=[
+            {"role": "system", "content": role},
+            {"role": "user", "content": text}
+        ]
+    )
+    return response.choices[0].message.content
+
 
 def number_of_words(expl, _method):
     return len(expl.split(" "))
@@ -130,7 +152,7 @@ def prepare_data(df, explanation_complexity_method, outfolder):
 
 def train_model(parameters):
     df = pd.read_csv(ANSWERS_FILE)
-    df = df.drop(columns=['Answer.ID', 'Question.ID', 'Worker.ID'])
+    df = df.drop(columns=['Worker.ID'])
 
     if not os.path.exists(f"./out/{parameters['outfolder']}"):
         os.mkdir(f"./out/{parameters['outfolder']}")
@@ -142,7 +164,7 @@ def train_model(parameters):
     test_set_ratio = test_set_size / len(df)
 
     X = prepared_data.drop(columns=['GroundTruth', 'TP', 'FP', 'TN', 'FN', 'Answer.explanation'])
-    y = prepared_data.iloc[:, 4:5]
+    y = prepared_data['GroundTruth']
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=parameters['random_state'], test_size=test_set_ratio)
 
@@ -157,6 +179,26 @@ def train_model(parameters):
     
     features = pd.DataFrame(dtc.feature_importances_, index=X.columns, columns=['Importance']).sort_values(by='Importance', ascending=False)
     features.to_csv(f"./out/{parameters['outfolder']}/features-importance.csv")
+
+    results = df[df['GroundTruth'] == 1]        
+
+    questions_merges = {}
+    questions_ids = results['Question.ID'].unique().tolist()
+    for id in questions_ids:
+        questions = results[results['Question.ID'] == id]
+        explanations = questions['Answer.explanation'].tolist()
+
+        print(f'Got {len(explanations)} explanations for question {id}.')
+
+        text = f"""
+            The following is a list of explanations for a question. Merge it to sensible text.
+            Only keep really relevant information. Make the answer as short as possible, but still informative.
+            '{"','".join(explanations)}'
+        """
+
+        questions_merges[id] = openai_explanation(text)
+
+    print(questions_merges)
 
 
 if __name__ == "__main__":
