@@ -4,7 +4,7 @@
 Choosing a complexity measure
 
 **TTR:**
-   The issue lies in aissigning high complexity ratings to fields that only contain one word, even if this word is arbitrary chosen. 
+    The issue lies in aissigning high complexity ratings to fields that only contain one word, even if this word is arbitrary chosen. 
 
 **Halstead:** 
    V=N⋅log(n) N: Total number of words; n: Number of unique words
