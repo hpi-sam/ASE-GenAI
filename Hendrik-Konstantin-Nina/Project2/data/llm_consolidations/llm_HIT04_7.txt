@@ -1,3 +1,0 @@
-Replace this.minMiddleIndex with this.maxMiddleIndex for both s and e.
-Ensure correct method signatures, especially in add, and prevent division by zero.
-Update the expected count value to 3 and verify index checks for correct bounds.

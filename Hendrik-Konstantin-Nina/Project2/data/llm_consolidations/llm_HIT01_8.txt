@@ -1,1 +1,0 @@
-The issue is caused by line 279, where the code rejects any negative minutesOffset (e.g., -15). The check should be if (minutesOffset < -59 || minutesOffset > 59) instead of if (minutesOffset < 0) to allow negative offsets when the hour is also negative.
