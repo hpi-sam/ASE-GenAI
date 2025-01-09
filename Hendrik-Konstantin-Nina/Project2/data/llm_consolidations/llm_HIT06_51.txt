@@ -1,0 +1,3 @@
+The issue arises in the while loop, which will never exit due to incorrect conditions; revise the loop to ensure it terminates properly.
+The add() method receives a long value, which truncates the decimal part, resulting in 0 instead of -0.0; adjust the logic to preserve the sign of zero.
+Review the exp variable and ensure it gets the correct value, as it may be causing the code not to execute as expected.

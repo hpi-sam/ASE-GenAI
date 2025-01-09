@@ -1,0 +1,1 @@
+The issue occurs because the g value is calculated from value, which can exceed the valid color range (0-255). When value is negative, it causes g to be negative, resulting in an invalid color parameter. The calculation should use v instead of value, and the range for g needs to be properly validated to stay within 0-255.
