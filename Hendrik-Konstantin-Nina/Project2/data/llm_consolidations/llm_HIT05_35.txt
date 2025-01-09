@@ -1,0 +1,3 @@
+Ensure that both array and element are checked for null before accessing their types; throw an IllegalArgumentException if both are null.
+The type variable is set to Object.class when both array and element are null, causing a ClassCastException. Modify the logic to handle null inputs correctly.
+Avoid using generic types for array operations—use Object[] instead of String[] when dealing with array creation and copying to prevent type mismatches.
