@@ -6,6 +6,7 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import classification_report, confusion_matrix
 import numpy as np
 from openai import OpenAI
+import time
 
 from dotenv import load_dotenv
 
@@ -14,7 +15,23 @@ OPENAI_API_KEY = load_dotenv()
 ANSWERS_FILE = "./data/answerList_data.csv"
 CODE_FILES = glob("./data/*.java")
 
-def openai_explanation(text):
+models = {
+    "gpt-4-mini": {
+        "model": "gpt-4o-mini",
+        "cost_per_million_tokens": 0.15
+    },
+    "gpt-4": {
+        "model": "gpt-4o",
+        "cost_per_million_tokens": 2.5
+    },
+}
+
+USED_MODEL = models.get("gpt-4-mini")
+
+def calculate_costs(model, used_tokens: int):
+    return (used_tokens / 1_000_000) * model.get("cost_per_million_tokens")
+
+def openai_explanation(text, model):
     role = """
         1. You are a developer that explains code to developers. Your task is to fix bugs. If you cannot fix the bug from the information available to you, say it!
         2. Don't say that you are going to give an answer now, but give the answer straight away. I want to act like a human answered this not a machine. 
@@ -22,13 +39,13 @@ def openai_explanation(text):
 
     client = OpenAI(api_key=OPENAI_API_KEY)
     response = client.chat.completions.create(
-        model="gpt-4o",
+        model=model.get('model'),
         messages=[
             {"role": "system", "content": role},
             {"role": "user", "content": text}
         ]
     )
-    return response.choices[0].message.content
+    return response.choices[0].message.content, response.usage.total_tokens
 
 
 def number_of_words(expl, _method):
@@ -92,7 +109,8 @@ parameters = [
 ]
 
 def main():
-    [train_model(params) for params in parameters]
+    #[train_model(params) for params in parameters]
+    train_model(parameters[1])
 
 def prepare_data(df, explanation_complexity_method, outfolder):
     def score_for_where_learned_to_code(where_learned_to_code):
@@ -185,23 +203,27 @@ def train_model(parameters):
 
     results = df[df['GroundTruth'] == 1]
 
+    used_tokens = 0
+    start = time.time()
     questions_merges = {}
     questions_ids = results['Question.ID'].unique().tolist()
     for id in questions_ids:
         questions = results[results['Question.ID'] == id]
         explanations = questions['Answer.explanation'].tolist()
 
-        print(f'Got {len(explanations)} explanations for question {id}.')
-
         text = f"""
-            The following is a list of explanations for a question. Merge it to sensible text.
-            Only keep really relevant information. Make the answer as short as possible, but still informative.
-            '{"','".join(explanations)}'
-        """
+The following is a list of explanations for a question. Merge it to sensible text.
+Only keep really relevant information. Make the answer as short as possible, but still informative.
+'{"','".join(explanations)}'""".strip()
 
-        questions_merges[id] = openai_explanation(text)
+        questions_merges[id], total_tokens = openai_explanation(text, USED_MODEL)
+        used_tokens += total_tokens
 
-    print(questions_merges)
+    print(used_tokens)
+    print(f"Costs: {calculate_costs(USED_MODEL, used_tokens)}")
+    end = time.time()
+
+    print(f"Building Explanations took {(end - start):.2f}s")
 
 
 if __name__ == "__main__":
