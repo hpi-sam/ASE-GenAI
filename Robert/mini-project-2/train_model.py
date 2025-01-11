@@ -173,14 +173,17 @@ def train_model(parameters):
 
     y_pred = dtc.predict(X_test)
 
+    report = classification_report(y_test, y_test)
+    with open(f"./out/{parameters['outfolder']}/report_for_training_set.txt", "w") as f:
+        f.write(report)
     report = classification_report(y_test, y_pred)
-    with open(f"./out/{parameters['outfolder']}/report.txt", "w") as f:
+    with open(f"./out/{parameters['outfolder']}/report_for_test_set.txt", "w") as f:
         f.write(report)
     
     features = pd.DataFrame(dtc.feature_importances_, index=X.columns, columns=['Importance']).sort_values(by='Importance', ascending=False)
     features.to_csv(f"./out/{parameters['outfolder']}/features-importance.csv")
 
-    results = df[df['GroundTruth'] == 1]        
+    results = df[df['GroundTruth'] == 1]
 
     questions_merges = {}
     questions_ids = results['Question.ID'].unique().tolist()
