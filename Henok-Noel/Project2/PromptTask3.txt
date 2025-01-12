@@ -1,0 +1,6 @@
+Prompt:
+
+The following lines contain 80 explanations for the same bug. I want you to generate a single explanation based on them.
+
+Answer:
+The bug arises because the pos variable is incremented by the character count returned by Character.charCount() in conjunction with Character.codePointAt(), which may result in pos exceeding the length of the input string (len). This happens because surrogate pairs in Unicode can require more than one char to represent a single character. If pos is incremented beyond len without proper validation, attempting to access an index outside the bounds of the string triggers a StringIndexOutOfBoundsException. To fix this, add a check to ensure pos remains within bounds before processing further or incrementing.
