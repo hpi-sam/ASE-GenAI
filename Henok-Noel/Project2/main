@@ -218,6 +218,6 @@ The holdoutSet contains Task1 and Task4 chosen by chance.
 Task1:
   Precision: 0.8020833333333334
   Recall: 0.9625 
-Task2:
+Task4:
   Precision: 0.8711111111111111
   Recall: 0.91875
