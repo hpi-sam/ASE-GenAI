@@ -1,0 +1,22 @@
+quality of data:
+features are obviously not suited for simple ML task
+almost equal distribution between true labels and all data
+need a score for quality of the label, not just length, halstead, ttr
+
+demographics change:
+random forest classifier tends to overfit
+different data -> likely have to retrain the model in case
+
+testing output:
+classifier has scores that allow us to evaluate model
+to test LLM, look at it manually, copy the output into a script to get the BLEU and ROUGE metrics
+create benchmarks
+
+estimating quality:
+BLEU and ROUGE scores are not a measure for quality of explanation
+
+debugging integration:
+currently, model is trained to optimize F1 score, precision is okay but recall is very bad
+bad recall might be acceptable for this task, because we only need some of the correct solutions to consolidate them
+for automation, very high precision and acceptable recall would be needed (e.g. 10 correct debugging reports)
+better prompts than ours needed, our idea: output template for debugging description which gets included in prompt -> ensure same and expected formats
