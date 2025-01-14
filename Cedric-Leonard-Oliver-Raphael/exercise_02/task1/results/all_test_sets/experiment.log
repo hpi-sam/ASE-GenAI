@@ -1,0 +1,641 @@
+Columns: Index(['FailingMethod', 'Question.ID', 'Answer.duration', 'Answer.confidence',
+       'Answer.difficulty', 'GroundTruth', 'Answer.order', 'Code.LOC',
+       'Code.complexity', 'Worker.score', 'Worker.profession',
+       'Worker.yearsOfExperience', 'Worker.age', 'Worker.gender',
+       'Worker.whereLearnedToCode', 'Worker.country',
+       'Worker.programmingLanguage', 'RTTR', 'HalsteadVolume',
+       'HalsteadLength', 'HalsteadDifficulty', 'HalsteadEffort',
+       'HalsteadVocabulary', 'ExplanationLength'],
+      dtype='object')
+Best hyperparameters: {'max_depth': 20, 'min_samples_leaf': 1, 'min_samples_split': 2, 'n_estimators': 50}
+
+####################################
+EVALUATION with Test-Set: [0 1]
+Cross-validated Precision: 0.7496318114874816, Recall: 0.9310975609756098
+Test Precision: 0.7388535031847133, Recall: 0.9914529914529915
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+
+Train Grouped Metrics:
+FailingMethod: 2, Precision: 1.00, Recall: 1.00
+FailingMethod: 3, Precision: 1.00, Recall: 1.00
+FailingMethod: 4, Precision: 1.00, Recall: 1.00
+FailingMethod: 5, Precision: 1.00, Recall: 1.00
+FailingMethod: 6, Precision: 1.00, Recall: 1.00
+FailingMethod: 7, Precision: 1.00, Recall: 1.00
+
+Test Set Grouped Metrics:
+FailingMethod: 0, Precision: 0.83, Recall: 1.00
+FailingMethod: 1, Precision: 0.58, Recall: 0.97
+Best hyperparameters: {'max_depth': 30, 'min_samples_leaf': 1, 'min_samples_split': 2, 'n_estimators': 50}
+
+####################################
+EVALUATION with Test-Set: [0 2]
+Cross-validated Precision: 0.7535250987027636, Recall: 0.9045362220717671
+Test Precision: 0.7425287356321839, Recall: 0.8136020151133502
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+
+Train Grouped Metrics:
+FailingMethod: 1, Precision: 1.00, Recall: 1.00
+FailingMethod: 3, Precision: 1.00, Recall: 1.00
+FailingMethod: 4, Precision: 1.00, Recall: 1.00
+FailingMethod: 5, Precision: 1.00, Recall: 1.00
+FailingMethod: 6, Precision: 1.00, Recall: 1.00
+FailingMethod: 7, Precision: 1.00, Recall: 1.00
+
+Test Set Grouped Metrics:
+FailingMethod: 0, Precision: 0.83, Recall: 0.95
+FailingMethod: 2, Precision: 0.67, Recall: 0.72
+Best hyperparameters: {'max_depth': 20, 'min_samples_leaf': 1, 'min_samples_split': 2, 'n_estimators': 100}
+
+####################################
+EVALUATION with Test-Set: [0 3]
+Cross-validated Precision: 0.7346796657381616, Recall: 0.9118409680207433
+Test Precision: 0.7702552719200888, Recall: 0.9679218967921897
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+
+Train Grouped Metrics:
+FailingMethod: 1, Precision: 1.00, Recall: 1.00
+FailingMethod: 2, Precision: 1.00, Recall: 1.00
+FailingMethod: 4, Precision: 1.00, Recall: 1.00
+FailingMethod: 5, Precision: 1.00, Recall: 1.00
+FailingMethod: 6, Precision: 1.00, Recall: 1.00
+FailingMethod: 7, Precision: 1.00, Recall: 1.00
+
+Test Set Grouped Metrics:
+FailingMethod: 0, Precision: 0.83, Recall: 0.99
+FailingMethod: 3, Precision: 0.75, Recall: 0.96
+Best hyperparameters: {'max_depth': 20, 'min_samples_leaf': 1, 'min_samples_split': 5, 'n_estimators': 25}
+
+####################################
+EVALUATION with Test-Set: [0 4]
+Cross-validated Precision: 0.7512562814070352, Recall: 0.9349593495934959
+Test Precision: 0.7543859649122807, Recall: 0.9381818181818182
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+
+Train Grouped Metrics:
+FailingMethod: 1, Precision: 0.96, Recall: 0.99
+FailingMethod: 2, Precision: 0.96, Recall: 1.00
+FailingMethod: 3, Precision: 0.97, Recall: 1.00
+FailingMethod: 5, Precision: 0.97, Recall: 1.00
+FailingMethod: 6, Precision: 0.97, Recall: 1.00
+FailingMethod: 7, Precision: 0.96, Recall: 1.00
+
+Test Set Grouped Metrics:
+FailingMethod: 0, Precision: 0.84, Recall: 0.99
+FailingMethod: 4, Precision: 0.64, Recall: 0.86
+Best hyperparameters: {'max_depth': 30, 'min_samples_leaf': 1, 'min_samples_split': 5, 'n_estimators': 25}
+
+####################################
+EVALUATION with Test-Set: [0 5]
+Cross-validated Precision: 0.7443693693693694, Recall: 0.9142461964038727
+Test Precision: 0.7660377358490567, Recall: 0.9485981308411215
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+
+Train Grouped Metrics:
+FailingMethod: 1, Precision: 0.97, Recall: 1.00
+FailingMethod: 2, Precision: 0.97, Recall: 1.00
+FailingMethod: 3, Precision: 0.97, Recall: 1.00
+FailingMethod: 4, Precision: 0.98, Recall: 1.00
+FailingMethod: 6, Precision: 0.98, Recall: 1.00
+FailingMethod: 7, Precision: 0.95, Recall: 1.00
+
+Test Set Grouped Metrics:
+FailingMethod: 0, Precision: 0.83, Recall: 0.96
+FailingMethod: 5, Precision: 0.73, Recall: 0.94
+Best hyperparameters: {'max_depth': 20, 'min_samples_leaf': 1, 'min_samples_split': 2, 'n_estimators': 25}
+
+####################################
+EVALUATION with Test-Set: [0 6]
+Cross-validated Precision: 0.7453608247422681, Recall: 0.9026217228464419
+Test Precision: 0.7885196374622356, Recall: 0.9595588235294118
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+
+Train Grouped Metrics:
+FailingMethod: 1, Precision: 1.00, Recall: 1.00
+FailingMethod: 2, Precision: 1.00, Recall: 1.00
+FailingMethod: 3, Precision: 1.00, Recall: 1.00
+FailingMethod: 4, Precision: 1.00, Recall: 1.00
+FailingMethod: 5, Precision: 1.00, Recall: 1.00
+FailingMethod: 7, Precision: 1.00, Recall: 1.00
+
+Test Set Grouped Metrics:
+FailingMethod: 0, Precision: 0.85, Recall: 0.95
+FailingMethod: 6, Precision: 0.71, Recall: 0.97
+Best hyperparameters: {'max_depth': 20, 'min_samples_leaf': 1, 'min_samples_split': 2, 'n_estimators': 25}
+
+####################################
+EVALUATION with Test-Set: [0 7]
+Cross-validated Precision: 0.7302070645554202, Recall: 0.8954443614637789
+Test Precision: 0.8099173553719008, Recall: 0.9158878504672897
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+
+Train Grouped Metrics:
+FailingMethod: 1, Precision: 0.99, Recall: 1.00
+FailingMethod: 2, Precision: 1.00, Recall: 1.00
+FailingMethod: 3, Precision: 1.00, Recall: 1.00
+FailingMethod: 4, Precision: 1.00, Recall: 1.00
+FailingMethod: 5, Precision: 1.00, Recall: 1.00
+FailingMethod: 6, Precision: 1.00, Recall: 1.00
+
+Test Set Grouped Metrics:
+FailingMethod: 0, Precision: 0.85, Recall: 0.93
+FailingMethod: 7, Precision: 0.79, Recall: 0.91
+Best hyperparameters: {'max_depth': 30, 'min_samples_leaf': 1, 'min_samples_split': 2, 'n_estimators': 100}
+
+####################################
+EVALUATION with Test-Set: [1 2]
+Cross-validated Precision: 0.7654385054488843, Recall: 0.9388924252068745
+Test Precision: 0.6659242761692651, Recall: 0.9867986798679867
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+
+Train Grouped Metrics:
+FailingMethod: 0, Precision: 1.00, Recall: 1.00
+FailingMethod: 3, Precision: 1.00, Recall: 1.00
+FailingMethod: 4, Precision: 1.00, Recall: 1.00
+FailingMethod: 5, Precision: 1.00, Recall: 1.00
+FailingMethod: 6, Precision: 1.00, Recall: 1.00
+FailingMethod: 7, Precision: 1.00, Recall: 1.00
+
+Test Set Grouped Metrics:
+FailingMethod: 1, Precision: 0.59, Recall: 0.99
+FailingMethod: 2, Precision: 0.69, Recall: 0.99
+Best hyperparameters: {'max_depth': 30, 'min_samples_leaf': 1, 'min_samples_split': 2, 'n_estimators': 50}
+
+####################################
+EVALUATION with Test-Set: [1 3]
+Cross-validated Precision: 0.7547416612164813, Recall: 0.9224620303756994
+Test Precision: 0.7324455205811138, Recall: 0.971107544141252
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+
+Train Grouped Metrics:
+FailingMethod: 0, Precision: 1.00, Recall: 1.00
+FailingMethod: 2, Precision: 1.00, Recall: 1.00
+FailingMethod: 4, Precision: 1.00, Recall: 1.00
+FailingMethod: 5, Precision: 1.00, Recall: 1.00
+FailingMethod: 6, Precision: 1.00, Recall: 1.00
+FailingMethod: 7, Precision: 1.00, Recall: 1.00
+
+Test Set Grouped Metrics:
+FailingMethod: 1, Precision: 0.58, Recall: 1.00
+FailingMethod: 3, Precision: 0.76, Recall: 0.97
+Best hyperparameters: {'max_depth': 20, 'min_samples_leaf': 1, 'min_samples_split': 5, 'n_estimators': 25}
+
+####################################
+EVALUATION with Test-Set: [1 4]
+Cross-validated Precision: 0.7673860911270983, Recall: 0.9450679267572357
+Test Precision: 0.6282527881040892, Recall: 0.9337016574585635
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+
+Train Grouped Metrics:
+FailingMethod: 0, Precision: 0.95, Recall: 1.00
+FailingMethod: 2, Precision: 0.95, Recall: 1.00
+FailingMethod: 3, Precision: 0.95, Recall: 1.00
+FailingMethod: 5, Precision: 0.94, Recall: 1.00
+FailingMethod: 6, Precision: 0.95, Recall: 1.00
+FailingMethod: 7, Precision: 0.96, Recall: 1.00
+
+Test Set Grouped Metrics:
+FailingMethod: 1, Precision: 0.60, Recall: 0.99
+FailingMethod: 4, Precision: 0.65, Recall: 0.90
+Best hyperparameters: {'max_depth': 30, 'min_samples_leaf': 1, 'min_samples_split': 2, 'n_estimators': 50}
+
+####################################
+EVALUATION with Test-Set: [1 5]
+Cross-validated Precision: 0.7585106382978724, Recall: 0.925974025974026
+Test Precision: 0.6958424507658644, Recall: 0.9520958083832335
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+
+Train Grouped Metrics:
+FailingMethod: 0, Precision: 1.00, Recall: 1.00
+FailingMethod: 2, Precision: 1.00, Recall: 1.00
+FailingMethod: 3, Precision: 1.00, Recall: 1.00
+FailingMethod: 4, Precision: 1.00, Recall: 1.00
+FailingMethod: 6, Precision: 1.00, Recall: 1.00
+FailingMethod: 7, Precision: 1.00, Recall: 1.00
+
+Test Set Grouped Metrics:
+FailingMethod: 1, Precision: 0.58, Recall: 0.94
+FailingMethod: 5, Precision: 0.73, Recall: 0.95
+Best hyperparameters: {'max_depth': 20, 'min_samples_leaf': 1, 'min_samples_split': 2, 'n_estimators': 25}
+
+####################################
+EVALUATION with Test-Set: [1 6]
+Cross-validated Precision: 0.7634512845370819, Recall: 0.9286556603773585
+Test Precision: 0.6481481481481481, Recall: 0.9831460674157303
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+
+Train Grouped Metrics:
+FailingMethod: 0, Precision: 0.99, Recall: 1.00
+FailingMethod: 2, Precision: 1.00, Recall: 1.00
+FailingMethod: 3, Precision: 1.00, Recall: 1.00
+FailingMethod: 4, Precision: 1.00, Recall: 1.00
+FailingMethod: 5, Precision: 1.00, Recall: 1.00
+FailingMethod: 7, Precision: 1.00, Recall: 1.00
+
+Test Set Grouped Metrics:
+FailingMethod: 1, Precision: 0.59, Recall: 0.97
+FailingMethod: 6, Precision: 0.69, Recall: 0.99
+Best hyperparameters: {'max_depth': 30, 'min_samples_leaf': 1, 'min_samples_split': 2, 'n_estimators': 100}
+
+####################################
+EVALUATION with Test-Set: [1 7]
+Cross-validated Precision: 0.7526521496370743, Recall: 0.9406838799720866
+Test Precision: 0.7477148080438757, Recall: 0.927437641723356
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+
+Train Grouped Metrics:
+FailingMethod: 0, Precision: 1.00, Recall: 1.00
+FailingMethod: 2, Precision: 1.00, Recall: 1.00
+FailingMethod: 3, Precision: 1.00, Recall: 1.00
+FailingMethod: 4, Precision: 1.00, Recall: 1.00
+FailingMethod: 5, Precision: 1.00, Recall: 1.00
+FailingMethod: 6, Precision: 1.00, Recall: 1.00
+
+Test Set Grouped Metrics:
+FailingMethod: 1, Precision: 0.59, Recall: 0.97
+FailingMethod: 7, Precision: 0.79, Recall: 0.92
+Best hyperparameters: {'max_depth': 20, 'min_samples_leaf': 1, 'min_samples_split': 2, 'n_estimators': 25}
+
+####################################
+EVALUATION with Test-Set: [2 3]
+Cross-validated Precision: 0.7611589663273297, Recall: 0.8933823529411765
+Test Precision: 0.7308120133481646, Recall: 0.8358778625954199
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+
+Train Grouped Metrics:
+FailingMethod: 0, Precision: 1.00, Recall: 1.00
+FailingMethod: 1, Precision: 1.00, Recall: 1.00
+FailingMethod: 4, Precision: 1.00, Recall: 1.00
+FailingMethod: 5, Precision: 0.99, Recall: 1.00
+FailingMethod: 6, Precision: 0.98, Recall: 1.00
+FailingMethod: 7, Precision: 1.00, Recall: 1.00
+
+Test Set Grouped Metrics:
+FailingMethod: 2, Precision: 0.65, Recall: 0.58
+FailingMethod: 3, Precision: 0.75, Recall: 0.94
+Best hyperparameters: {'max_depth': 30, 'min_samples_leaf': 1, 'min_samples_split': 2, 'n_estimators': 50}
+
+####################################
+EVALUATION with Test-Set: [2 4]
+Cross-validated Precision: 0.770096463022508, Recall: 0.9392156862745098
+Test Precision: 0.658974358974359, Recall: 0.747093023255814
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+
+Train Grouped Metrics:
+FailingMethod: 0, Precision: 0.99, Recall: 1.00
+FailingMethod: 1, Precision: 1.00, Recall: 1.00
+FailingMethod: 3, Precision: 1.00, Recall: 1.00
+FailingMethod: 5, Precision: 1.00, Recall: 1.00
+FailingMethod: 6, Precision: 1.00, Recall: 1.00
+FailingMethod: 7, Precision: 1.00, Recall: 1.00
+
+Test Set Grouped Metrics:
+FailingMethod: 2, Precision: 0.66, Recall: 0.70
+FailingMethod: 4, Precision: 0.66, Recall: 0.85
+Best hyperparameters: {'max_depth': 30, 'min_samples_leaf': 1, 'min_samples_split': 2, 'n_estimators': 25}
+
+####################################
+EVALUATION with Test-Set: [2 5]
+Cross-validated Precision: 0.7639975918121613, Recall: 0.9215686274509803
+Test Precision: 0.7071917808219178, Recall: 0.8309859154929577
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+
+Train Grouped Metrics:
+FailingMethod: 0, Precision: 1.00, Recall: 1.00
+FailingMethod: 1, Precision: 0.99, Recall: 1.00
+FailingMethod: 3, Precision: 1.00, Recall: 1.00
+FailingMethod: 4, Precision: 1.00, Recall: 1.00
+FailingMethod: 6, Precision: 1.00, Recall: 1.00
+FailingMethod: 7, Precision: 1.00, Recall: 1.00
+
+Test Set Grouped Metrics:
+FailingMethod: 2, Precision: 0.66, Recall: 0.68
+FailingMethod: 5, Precision: 0.74, Recall: 0.97
+Best hyperparameters: {'max_depth': 20, 'min_samples_leaf': 1, 'min_samples_split': 2, 'n_estimators': 25}
+
+####################################
+EVALUATION with Test-Set: [2 6]
+Cross-validated Precision: 0.7622114868491681, Recall: 0.9262883235485975
+Test Precision: 0.6683544303797468, Recall: 0.7741935483870968
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+
+Train Grouped Metrics:
+FailingMethod: 0, Precision: 0.99, Recall: 1.00
+FailingMethod: 1, Precision: 1.00, Recall: 1.00
+FailingMethod: 3, Precision: 1.00, Recall: 1.00
+FailingMethod: 4, Precision: 0.99, Recall: 1.00
+FailingMethod: 5, Precision: 1.00, Recall: 1.00
+FailingMethod: 7, Precision: 1.00, Recall: 1.00
+
+Test Set Grouped Metrics:
+FailingMethod: 2, Precision: 0.65, Recall: 0.68
+FailingMethod: 6, Precision: 0.70, Recall: 0.97
+Best hyperparameters: {'max_depth': 30, 'min_samples_leaf': 1, 'min_samples_split': 2, 'n_estimators': 25}
+
+####################################
+EVALUATION with Test-Set: [2 7]
+Cross-validated Precision: 0.7536041939711664, Recall: 0.905511811023622
+Test Precision: 0.7386018237082067, Recall: 0.804635761589404
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+
+Train Grouped Metrics:
+FailingMethod: 0, Precision: 1.00, Recall: 1.00
+FailingMethod: 1, Precision: 1.00, Recall: 1.00
+FailingMethod: 3, Precision: 1.00, Recall: 1.00
+FailingMethod: 4, Precision: 1.00, Recall: 1.00
+FailingMethod: 5, Precision: 1.00, Recall: 1.00
+FailingMethod: 6, Precision: 1.00, Recall: 1.00
+
+Test Set Grouped Metrics:
+FailingMethod: 2, Precision: 0.66, Recall: 0.64
+FailingMethod: 7, Precision: 0.78, Recall: 0.91
+Best hyperparameters: {'max_depth': 30, 'min_samples_leaf': 1, 'min_samples_split': 2, 'n_estimators': 50}
+
+####################################
+EVALUATION with Test-Set: [3 4]
+Cross-validated Precision: 0.7613559322033898, Recall: 0.928099173553719
+Test Precision: 0.7378410438908659, Recall: 0.9367469879518072
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+
+Train Grouped Metrics:
+FailingMethod: 0, Precision: 0.99, Recall: 1.00
+FailingMethod: 1, Precision: 1.00, Recall: 1.00
+FailingMethod: 2, Precision: 1.00, Recall: 1.00
+FailingMethod: 5, Precision: 1.00, Recall: 1.00
+FailingMethod: 6, Precision: 1.00, Recall: 1.00
+FailingMethod: 7, Precision: 1.00, Recall: 1.00
+
+Test Set Grouped Metrics:
+FailingMethod: 3, Precision: 0.75, Recall: 0.96
+FailingMethod: 4, Precision: 0.65, Recall: 0.80
+Best hyperparameters: {'max_depth': 30, 'min_samples_leaf': 1, 'min_samples_split': 2, 'n_estimators': 50}
+
+####################################
+EVALUATION with Test-Set: [3 5]
+Cross-validated Precision: 0.7509850275807722, Recall: 0.9016083254493851
+Test Precision: 0.7562380038387716, Recall: 0.9645042839657283
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+
+Train Grouped Metrics:
+FailingMethod: 0, Precision: 0.99, Recall: 1.00
+FailingMethod: 1, Precision: 1.00, Recall: 1.00
+FailingMethod: 2, Precision: 1.00, Recall: 1.00
+FailingMethod: 4, Precision: 1.00, Recall: 1.00
+FailingMethod: 6, Precision: 1.00, Recall: 1.00
+FailingMethod: 7, Precision: 1.00, Recall: 1.00
+
+Test Set Grouped Metrics:
+FailingMethod: 3, Precision: 0.77, Recall: 0.97
+FailingMethod: 5, Precision: 0.73, Recall: 0.94
+Best hyperparameters: {'max_depth': 20, 'min_samples_leaf': 1, 'min_samples_split': 2, 'n_estimators': 25}
+
+####################################
+EVALUATION with Test-Set: [3 6]
+Cross-validated Precision: 0.757035003431709, Recall: 0.909315746084089
+Test Precision: 0.7383177570093458, Recall: 0.9561270801815431
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+
+Train Grouped Metrics:
+FailingMethod: 0, Precision: 0.99, Recall: 1.00
+FailingMethod: 1, Precision: 1.00, Recall: 1.00
+FailingMethod: 2, Precision: 1.00, Recall: 1.00
+FailingMethod: 4, Precision: 1.00, Recall: 1.00
+FailingMethod: 5, Precision: 1.00, Recall: 1.00
+FailingMethod: 7, Precision: 1.00, Recall: 1.00
+
+Test Set Grouped Metrics:
+FailingMethod: 3, Precision: 0.75, Recall: 0.95
+FailingMethod: 6, Precision: 0.67, Recall: 0.97
+Best hyperparameters: {'max_depth': 30, 'min_samples_leaf': 1, 'min_samples_split': 2, 'n_estimators': 50}
+
+####################################
+EVALUATION with Test-Set: [3 7]
+Cross-validated Precision: 0.7312661498708011, Recall: 0.8936842105263157
+Test Precision: 0.7688172043010753, Recall: 0.9285714285714286
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+
+Train Grouped Metrics:
+FailingMethod: 0, Precision: 0.99, Recall: 1.00
+FailingMethod: 1, Precision: 1.00, Recall: 1.00
+FailingMethod: 2, Precision: 1.00, Recall: 1.00
+FailingMethod: 4, Precision: 1.00, Recall: 1.00
+FailingMethod: 5, Precision: 1.00, Recall: 1.00
+FailingMethod: 6, Precision: 1.00, Recall: 1.00
+
+Test Set Grouped Metrics:
+FailingMethod: 3, Precision: 0.76, Recall: 0.95
+FailingMethod: 7, Precision: 0.79, Recall: 0.90
+Best hyperparameters: {'max_depth': 20, 'min_samples_leaf': 1, 'min_samples_split': 2, 'n_estimators': 25}
+
+####################################
+EVALUATION with Test-Set: [4 5]
+Cross-validated Precision: 0.7637665198237885, Recall: 0.9252835223482322
+Test Precision: 0.7160751565762005, Recall: 0.9146666666666666
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+
+Train Grouped Metrics:
+FailingMethod: 0, Precision: 1.00, Recall: 1.00
+FailingMethod: 1, Precision: 1.00, Recall: 1.00
+FailingMethod: 2, Precision: 1.00, Recall: 1.00
+FailingMethod: 3, Precision: 0.99, Recall: 1.00
+FailingMethod: 6, Precision: 1.00, Recall: 1.00
+FailingMethod: 7, Precision: 1.00, Recall: 1.00
+
+Test Set Grouped Metrics:
+FailingMethod: 4, Precision: 0.66, Recall: 0.81
+FailingMethod: 5, Precision: 0.74, Recall: 0.96
+Best hyperparameters: {'max_depth': 20, 'min_samples_leaf': 1, 'min_samples_split': 2, 'n_estimators': 25}
+
+####################################
+EVALUATION with Test-Set: [4 6]
+Cross-validated Precision: 0.7690380761523046, Recall: 0.9274924471299094
+Test Precision: 0.6545454545454545, Recall: 0.9863013698630136
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+
+Train Grouped Metrics:
+FailingMethod: 0, Precision: 0.99, Recall: 1.00
+FailingMethod: 1, Precision: 1.00, Recall: 1.00
+FailingMethod: 2, Precision: 1.00, Recall: 1.00
+FailingMethod: 3, Precision: 0.99, Recall: 1.00
+FailingMethod: 5, Precision: 0.99, Recall: 1.00
+FailingMethod: 7, Precision: 0.99, Recall: 1.00
+
+Test Set Grouped Metrics:
+FailingMethod: 4, Precision: 0.62, Recall: 0.98
+FailingMethod: 6, Precision: 0.69, Recall: 0.99
+Best hyperparameters: {'max_depth': 30, 'min_samples_leaf': 1, 'min_samples_split': 2, 'n_estimators': 25}
+
+####################################
+EVALUATION with Test-Set: [4 7]
+Cross-validated Precision: 0.7542924807578448, Recall: 0.9152298850574713
+Test Precision: 0.7354409317803661, Recall: 0.91701244813278
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+
+Train Grouped Metrics:
+FailingMethod: 0, Precision: 1.00, Recall: 1.00
+FailingMethod: 1, Precision: 1.00, Recall: 1.00
+FailingMethod: 2, Precision: 1.00, Recall: 1.00
+FailingMethod: 3, Precision: 0.99, Recall: 1.00
+FailingMethod: 5, Precision: 0.99, Recall: 1.00
+FailingMethod: 6, Precision: 1.00, Recall: 1.00
+
+Test Set Grouped Metrics:
+FailingMethod: 4, Precision: 0.62, Recall: 0.91
+FailingMethod: 7, Precision: 0.78, Recall: 0.92
+Best hyperparameters: {'max_depth': 30, 'min_samples_leaf': 1, 'min_samples_split': 5, 'n_estimators': 25}
+
+####################################
+EVALUATION with Test-Set: [5 6]
+Cross-validated Precision: 0.7525661804430038, Recall: 0.9274300932090546
+Test Precision: 0.7214428857715431, Recall: 0.967741935483871
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+
+Train Grouped Metrics:
+FailingMethod: 0, Precision: 0.96, Recall: 1.00
+FailingMethod: 1, Precision: 0.99, Recall: 1.00
+FailingMethod: 2, Precision: 0.97, Recall: 1.00
+FailingMethod: 3, Precision: 0.97, Recall: 1.00
+FailingMethod: 4, Precision: 0.96, Recall: 0.99
+FailingMethod: 7, Precision: 0.97, Recall: 1.00
+
+Test Set Grouped Metrics:
+FailingMethod: 5, Precision: 0.74, Recall: 0.96
+FailingMethod: 6, Precision: 0.69, Recall: 0.99
+Best hyperparameters: {'max_depth': 30, 'min_samples_leaf': 1, 'min_samples_split': 2, 'n_estimators': 25}
+
+####################################
+EVALUATION with Test-Set: [5 7]
+Cross-validated Precision: 0.7373935821872953, Recall: 0.9087974172719936
+Test Precision: 0.7724795640326976, Recall: 0.8929133858267716
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+
+Train Grouped Metrics:
+FailingMethod: 0, Precision: 0.99, Recall: 1.00
+FailingMethod: 1, Precision: 1.00, Recall: 1.00
+FailingMethod: 2, Precision: 1.00, Recall: 1.00
+FailingMethod: 3, Precision: 1.00, Recall: 1.00
+FailingMethod: 4, Precision: 1.00, Recall: 1.00
+FailingMethod: 6, Precision: 1.00, Recall: 1.00
+
+Test Set Grouped Metrics:
+FailingMethod: 5, Precision: 0.75, Recall: 0.90
+FailingMethod: 7, Precision: 0.79, Recall: 0.89
+Best hyperparameters: {'max_depth': 20, 'min_samples_leaf': 1, 'min_samples_split': 2, 'n_estimators': 50}
+
+####################################
+EVALUATION with Test-Set: [6 7]
+Cross-validated Precision: 0.7484057971014493, Recall: 0.9254480286738351
+Test Precision: 0.7636986301369864, Recall: 0.9311064718162839
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+
+Train Grouped Metrics:
+FailingMethod: 0, Precision: 1.00, Recall: 1.00
+FailingMethod: 1, Precision: 1.00, Recall: 1.00
+FailingMethod: 2, Precision: 1.00, Recall: 1.00
+FailingMethod: 3, Precision: 1.00, Recall: 1.00
+FailingMethod: 4, Precision: 1.00, Recall: 1.00
+FailingMethod: 5, Precision: 0.99, Recall: 1.00
+
+Test Set Grouped Metrics:
+FailingMethod: 6, Precision: 0.70, Recall: 0.98
+FailingMethod: 7, Precision: 0.79, Recall: 0.92
+
+####################################
+AVERAGE TEST PRECISION: 0.72705918697359
+AVERAGE TEST RECALL: 0.9170703248267457
+
+TRAIN METRICS PER FAILING METHOD:
+{np.int64(0): {'precision': [1.0, 1.0, 0.9534883720930233, 1.0, 0.9879518072289156, 1.0, 1.0, 0.9939393939393939, 1.0, 0.9939393939393939, 1.0, 0.9939393939393939, 0.9939393939393939, 0.9939393939393939, 0.9939393939393939, 1.0, 0.9939393939393939, 1.0, 0.9590643274853801, 0.9939393939393939, 1.0], 'recall': [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]}, np.int64(1): {'precision': [1.0, 1.0, 0.9583333333333334, 0.9722222222222222, 1.0, 0.9859154929577465, 1.0, 1.0, 0.9859154929577465, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.9859154929577465, 1.0, 1.0], 'recall': [1.0, 1.0, 0.9857142857142858, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]}, np.int64(2): {'precision': [1.0, 1.0, 0.9588477366255144, 0.966804979253112, 1.0, 0.9957264957264957, 1.0, 0.9471544715447154, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.966804979253112, 1.0, 1.0], 'recall': [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]}, np.int64(3): {'precision': [0.9981949458483754, 1.0, 0.965034965034965, 0.9701230228471002, 0.9981949458483754, 0.9963963963963964, 1.0, 0.9533678756476683, 1.0, 0.9963963963963964, 1.0, 1.0, 1.0, 1.0, 0.9981949458483754, 0.9946043165467626, 0.992818671454219, 0.9946043165467626, 0.971830985915493, 0.9981949458483754, 1.0], 'recall': [1.0, 1.0, 0.9981916817359855, 0.9981916817359855, 1.0, 1.0, 1.0, 0.9981916817359855, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.9981916817359855, 1.0, 1.0]}, np.int64(4): {'precision': [1.0, 1.0, 1.0, 0.9823008849557522, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.9910714285714286, 1.0, 1.0, 1.0, 1.0, 0.9565217391304348, 1.0, 1.0], 'recall': [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.990990990990991, 1.0, 1.0]}, np.int64(5): {'precision': [1.0, 1.0, 1.0, 0.974169741697417, 1.0, 0.9962264150943396, 1.0, 1.0, 0.9428571428571428, 1.0, 1.0, 0.9887640449438202, 1.0, 1.0, 0.9962264150943396, 0.9962264150943396, 1.0, 1.0, 0.9924812030075187, 0.9924812030075187, 0.9924812030075187], 'recall': [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]}, np.int64(6): {'precision': [1.0, 1.0, 1.0, 0.972972972972973, 0.9818181818181818, 1.0, 1.0, 1.0, 0.9473684210526315, 1.0, 1.0, 0.9818181818181818, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0], 'recall': [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]}, np.int64(7): {'precision': [1.0, 1.0, 1.0, 0.9636363636363636, 0.9536082474226805, 1.0, 1.0, 1.0, 0.9561855670103093, 1.0, 0.9973118279569892, 0.9973118279569892, 1.0, 1.0, 0.9973118279569892, 1.0, 1.0, 1.0, 0.9973118279569892, 0.9919786096256684, 0.9685863874345549], 'recall': [1.0, 1.0, 1.0, 1.0, 0.9973045822102425, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.9973045822102425]}}
+
+TEST METRICS PER FAILING METHOD:
+{np.int64(0): {'precision': [0.8324873096446701, 0.8342245989304813, 0.8274111675126904, 0.8393782383419689, 0.8272251308900523, 0.8524590163934426, 0.8491620111731844], 'recall': [1.0, 0.9512195121951219, 0.9939024390243902, 0.9878048780487805, 0.9634146341463414, 0.9512195121951219, 0.926829268292683]}, np.int64(1): {'precision': [0.5811965811965812, 0.5897435897435898, 0.5833333333333334, 0.6, 0.5789473684210527, 0.591304347826087, 0.5862068965517241], 'recall': [0.9714285714285714, 0.9857142857142858, 1.0, 0.9857142857142858, 0.9428571428571428, 0.9714285714285714, 0.9714285714285714]}, np.int64(2): {'precision': [0.6733870967741935, 0.6927710843373494, 0.6538461538461539, 0.659919028340081, 0.6638655462184874, 0.6489795918367347, 0.6550218340611353], 'recall': [0.7167381974248928, 0.9871244635193133, 0.5836909871244635, 0.6995708154506438, 0.6781115879828327, 0.6824034334763949, 0.6437768240343348]}, np.int64(3): {'precision': [0.7542613636363636, 0.7577903682719547, 0.7539797395079595, 0.7538896746817539, 0.7678062678062678, 0.7528571428571429, 0.7586705202312138], 'recall': [0.9602169981916817, 0.9674502712477396, 0.9421338155515371, 0.9638336347197106, 0.9746835443037974, 0.9529837251356239, 0.9493670886075949]}, np.int64(4): {'precision': [0.6442953020134228, 0.6493506493506493, 0.6573426573426573, 0.6544117647058824, 0.656934306569343, 0.6193181818181818, 0.6196319018404908], 'recall': [0.8648648648648649, 0.9009009009009009, 0.8468468468468469, 0.8018018018018018, 0.8108108108108109, 0.9819819819819819, 0.9099099099099099]}, np.int64(5): {'precision': [0.7315634218289085, 0.7346938775510204, 0.7369942196531792, 0.7323529411764705, 0.7397660818713451, 0.7354651162790697, 0.7547770700636943], 'recall': [0.9393939393939394, 0.9545454545454546, 0.9659090909090909, 0.9431818181818182, 0.9583333333333334, 0.9583333333333334, 0.8977272727272727]}, np.int64(6): {'precision': [0.7094594594594594, 0.6903225806451613, 0.7, 0.6730769230769231, 0.6948051948051948, 0.6903225806451613, 0.7019867549668874], 'recall': [0.9722222222222222, 0.9907407407407407, 0.9722222222222222, 0.9722222222222222, 0.9907407407407407, 0.9907407407407407, 0.9814814814814815]}, np.int64(7): {'precision': [0.7934272300469484, 0.7911832946635731, 0.7832167832167832, 0.785377358490566, 0.7785388127853882, 0.7857142857142857, 0.7852193995381063], 'recall': [0.9110512129380054, 0.9191374663072777, 0.9056603773584906, 0.8975741239892183, 0.9191374663072777, 0.889487870619946, 0.9164420485175202]}}
+
+AVERAGE TRAIN METRICS PER FAILING METHOD:
+{0: {'precision': 0.9929533170629747, 'recall': 1.0}, 1: {'precision': 0.994681049258514, 'recall': 0.9993197278911565}, 2: {'precision': 0.99215898392395, 'recall': 1.0}, 3: {'precision': 0.9918074633418699, 'recall': 0.9996555584259019}, 4: {'precision': 0.9966616215551246, 'recall': 0.9995709995709996}, 5: {'precision': 0.9939006563716168, 'recall': 1.0}, 6: {'precision': 0.9944751313172365, 'recall': 1.0}, 7: {'precision': 0.9915829755694063, 'recall': 0.9997432935438326}}
+
+AVERAGE TEST METRICS PER FAILING METHOD:
+{0: {'precision': 0.8374782104123557, 'recall': 0.9677700348432056}, 1: {'precision': 0.5872474452960527, 'recall': 0.9755102040816326}, 2: {'precision': 0.663970047916305, 'recall': 0.7130594727161251}, 3: {'precision': 0.7570364395703795, 'recall': 0.9586670111082407}, 4: {'precision': 0.6430406805200896, 'recall': 0.8738738738738739}, 5: {'precision': 0.7379446754890983, 'recall': 0.9453463203463203}, 6: {'precision': 0.6942819276569695, 'recall': 0.9814814814814815}, 7: {'precision': 0.7860967377793787, 'recall': 0.9083557951482479}}
