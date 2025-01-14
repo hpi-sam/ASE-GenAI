@@ -1,0 +1,40 @@
+It's not clear if the program was meant to accept a negative number.  I can't answer the question without seeing the definition of this.lowerBound and this.upperBound.
+g has to be 0-255. But you are passing in -0.5. I don't know the specifics of the lowerbound and upperbound on the min and max as I am not a Java class expert; but I reckon g comes out negative once the calculation plays out.
+This does not appear to be an issue because a double is the default data type for decimals so this shouldn't be what is causing the error.
+The color is out of the parameter should be between 0.0 and 1.0
+depending on the upperBound and lowerBound values; "g" might exceed -255 or 255 which is not a valid value for the Color object.
+value is a double and is used as a double in the method. Both Math.max() and Math.min() use and return a double.
+The variable "value" is incorrectly used on line 117; where the variable "v" should be used in its place. The variable "value" can exist beyond the range of "this.lowerBound" and "this.upperBound" and is causing this error.
+there is an issue with colors in that programme 
+It's hard to give an answer based on this small amount of code for me.  Generally I have to look at the larger code overall to see what's going on.
+value really only has to be an int since valid values are forced 0 to 255 later.  I imagine it is a double for consistency with other color schemes used in other methods that may use the full range.    but by itself shouldn't cause any problem with any functions used in getPaint
+no
+The variable value seems to be fine; the value of the integer g seems to be not acceptable to Color constructor; which is throwing the illegalArgumentException. 
+Nothing in this method checks that the lower range of value is positive -- therefore a negative number is not sanitized.
+the argument value is defined correctly and used correctly
+The argument value is checked against the lowerBound and upperBound variables; but the resulting variable v is never used in the code. Therefore; the value being -0.5 in this case results in a negative integer value; which is outside the expected 0 to 255 range for a color.
+There is a problem with the argument  public class IllegalArgumentException extends RuntimeException thrown when a method is passed an illegal or inappropriate argument.
+The variable is being defined correctly as a parameter of the getPaint method.
+You are calling the Color constructor with three float parameters so the values are allowed to be between 0.0 and 1.0.
+fffffffffffffffffsfsfsssssssss
+Problem is that v is defined; but never actually used.  v is guaranteed to be between the lower and Upper; but Value is not.  Should be using v instead of value in line 117
+The exception is coming from Color; so it must be g that has a bad value.  I need to see the definition of this.lowerBound and this.upperBound to know what is wrong though.
+I'm not sure if this is the issue but the fact that int g is being defined by (int) could be causing some kind of parameter error.
+The calculation of g appears to result in a negative integer value if the parameter value is negative to begin with. Passing a negative g into Color would produce the error and there is nothing in the definition of g that seeks to prevent that. And the calculation certainly looks like it would come out negative in that scenario. Again without understanding the relevance of lowerbound and upperbound; I cannot be 100 percent certain; as a caveat.
+should be a float number
+variable "g" might be outside the range of the Color class acceptable range values.
+g is the cast value of lb \ up - lb *255. As long as the input "value" and the lowerBound and upperBound values are correct g will be a int between 0 and 255 and work with Color(int; int; int).
+While the variable "g" may be out of range when passed to the Color constructor; it is being used correctly in this context. The problem is the use of the variable "value" which is used to assign a value to "g".
+i believe that some error there in that line 
+the variable 'g' is defined properly in the code.
+I can only guess at the upper and lowerBound variables. the code doesn't seem to care if the value passed is negative though otherwise it appears to be trying to force g in the range of 0 to 255 as an int. that might be a problem
+no
+Since the exception seems to be thrown up by Color constructor (seeing message - color parameter outside of expected range); there is a problem with the value of g.
+There is nothing wrong with 'g' if you correctly sanitize 'value'
+the variable g is properly defined and used. it is not related to the failure
+g is an integer; which is acceptable when creating a new Color object; as the arguments require integers.
+public class IllegalArgumentException extends RuntimeException thrown when a method is passed an illegal or inappropriate argument.    Methods inherited from class java.lang.Throwable  getCause; getLocalizedMessage; getMessage; initCause; printStackTrace; printStackTrace; printStackTrace; toString  
+It looks like the variable "g" is being properly instantiated and the value it is being set to is being cast into an int.
+no there is no issue.
+FFFFFFFFFFFDS FFFFFFFFFFFFF
+yes ... should be computed using v; not value.

@@ -1,0 +1,60 @@
+Not per se as the length is fine according to the validation. The country code is missing. Or rather lines 115/117 are looking at '_P' and the underscore fails the validation.
+in line 115; if (ch3 > 'A' || ch3 < 'Z' || ch4 >'A' || ch4 < 'Z')
+Again as the last question; the input is in the wrong format and therefore the program correctly throws an error
+We still have the problem from line 115 with ch3 not being a-z; but if that weren't the problem; then line 121-122 would cause the failure as well. Ch5 isn't an underscore.
+THERE IS
+code condition at 110 is throwing exception.    if (str.charAt(2) != '_') {                  throw new IllegalArgumentException("Invalid locale format: " + str);              }
+Line 115 invalid case.
+Given that the format of the locale appears to be cc__CCCCC (c for character); the third character of the locale will always contain an underscore. Which in ASCII has a greater value than 'Z' causing the "ch3 > 'Z'" portion of the if statement on line 115 to be true and throw the exception.
+The issue seems to be in the formatting of the input; it must be separated by an underscore and be the correct length.
+The failure occurs during the execution of lines 115 - 116.  In line 113; ch3 is set to be "_".  In the if statement of line 115; ch3 is checked for being less than 'A'; which is false; but it is also checked for being greater than 'Z'; and it turns out that the value for '_' is greater than 'Z'.  Since this is so; this particular if statement executes; and throws out the failure outlined above.
+In this example; the exception is still thrown based on the conditional statement at line 115.  However; there would also be an issue with line 121.  Since the string is greater than 5 characters; and the fifth character is not the expected underscore("_"); this would also throw an exception.
+The str variable must be the correct length and start with two lowercase letters; which can be followed by an underscore; two uppercase letters; another underscore; and three lowercase letters. Lines 107 to 126 are validating this with if statements. If the str variable does not meet this criteria; an IllegalArgumentException is thrown. The str varible with a value of fr__POSIX seems to be valid up until line 121 where the if statement checks to see if the 6th character in str in an underscore. Since it is not; an IllegalArgumentException error is thrown with the message Invalid locale format:fr__POSIX
+this is the same problem as last time..... line 115 is not going to like the 4th character being an underscore. 
+The output result is Language code in lowercase and Countrycode in Uppercase in between separator use underscore.
+else statement is missing
+None;this is an expected behavior on the code. This only means that the condition that will determine if the format of the locale value is met throwing the IllegalArgumentExeption error (Invalid locale format). This is because either the 3rd of 4th character in the local value must be an alpha character where the 3rd char is (_) satisfying the condition to throw the error.
+they should have specified for each length specifically.
+Not an issue ... GIGO ... garbage in; garbage out.  The method says it validates strictly.  See previous discussion.
+Yes. Since the length of the string is not 2; it would proceed to the else block. Within that; it would pass the first if statement without issues but would throw an exception after the second if statement; where ch3 and ch4 are checked. The issue would arise not because of ch4; which would pass (be true); but rather ch3 which it expects to be a capital letter and it is an underscore in the string passed. The exception we receive would be thrown at line 116.
+The input 'fr__POSIX' is not following the expected format outlined in the javadoc: the fourth character is part of the country code and "must be uppercase" (not an underscore)
+ch3 is assigned a "_" value. This value throws a failure in line 115; as it is not a letter between A and Z.
+ch3; ch4 checks if the country code are in capital letters or not.
+I don't think there is an issue
+The input for this method points to an underscore. The input should only use one underscore. As the third position should be the beginning of the country code; the exception is thrown as it should.
+I couldn't find a problem
+This doesn't look like a problem because it is just a character being declared with a single character from the array.
+char ch3 = str.charAt(3); which is a 'P'. it passes the test for between A and Z; and does NOT throw that excpt'n
+This can't handle cases where the country code is omitted; but there are extensions in the locale string.
+ch3 would be "_" which is outside the range on line 115
+ch3 is not setting off the conditions
+All it is doing at line 113 is stating that ch3 = '_'. The error happens later when checking the weight of the character.
+Line 114 was not the correct input
+Yes; if "fr__POSIX" has two underscores then the character at index 3 will lead to an exception being thrown.
+There is no issue
+While this line of code itself does not cause the error in this case it later causes the failure to occur.  It grabs the character '_' for ch3; which is later checked to see if it is an uppercase letter.  It is not; so the failure occurs.
+both the variable ch3 and ch4 defined correctly; I think there is not an issue 
+I don't think so variable "ch3" is a cause of failure ; its a simple declaration
+ch3 is fine; but will error on line 115 when we try to verify ch3 is a capital letter (it's an underscore)
+The format is invalid according to the explanation at the top (should be fr_POSIX); so this error should be thrown. 
+This is kind of a "yes and no" situation.  Yes; the fact that the character in position 3; an underscore; is assigned to ch3 is directly responsible for this string passing the ensuing conditional check and throwing the exception at line 116.    I say it is "yes and no" because arguably this line in and of itself is not an issue.
+The country code is missing. Or rather lines 115/117 are looking at '_P' and the underscore fails the validation.
+no issue
+The error is in the input to the method. There should not be an underscore char '_' at index 3 of the input 
+ch3 is an underscore; not an A-Z character. These lines of code tell it to throw an error when ch3 is not A-Z.
+YOU MAY HAVE
+output for the code is due to below statement.    if (str.charAt(2) != '_') {                  throw new IllegalArgumentException("Invalid locale format: " + str);              }
+A and Z need to be lower case.
+The exception is being thrown because of the third character in the test that was run. The underscore in ASCII is a greater than 'Z' value and is causing the code within the if statement to be executed.
+The issue seems to be in the formatting of the input; it must be separated by an underscore and be the correct length.
+The conditional clause between lines 115 and 117 is not related to the failure because no condition is met for the if statement to execute.  This is because char ch3 is 'P' - which is not less than 'A' nor greater than 'Z' - and ch4 is 'O' - which is not less than 'A' nor greater than 'Z'.    Lines 121 and 122 are related to the failure.
+The fourth character must be the beginning of the country code per the defined format for the string version of locale.  Therefore; characters 3 and 4 represent the country code.  The input is defined strictly requiring these characters to be upper case.  In the test example given; the third character is an underscore ("_") which is not allowed.  Therefore; this code threw the proper exception letting the user know that the string input ("fr__POSIX") was an incorrect format.
+LocaleUtils.toLocale("fr__POSIX") creates a Locale object. The parameter "fr__POSIX" is passed to the String str variable in line 94. Lines 115 to 117 are validating the fourth and fifth characters of str to ensure that these characters are uppercase letters. If not; it throws an IllegalArgumentException error. This is not the case as the values "PO" are valid uppercase letters.
+It is checking the 3rd and 4th characters are uppercase. The fourth character is an underscore. Write more descriptive errors next time. 
+Upper case used for country code; So that the string is in invalid format that the result is IllegalArgumentException.
+syntax is correct
+None; this is an expected behavior of the code. This only means that the condition to check if the 3rd or 4th characters are invalid characters (non-alpha characters) in the locale value. 
+no there is no issue.
+The comments say it validates strictly.  There is no Country code ... one could argue it's null I guess.   There are consecutive underscores so ch3 is an underscore and not a Capital Letter so the exception is thrown at line 116.
+The if statement in line 115 is checking the character at locations 3 and 4; which in this case would be the fourth and fifth characters; "_P". It seems to be checking to make sure they are capital letters; which ch3 is not and rather is an underscore. Therefore either ch3 < 'A' or ch3 > 'Z' would return false; prompting the throwing of the IllegalArgumentException.      There are other possibilities for this same exception to be thrown before line 116; but our string should pass those without any issues.
+ch3 will have a value (an underscore) that falls outside the range of 'A' through 'Z'

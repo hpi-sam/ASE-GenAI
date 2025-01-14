@@ -1,0 +1,1 @@
+The explanations explore a StringIndexOutOfBoundsException from improper handling of Unicode characters. Incrementing the pos variable may exceed string length in recursive loops, particularly on line 95 with surrogate pairs. Methods like Character.codePointAt and charCount likely contribute when pos, len, or consumed variables interact improperly.

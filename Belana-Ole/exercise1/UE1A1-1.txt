@@ -1,0 +1,46 @@
+WITH MessageLikes AS (
+    SELECT
+        m.m_messageid,
+        COUNT(l.l_personid) AS total_likes
+    FROM
+        message m
+        JOIN likes l ON m.m_messageid = l.l_messageid
+    WHERE
+        m.m_length > 100
+    GROUP BY
+        m.m_messageid
+),
+ExtendedNetwork AS (
+    SELECT m.m_messageid, k.k_person2id AS person_id -- friends
+    FROM message m
+    JOIN knows k ON m.m_creatorid = k.k_person1id
+    UNION
+    SELECT m.m_messageid, k2.k_person2id AS person_id -- friend's friends
+    FROM message m
+    JOIN knows k1 ON m.m_creatorid = k1.k_person1id
+    JOIN knows k2 ON k1.k_person2id = k2.k_person1id
+),
+ForeignLikes AS (
+    SELECT
+        l.l_messageid AS message_id,
+        COUNT(l.l_personid) AS foreign_likes
+    FROM
+        likes l
+        LEFT JOIN ExtendedNetwork en ON l.l_messageid = en.m_messageid
+        AND l.l_personid = en.person_id
+    WHERE
+        en.person_id IS NULL
+    GROUP BY
+        l.l_messageid
+)
+SELECT
+    ml.m_messageid,
+    ml.total_likes,
+    fl.foreign_likes
+FROM MessageLikes ml
+JOIN ForeignLikes fl ON ml.m_messageid = fl.message_id
+WHERE
+    ml.total_likes >= 20
+    AND fl.foreign_likes >= ml.total_likes / 2
+ORDER BY
+    fl.foreign_likes::float / ml.total_likes DESC;

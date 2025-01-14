@@ -1,0 +1,60 @@
+it looks fine to me.  It checks for NULL first; if it's not null then it's either empty or populated.
+Presumably; in order to run the code it has to compile and to compile it has to type check. There shouldn't be a problem with this declaration.
+The array is not classified correctly
+The definition and use of the variable array look fine. The error is likely because of input to the class but not directly caused by the variable definition (and would probably run correctly with other inputs).
+The variable "array" seems to be defined and used correctly; but I am not 100 percent certain
+The issue is actually with the use of one of the members of the array variable. On line 910; there is no check for whether array[i] is null before array[i] is dereferenced; the second member of the test input array is null; causing the exception to be thrown.
+the template isn't expecting a null pointer - but that's what is being passed in! 
+The error seems to be dependent on what is passed into the function and not the definition of the variable "array"
+It looks like array is being properly declared as a variable here and that shouldn't be causing a problem.
+getClass() method not defined
+A NullPointerException occurs in Java the same as in any other language in that you're pushing something that is valued at null into something that either cannot accept it as such or cannot use it as such and then having it be used incorrectly - with the null value. To me; it seems as if the array variable here is not the problem as the values and methods it's using and dealing with are seemingly valid - but I'm not sure where else in your code the exception is except that the parameters you're passing to these two assert parameter array initializations would be the likely suspect. I was wondering if this toClass method is an overload of the ClassUtils method toClass since you're using the ClassUtils object as the second parameter of your assert here. 
+The array is being declared and pointing to an object; but the object is defined as null.
+I do not believe there is any issue with how array is used but I am not sure.
+Declared and used properly.
+All this section is doing is that it is passing in the array that is given during runtime - the error does not occur here. 
+the method public static Class<?>[] toClass(Object... array) Converts an array of Object in to an array of Class objects. If any of these objects is null; a null element will be inserted into the array.This method returns null for a null input array.  Now the method; public static boolean equals(Object[] a;Object[] a2) Returns true if the two specified arrays of Objects are equal to one another. The two arrays are considered equal if both arrays contain the same number of elements; and all corresponding pairs of elements in the two arrays are equal. Two objects e1 and e2 are considered equal if (e1==null ? e2==null : e1.equals(e2)). In other words; the two arrays are equal if they contain the same elements in the same order. Also; two array references are considered equal if both are null.  and we have null inserted into the arrays to be compared ==> java.lang.NullPointerException
+An object is being passed as an array as a parameter in toClass; so this shouldn't cause the exception.
+Again; I think it's okay if you add the conditional check in I referred to in the previous 2 answers. But I'm certainly not positive.
+[]array should be [array]
+NO it is not reason to the failure the it can able to store any type of data's in java. object is a common type to hole data s 
+I think when it gets to array[i] when I is 1. It references null   So calling getClass() on null will give null pointer exception
+The second element of our input array is null. When we call the getClass method on null a NullPointerException is raised.
+The error would have occurred earlier as it should not have made it to this point if the array was null
+The for loop itself looks fine. However; the code contained within the for loop on line 910 may be causing the problem; because it may not handle the case where array[i] is null. 
+The for-loop dereferences members of the array without first checking whether they're null (this is the issue I was referring to before; though it's not technically with the variable "array.")
+The for-loop looks correct; it doesn't seem to be the cause.
+the getClass() method cannot read from null!
+I want to say the error of the NullPointerException is caused by these lines of code; as this is where you finally call on the array object; after checking to see if the object itself is null or empty.
+I'm not sure if the .getClass() call is actually calling anything that is defined in the programming. This could potentially be causing a null exception.
+getClass() not defined
+No; absolutely not. The array is being used properly here; index fine and assignment fine.
+I don't believe there is an issue.
+These lines are just a recursion until the end of the array.
+putting classes into a class array; no error there
+While it seems like a perfectly reasonable for-loop that walks through the passed array and adds it to the class array; I suspect it is the problem with how Objects are technically handled through Java.
+I believe index 1 in the array being looped through is a null; so this would cause an exception since getClass expects an object; not null. 
+i++ should be i+
+yes the classes is the set type and the array is the object type so the type conversion is not possible it the reason for the failure
+the loop seems to me ok as per my understanding 
+There will not be any failure; Iterating set of classes and returning set of classes.we can print the value array[i].getClass() to know set of classes .
+Yes because the line is trying to get the class of a null object.
+The getClass method is being used correctly and the array is populated with Objects.
+I think that getClass could produce a null pointer error if it were applied to a null; however; I don't see how that would work with this code.  It seems that toClass() only acts on {"Test";null;99d}; which is not null (though it contains a null).  That said; I may be misremembering the hierarchy of class/object in Java; so I'm very uncertain on this.  (Ie; perhaps toClass() throws an error when it's not in the right place of the hierarchy -- although a null pointer exception would still be hard to explain.)
+Not sure if it's possible; but it could be because you're trying to do get class on null at array position 1.
+there does not seem to be a problem. getClass() may be written wrong though
+There should be some code that says that if array[i] == null; to not attempt to getClass() and just class[i] = null;
+Everything seems ok
+a null check should be included here. Check if array[i] is null. Check its not null then execute line 910.
+input for the method is passed with null;     new Class[]{String.class; null; Double.class}; ClassUtils.toClass(new Object[]{"Test";null;99d}
+It is trying to grab the intValue within the program but because there is not one you get the Exception.
+As we iterate through Object's dimensions; there are null arrays in the middle. getClass doesn't work on nulls and throws a NullPointerException. You might try testing for these nulls at line 910 like so:    classes[i] = array[i] == null ? null : array[i].getClass();
+The FOR loop should check if the element (array[i]) is null.  If yes; then set classes[i] to null.  Else; assign classes[i] to the return of getClass().
+Is the code not create an array of objects named "Class"? Why invite confusion since you're not creating a new class; but objects named Class... It would be better to name them ClassLikeObjects or something.
+The second element of the array is null (which has no class); and the getClass method with produce a NullPointerException in this case.
+there is no issue in the getClass line in the source code
+It may be that the getClass at line 910 is attempting to access a null value as if it was not null. Perhaps line 903 may be the source of the error. If the getClass method is using information from the public static Class; it may be interpreting the value incorrectly.     
+usage of array variable doesnot leads to null pointer exception
+Yes; I think that the NullPointerException is thrown when .getClass is called on the null listing in the middle of the arrays.
+Trying to get the class of a null object will throw a nullpointexception
+the method public static Class<?>[] toClass(Object... array) Converts an array of Object in to an array of Class objects. If any of these objects is null; a null element will be inserted into the array.This method returns null for a null input array.  Now the method; public static boolean equals(Object[] a;Object[] a2) Returns true if the two specified arrays of Objects are equal to one another. The two arrays are considered equal if both arrays contain the same number of elements; and all corresponding pairs of elements in the two arrays are equal. Two objects e1 and e2 are considered equal if (e1==null ? e2==null : e1.equals(e2)). In other words; the two arrays are equal if they contain the same elements in the same order. Also; two array references are considered equal if both are null.  and we have null inserted into the arrays to be compared ==> java.lang.NullPointerException

@@ -1,0 +1,60 @@
+All of the conditionals appear to be functioning correctly and don't have a direct association with the method being called in the test.
+The conditional is correct and the logic seems to be fine.
+I still don't see x getting defined correctly here.  So how can Math functions operate on it?
+I don't believe so - (long)x will be equal to x for -0.0. We won't go through the while loop since abs(x) is 0; therefore exp will remain 0. So we will add Long.toString(value); which is Long.toString(0); which should give us "0". This seems valid to me.
+As aforementioned; your flow isn't pushing into this code if I'm not mistaken - where is the parsePrint method here? As for the mantissa calc stuff; that kind of logic always blows me unless I get it running with some numbers and think it out real hard. Where is parsePrint? 
+The error is in the while loop within the clause which will never be able to exit the loop; for the same reasons I wrote in the first question. Because the error is within the loop; the loop will continue and never reach the end of the method "addNumber" and as such the add method will never be called from outside the source code.
+Could not establish relationship between the "test" and the "source code"
+(long)x will cast double to long. However; they might not be equal in many cases when x will have any decimal place. So; if clause may not be true in many cases.
+Correct the while loop. The problem will be solved.
+I do not think this clause would cause the failure we see; it is concerned with converting a value to scientific notation; but I do not think it could result in a value of negative 0.
+I think so there was a syntax error
+Could not understand the test case but since most of the processing is happening in this code block so it is probable.
+I am still not sure what could be causing the failure.
+See previous answer.  I don't have experience with toString() either; but I guess it must be where the [] is appearing.  I presume this is at line 260 as the exponent would be >2 for a 0; and obvious no "E" was printed.
+The conditional looks good. It is comparing the long of x to x and if they are the same continue; although I am not sure why you would need to compare the long x to x.
+No code in here calls parsePrint
+I believe "E" within the clause is resulting to the failure.
+The comparison between (long)x == x could cause an error since x is still a double. However; java should convert the double x to a long.  Also; that error would not be the same as the one listed above.
+The conditional clause identified is not involved in the error being produced.
+not exactly a problem with that code section but there seems to be an improper parsing of a negative zero fractional portion earlier in the code.  this section can only use the value of x it was given.    the error suggests "-0." is missing from the comparison. this is understandable if the output of the code section is simply using the value of x as input; that is x = 0.
+I don't know what the "add()" method does for sure; but it seems to only build strings. Looks to me like it should be // if (exp >0) // in order to get the correct output.
+It is not an issue with the code it is an issue with your saved file and you have to open it up and add a space or line and resave and the problem should go away.
+a parsePrint method is used on the value to be compared (var x = -0.0). The parsed value is not necessarily the same as the original value; and thus the ComparisonFailure
+There are no conditional clause issues.It make more sense if we keep <=2 as one condition and >2 as else condition
+there is no issue in getting the last character
+the clause checks out as fine legally and morally.
+The lines 257 to 261 are fine in the context of addNumber method written. The failure received above relates to a failure in comparison of two string/string objects due to incompatible formats. The failure above is not caused by any part of source code given below.
+comparison was proper.
+The if-else block on line 257-261 seems correct. The 'add' function takes a string as an argument; which looks correct. The 'add' function looks ok...although I don't know what 'maybeEndStatement();' does. I think the problem is with the test function itself.
+the method parsePrint is not invoked as I see from the given code
+I think so; addbstring converts the null message to the String "null" may be I am wrong
+The highlighted if statement relates to the treatment of large numbers; not decimals.
+When parsing string "var x = -0.0"; exp=0; mantissa=value=0 so it never enters the if condition on line 251. Exp =0 so else condition on line 259 is evaluated.
+They all had values with successful conversion to string
+The conditional statement should have no issue since the variable 'exp' is declared and initialized in the same namespace; and is an integer.
+The method being called in the test is parsePrint; which is not included in the source code nor the functions that are call or are called by the source code listed.  Since it is not possible to determine how lines 257-261 are being called; it is not possible to determine whether or not these lines are related to the failure.
+if pretty print call addNumber with -0.0 as input exp is 0; add is called with "0" string; so doesn't occurs any deletion
+no issue found
+Yes there is. This is because this is the part of the code which defines what characters are included in the expression. 
+The comparisons seem to be fine. Everything should be in the right type. When you are passing the strings to add; everything should come out as one string. Also; exp should be fine as well as the only operation beforehand is ++. Therefore it should still be an int.
+This is on comparison of two obviously non-null strings; for example assertEquals("a"; "b").
+The problem is that a [-0.] is expected; but not returned. The call to add passes as an argument the string of value that could not be possibly be [-0] as it formerly was a long number; which has no sign on 0. This is the place where the -0. expected might be loss.
+This could be the problem but I suspect the issue is either on line 248 or 263. I suspect java has representations for both -0.0 and 0.0 for floating point numbers but not integers. The code on line 260 may not even get execute because the block starting at line 247 may never be entered. After the explicit conversion to a long and then the implicit conversion back to a double for the comparison I think you may end up with the test 0.0 == -0.0 we I imagine would evaluate to false. If this is the case then line 263 gets executed and I suspect String.valueOf(x) is converting -0.0 to 0.    If the code block on line 247 is entered then I suspect the issue is line 248. I believe longs only have one representation for zero so the cast converts -0.0 to 0. There is a small chance that longs have a -0 value in which case the issue could be with line 260 but I don't think that is the case.
+this code is unrelated to the comparison failure; it only adds a number to a string
+add method not preceded by class name or defined above
+I am not sure if Long.toString can be added.
+Yes. The problem is exactly that when we get to line 260 in our code (add(Long.toString(value));); we actually send 0 as an argument to the "add" method; not -0.0; because variable "value" is defined of type long eliminating our .0 portion of the number and automatically converting the remaining -0 to 0; since it's the same thing to the compiler. As a result; 0 is appended to our string; not -0.0.
+No issues
+I don't really understand what is going at this part of the code.
+to string returns string in exponential notation format.
+value would be a long; which does not have a decimal place; that is what was happening in the error. There was only 0; no decimal; meaning that x was either not a float; or double; or it was being floored; or ceilinged just be fore the end.
+It's possible that there could be an issue there; depending on the value of "value"; but chances are the issue with that line would actually come into play at line 248; instead of line 260.
+It is valid.
+add method just converts the String to Long and adds the specified value.
+i now see what the add method at the bottom. sorry for the last response. For the last question; i now don't believe there was an error related to the failure because running add(" "); will assign a blank space to a char; which will successfully be returned by the getlastchar function as " " and be appended to whatever the append function does.    For this question; I don't believe there is an issue either. The value of value will be assigned just as well as to a char as the value of " "
+line 260 is not changing the value of x and thus is not related to the failure of x not being the expected value
+I believe that the problem must be in the add method. I do not see the problem in the code that is shown. I think the problem might be in the maybeEndStatement method.
+value is properly converted to a string before being passed into the function.
+I doubt this line is relevant either.  It merely adds a number to the string if that number is multiplied by ten with an exponent less than two.  That should have nothing to do with the differences between the two strings listed in the failure.  Neither is off by a great deal; nor do they seemingly have an odd value thrown in.
+the exp variable not get the value is unusable function so the code not executed allways
