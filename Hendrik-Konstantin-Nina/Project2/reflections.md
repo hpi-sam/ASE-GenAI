@@ -5,19 +5,34 @@
 Choosing a complexity measure
 
 **TTR:**
-The issue lies in aissigning high complexity ratings to fields that only contain one word, even if this word is arbitrary chosen.
+The issue lies in assigning high complexity ratings to fields that only contain one word, even if this word is arbitrary chosen.
 
 **Halstead:**
-V=N⋅log(n) N: Total number of words; n: Number of unique words
+$$
+V = N \cdot \log(N)
+$$
+\( S \): Number of unique words \( N \): total number of words 
+
 Halstead just looks at unique words and sets it into relation to the overall number of words.
 Therefore, no consideration of sentence structure or used words is taken into account.
 
 **Margalef:**
-D=(S−1)/ln(N) S: Number of unique words; N: Total number of words
+
+Here’s how to write the formula with its explanation in Markdown:
+
+$$
+D = \frac{S - 1}{\ln(N)}
+$$
+\( S \): Number of unique words \( N \): Total number of words
+This renders as:
+
 Like Halstead, Margalef also looks at unique words and sets it into relation to the overall number of words, resulting in the same disadvantages.
 
 **Flesch reading ease**
-206.835 - 1.015 _ (total words / total sentences) - 84.6 _ (total syllables / total words)
+$$
+206.835 - 1.015 \cdot \left(\frac{\text{total words}}{\text{total sentences}}\right) - 84.6 \cdot \left(\frac{\text{total syllables}}{\text{total words}}\right)
+$$
+
 Flesch Reading Ease focuses on readability by analyzing sentence length and syllables per word.
 It helps determine how easy a text is to understand for readers.
 Our assumption is that a more complex answer will show more knowledge about the topic.
@@ -104,13 +119,13 @@ What are the concerns about:
 2. **keeping the classifier up-to-date in the case of changes in the demographic of programmers or types of bugs**
 
    - if more demographic features are added (and available for the old entries as well) or if new entries are added to the dataset, a retraining has to be conducted to retrain the classifier
-   - as the data set given is really small; training the model from anew should not be an issue
+   - as the data set given is tiny; training the model from anew should not be an issue
    - in case of larger data set, this could become an issue due to the training time/costs
 
 3. **testing the output of the classifier and the LLM**
 
    - The classifier heavily relied on the complexity score. However, choosing the right complexity score is challenging. For example, TTR measures the relation between number of unique words to the overall number of words in an answer. Yet, if only one word was given, the score returned is 1, representing a high lexical diversity.
-   - to use the complexitiy measure as a metrix does often not determine wether or not an answer given is correct or not
+   - to use the complexity measure as a metrix does often not determine whether an answer given is correct or not
 
 4. **estimating the quality of the consolidated explanations**
    - using ROUGE or BLEU as a measure of quality may lead to incorrect estimations; these scores compare the words of the reference and candidate answers, and therefore do not take true meanings into account; using synonyms, are higher or lower variety of words, writing in bullet points vs. full sentences therefore highly influence the ROUCE and BLEU scores
@@ -121,6 +136,6 @@ What are the concerns about:
 5. **debugging the integration between the classifier and the LLM**
    - debugging the interaction between the us, the developer, and the LLM is rather easy, because it is interactive and our prompt to consolidate the answers is considerably simple
    - the only data the LLM relies on can easily be prepared by the developer
-   - debugging how an LLM derives it's answer is intransparent, as the LLM can be seen as a black box
-   - debugging the classifier is more transparent and can easily visualized, e.g. by plotting feature importances
+   - debugging how an LLM derives it's answer is transparent, as the LLM can be seen as a black box
+   - debugging the classifier is more transparent and can easily visualized, e.g. by plotting feature importance
    - data preparation takes the most resources and is harder to debug than the code necessary to simply create the LLM input data
