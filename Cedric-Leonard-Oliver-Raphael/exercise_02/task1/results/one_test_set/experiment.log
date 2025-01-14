@@ -1,0 +1,47 @@
+Columns: Index(['FailingMethod', 'Question.ID', 'Answer.duration', 'Answer.confidence',
+       'Answer.difficulty', 'GroundTruth', 'Answer.order', 'Code.LOC',
+       'Code.complexity', 'Worker.score', 'Worker.profession',
+       'Worker.yearsOfExperience', 'Worker.age', 'Worker.gender',
+       'Worker.whereLearnedToCode', 'Worker.country',
+       'Worker.programmingLanguage', 'RTTR', 'HalsteadVolume',
+       'HalsteadLength', 'HalsteadDifficulty', 'HalsteadEffort',
+       'HalsteadVocabulary', 'ExplanationLength'],
+      dtype='object')
+Best hyperparameters: {'max_depth': 20, 'min_samples_leaf': 1, 'min_samples_split': 2, 'n_estimators': 50}
+
+####################################
+EVALUATION with Test-Set: [6 7]
+Cross-validated Precision: 0.7484057971014493, Recall: 0.9254480286738351
+Test Precision: 0.7636986301369864, Recall: 0.9311064718162839
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+
+Train Grouped Metrics:
+FailingMethod: 0, Precision: 1.00, Recall: 1.00
+FailingMethod: 1, Precision: 1.00, Recall: 1.00
+FailingMethod: 2, Precision: 1.00, Recall: 1.00
+FailingMethod: 3, Precision: 1.00, Recall: 1.00
+FailingMethod: 4, Precision: 1.00, Recall: 1.00
+FailingMethod: 5, Precision: 0.99, Recall: 1.00
+
+Test Set Grouped Metrics:
+FailingMethod: 6, Precision: 0.70, Recall: 0.98
+FailingMethod: 7, Precision: 0.79, Recall: 0.92
+
+####################################
+AVERAGE TEST PRECISION: 0.7636986301369864
+AVERAGE TEST RECALL: 0.9311064718162839
+
+TRAIN METRICS PER FAILING METHOD:
+{np.int64(0): {'precision': [1.0], 'recall': [1.0]}, np.int64(1): {'precision': [1.0], 'recall': [1.0]}, np.int64(2): {'precision': [1.0], 'recall': [1.0]}, np.int64(3): {'precision': [1.0], 'recall': [1.0]}, np.int64(4): {'precision': [1.0], 'recall': [1.0]}, np.int64(5): {'precision': [0.9924812030075187], 'recall': [1.0]}, np.int64(6): {'precision': [], 'recall': []}, np.int64(7): {'precision': [], 'recall': []}}
+
+TEST METRICS PER FAILING METHOD:
+{np.int64(0): {'precision': [], 'recall': []}, np.int64(1): {'precision': [], 'recall': []}, np.int64(2): {'precision': [], 'recall': []}, np.int64(3): {'precision': [], 'recall': []}, np.int64(4): {'precision': [], 'recall': []}, np.int64(5): {'precision': [], 'recall': []}, np.int64(6): {'precision': [0.7019867549668874], 'recall': [0.9814814814814815]}, np.int64(7): {'precision': [0.7852193995381063], 'recall': [0.9164420485175202]}}
+
+AVERAGE TRAIN METRICS PER FAILING METHOD:
+{0: {'precision': 1.0, 'recall': 1.0}, 1: {'precision': 1.0, 'recall': 1.0}, 2: {'precision': 1.0, 'recall': 1.0}, 3: {'precision': 1.0, 'recall': 1.0}, 4: {'precision': 1.0, 'recall': 1.0}, 5: {'precision': 0.9924812030075187, 'recall': 1.0}, 6: {'precision': 0, 'recall': 0}, 7: {'precision': 0, 'recall': 0}}
+
+AVERAGE TEST METRICS PER FAILING METHOD:
+{0: {'precision': 0, 'recall': 0}, 1: {'precision': 0, 'recall': 0}, 2: {'precision': 0, 'recall': 0}, 3: {'precision': 0, 'recall': 0}, 4: {'precision': 0, 'recall': 0}, 5: {'precision': 0, 'recall': 0}, 6: {'precision': 0.7019867549668874, 'recall': 0.9814814814814815}, 7: {'precision': 0.7852193995381063, 'recall': 0.9164420485175202}}
