@@ -1,0 +1,10 @@
+{
+    "HIT01_8": " Minutes are set to -15; which is less then 0 and it throws illegal arg exception . The code never gets that far . The problem is at line 279 which prevents a negative minutes value being accepted . The programmer comments indicate that since version 2.3 negative minutes up to -59 are acceptable .",
+    "HIT02_24": " \"g\" might exceed -255 or 255 which is not a valid value for the Color object . It's not clear if the program was meant to accept a negative number . A double is the default data type for decimals so this shouldn't be what is causing the error .",
+    "HIT03_6": " There is no reference to the variable 'pos' in the Exception. and the Exception type is not the same as above . The issue is not in the pos variable; but in the len which tells the pos how far to go .",
+    "HIT04_7": " In the initialization of e and s; the parameters for getData Item is this.minMiddleIndex. It should be this.maxMiddleIndex division with 0 does not work . In lines 305 AND 309 this part of the code is used... This section is the only section i can tell .",
+    "HIT05_35": " The copyArrayGrow1 method should return an object of type array; or the code will break . I don't think \"type\" is a reserved word in Java . I do not know enough about arrays in JAVA to know if the failure is related .",
+    "HIT06_51": " All of the conditionals appear to be functioning correctly and don't have a direct association with the method being called in the test . The error is in the while loop within the clause which will never be able to exit the loop; for the same reasons I wrote in the first question .",
+    "HIT07_33": " The error is likely because of input to the class but not directly caused by the variable definition . The error seems to be dependent on what is passed into the function and not the definition of the variable array .",
+    "HIT08_54": " Lines 115/117 are looking at '_P' and the underscore fails the validation . Ch5 isn't an underscore . The input is in the wrong format and therefore the program correctly throws an error ."
+}
