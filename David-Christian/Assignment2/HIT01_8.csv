@@ -1,0 +1,14 @@
+,Answer.explanation
+29,"As noted in the comments; valid input for minutes must be in the rage -59 to +59 but on line 279 of the source minutesOffset is checked for < 0. Instead it should be minutesOFfset < -59 . Also noted in comments is that versions before 2.3 minutes had to be zero or positive. ""Minutes out of range: + minutesOffset"" is our error."
+30,"the variable should be defined as ""unsigned int"" if we expect it to be always positive"
+34,The value of minutes offset does not have valid argument as a result this method will not be called as and argument exception will be displayed.
+35,yep; they are checking if minutesOffset < 0 to throw an exception; and as -15 <0; it gets thrown. looks like they updated the comments but not the code. and this is why comments are evil liars that can't be trusted!
+36,The error is stemming from line 279 because the value of -15 for minutesOffset is < 0. The line should be     if (minutesOffset < -59 || minutesOffset > 59) {
+91,"Line 279 written as ""minutesOffset < 0"" makes it clear it's the one throwing the Exception; as the -15 in the minutes spot is clearly less than 0."
+92,this cause assumes all negative minutes are bad. from the comment; negative minutes are ok when the hours are negative too. the comments specifically say its bad when the mins are negative but the hours are positive. there is a line break in the middle of that part of the comment which could lead a programmer to miss half of the info.
+93,"Yes ; this conditional clause is exactly the place from where the exception is thrown ; because it is not in valid range of ""minutes"""
+94,It's because of second line negative value.
+95,This conditional will reject any negative minute input; even if the hour input is also negative.
+96,This is the argument exception thrown.
+97,-15 is less then 0; so it throws IllegalArgumentException
+98,Value passed in minutes -15;where as it checks (<0 | >53).
