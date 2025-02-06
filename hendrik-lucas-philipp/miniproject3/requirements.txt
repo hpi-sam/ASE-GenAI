@@ -1,0 +1,10 @@
+pandas
+numpy
+scikit-learn
+matplotlib
+ipywidgets
+seaborn
+nltk
+sentence-transformers
+textstat
+openai
