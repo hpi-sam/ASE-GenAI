@@ -1,0 +1,3 @@
+The final subset contains 5 entries.
+It has a diversity score of 0.85, an average readability score of 78.01,
+ and an average semantic similarity score of 0.69.
