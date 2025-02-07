@@ -1,0 +1,8 @@
+During iteration over an object's dimensions, the presence of null arrays causes a NullPointerException. The issue occurs because getClass() is called on elements of the array without checking for nulls beforehand. Specifically, when a null array is encountered, attempting to access its class type results in the exception. This problem manifests at line 910 in the code.
+
+
+
+
+
+
+

@@ -1,0 +1,12 @@
+The bug occurs on line 279 due to an incorrect conditional check on the minutesOffset variable in a time zone offset function, such as DateTimeZone.forOffsetHoursMinutes(-2, -15).
+
+Current Behavior:
+The conditional currently throws an IllegalArgumentException if minutesOffset is less than 0 (minutesOffset < 0) or greater than 59.
+This causes valid negative minute values, such as -15, to trigger an exception, despite the documentation stating that negative minute offsets should be allowed when the hour offset is also negative.
+Expected Behavior:
+The method should accept valid minute values between -59 and 59 when the hour offset is also negative, as described in the comments above the method.
+Impact:
+Negative minutesOffset values (e.g., -15) fail validation and result in an exception, preventing correct functionality when dealing with time zone offsets that include negative hours and minutes.
+Related Information:
+Comments in the code suggest an oversight where the condition minutesOffset < 0 should account for the full valid range of -59 to 59.
+The bug occurs during the parameter check before further method calls, which makes any offset with negative minutes unusable.

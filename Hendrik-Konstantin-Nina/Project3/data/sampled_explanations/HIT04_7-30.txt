@@ -1,0 +1,30 @@
+1: Is middle defined?
+2: In the initialization of e and s; the parameters for getDataItem is this.minMiddleIndex. It should be this.maxMiddleIndex
+3: From looking at the source code; perhaps you would want to check with the getDataItem parameter. You are passing minMiddleIndex; though we are checking for maxMiddleIndex.
+4: using minMiddleMindex there ... ? whoops! maybe if the variable names were less insane and verbose (and the methods less verbose) then they would more easily catch errors like that.
+5: e is referencing minMiddleIndex instead of maxMiddleIndex on line 301
+6: line number 299-302 should be like below :     long s = getDataItem(this.maxMiddleIndex).getPeriod().getStart()                  .getTime();              long e = getDataItem(this.maxMiddleIndex).getPeriod().getEnd()                  .getTime();
+7: Yes; since the method invocations are part of an expression to get the value for variable e where its result impacts the value to set for the maxMiddleIndex variable. But there should be no issue or error on the usage of the method invocations. The error encountered is just a result of an assertion where the expected result is different from the one being returned.
+8: it not contion in the version of jdk
+9: s should be defined as long s = getDataItem(this.maxMiddleIndex).getPeriod().getStart().getTime()
+10: I feel the expression in e should be changed.
+11: Error: Could not find or load main class undefined
+12: s.add method expects one parameter of type timeperiod - in the test; the s.add method is called with two parameters.
+13: In the code; in the previous if; you are checking whether maxIndex is greater than 0; but then using MinIndex(L 298). You should check; before calling that code; whether it's within index.
+14: The variable e is used in two locations which are both reachable by the program (because both minMiddleIndex and maxMiddleIndex are values that can both evaluate to greater than 0) and it can be changed unintentionally.
+15: There are errors throughout this code.
+16: Variable is different
+17: There might be an error that makes the MaxMiddleIndex take the value of the index and cause the assertion failure.
+18: You initialise count to 0; then you never change that value. You assert that it is expected to be 1. The method is behaving correctly.
+19: long maxMiddle = s + (e - s) / 2;              if (middle > maxMiddle) {                  this.maxMiddleIndex = index;
+20: ??!! both s and e are Long!  maybe just me; but this confuses (play with 's')! There is no TimePeriodValues in pgm.  TimePeriodValues s = new TimePeriodValues("Test");
+21: Well; since I cannot see how "getDataItem" is defined within the class; I am not sure if it is throwing that error or not.  Plus; I don't see where there could be a try ... catch block that could throw the AssertionFailedError.  It could be something in the "getDataItem" method or one of the subsequent stacked method calls that are after it.  There is truly not enough code to make a decision.
+22: I beleive the getTime will cause a problem; because you are trying to set s to be variable of type "long"; and getTime is going to return a time value.
+23: low version jdk not support
+24: The method call on line 299 and on line 301 are being invocated on the wrong object. The object should be "this.maxMiddleIndex" instead of "this.minMiddleIndex".
+25: You would presumably want the end to refer to maxMiddleIndex.    long e = getDataItem(this.maxMiddleIndex).getPeriod().getEnd().getTime();
+26: You want to check for maxMiddleIndex to see if its value makes sense with the updated bounds. However; when calculating the maxMiddleIndex; you use this.minMiddleIndex instead of this.maxMiddleIndex as your index for retrieving the period. This should give you the wrong time span.
+27: variable "e" is used as a conditional to determine maxMiddleIndex
+28: You're initializing assertEquals to believe the count will be one; while the actual count is three.  You need to change the 1 to a 3 on assertEquals.
+29: 3
+30: parameter for s is already set for 3 but expected value 1 so there is an issue

@@ -1,0 +1,9 @@
+A StringIndexOutOfBoundsException is being triggered due to improper handling of character positions in the code, specifically involving surrogate pairs and Unicode characters.
+
+The issue revolves around the pos variable being incremented incorrectly across several lines, including lines 89 and 95.
+When a Unicode character with a code point greater than 0x10000 is encountered, the codePointAt method returns a value causing the charCount to be 2. This results in pos being incremented by 2, potentially exceeding the input string length.
+Line 95 appears to perform operations on pos, leading to out-of-range access. This line may involve accessing the code point at position 2 when only two positions (indices 0 and 1) exist.
+The loop and condition logic around pos updates might allow pos to exceed the length of the input string, causing the exception. The absence of boundary checks when incrementing pos is a likely contributor.
+Handling of surrogate pairs may be flawed, exacerbating the issue with position calculation in UTF-16 encoded strings.
+Additional issues noted include potential syntax irregularities (e.g., spacing in line 95 between pos and +=), which might indirectly contribute to the failure.
+This bug occurs when certain Unicode inputs, such as "\uD83D\uDE30", are processed. Proper position checks and handling of surrogate pairs are needed to prevent the index from exceeding the string length.

@@ -1,0 +1,3 @@
+Context: The bug occurs when a variable is initialized using DateTimeZone.forOffsetHoursMinutes(-2, -15).
+Issue: The minute value is set to -15, but the conditional check on line 279 validates only if the value is between 0 and 59. This causes the check to fail, triggering an exception on line 280.
+Root Cause: The validation logic is incorrect. According to the comments in the code, the minute value should be allowed to range from -59 to +59, not just 0 to 59.

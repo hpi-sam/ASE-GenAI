@@ -1,0 +1,6 @@
+The bug occurs due to an incorrect conditional check for the minutesOffset variable in the code.
+
+Location: Line 279 triggers the check, and the exception is thrown at line 280.
+Condition: The current logic throws an exception if minutesOffset < 0, which results in any negative input (e.g., -15) causing an error.
+Expected Behavior: According to the comments, the valid range for minutesOffset should be between -59 and +59. However, the condition only allows values between 0 and 59, contradicting the documented specification.
+This discrepancy leads to the rejection of valid negative offset values that should not be considered out-of-bounds based on the comments.

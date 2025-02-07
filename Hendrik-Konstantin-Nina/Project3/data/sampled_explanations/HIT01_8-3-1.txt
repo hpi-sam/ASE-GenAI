@@ -1,0 +1,3 @@
+1: This conditional will reject any negative minute input; even if the hour input is also negative.
+2: the variable should be defined as "unsigned int" if we expect it to be always positive
+3: As noted in the comments; valid input for minutes must be in the rage -59 to +59 but on line 279 of the source minutesOffset is checked for < 0. Instead it should be minutesOFfset < -59 . Also noted in comments is that versions before 2.3 minutes had to be zero or positive. "Minutes out of range: + minutesOffset" is our error.

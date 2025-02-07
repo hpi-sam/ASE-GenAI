@@ -1,0 +1,1 @@
+The bug occurs due to strict validation checks in the code. The issue is specifically tied to the absence of a country code, which might be interpreted as null. Additionally, there are consecutive underscores in the input, causing the validation to fail because the third character (ch3) is an underscore instead of a capital letter. As a result, an exception is thrown at line 116.

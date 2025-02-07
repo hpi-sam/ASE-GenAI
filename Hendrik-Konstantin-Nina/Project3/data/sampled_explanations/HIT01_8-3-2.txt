@@ -1,0 +1,3 @@
+1: The value of minutes offset does not have valid argument as a result this method will not be called as and argument exception will be displayed.
+2: The variable "minutesOffset" is checked incorrectly by the IF statement on line 279. Any negative value for "minutesOffset" will throw this exception; while the documentation states that "minutesOffset" can be negative in some cases.
+3: Value passed in minutes -15;where as it checks (<0 | >53).

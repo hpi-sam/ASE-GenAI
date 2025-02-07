@@ -1,0 +1,10 @@
+1: it not contion in the version of jdk
+2: In the initialization of e and s; the parameters for getDataItem is this.minMiddleIndex. It should be this.maxMiddleIndex
+3: ??!! both s and e are Long!  maybe just me; but this confuses (play with 's')! There is no TimePeriodValues in pgm.  TimePeriodValues s = new TimePeriodValues("Test");
+4: I'm going to assume TimePeriodValues have a constructor that takes a String and first line is okay. However; I don't see an add method in TimePeriodValues that take a SimpleTimePeriod and a double.  I'm lead to belief there's some else in the code I can't see that's calling a method with the signature TimePeriodValues.add(SimpleTimePeriod; double).  Because the output indicates the code compiles and doesn't receive a runtime exception.    Assuming the method with the signature TimePeriodValues.add(SimpleTimePeriod; double) is calling updateBounds(TimePeriod; int); this seems a little off because updateBounds takes an int.    There seems to be a few type mismatch issues in the code above and below.  Also; I feel like I'm missing additional code if the output above is returned.
+5: i think; instead of 3.0; we need to put 1.0
+6: line 299 should be:      long s = getDataItem(this.maxMiddleIndex).getPeriod().getStart().getTime();    and line 300 should also be corrected; otherwise there will be another assertion failure:      long e = getDataItem(this.maxMiddleIndex).getPeriod().getEnd().getTime();
+7: variable "e" is used as a conditional to determine maxMiddleIndex
+8: Variable is different
+9: s should be defined as long s = getDataItem(this.maxMiddleIndex).getPeriod().getStart().getTime()
+10: low version jdk not support

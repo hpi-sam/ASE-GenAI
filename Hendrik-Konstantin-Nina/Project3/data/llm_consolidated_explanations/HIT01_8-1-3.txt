@@ -1,0 +1,1 @@
+The conditional logic in the code rejects any negative input for minutes, regardless of whether the corresponding hour input is also negative. This behavior may lead to unintended input rejection when both hour and minute values are negative, likely violating expected input handling rules.

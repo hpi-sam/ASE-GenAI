@@ -1,0 +1,7 @@
+Endless Loop in addNumber Method:
+The while loop in the code never exits due to a logic error. This prevents the addNumber method from reaching its end, and as a result, the method remains stuck without returning or calling other required functions.
+
+Incorrect Data Type Handling:
+A value, expected to have decimal precision, is being processed incorrectly. The issue arises because the variable x is treated as a long, which inherently has no decimal places. This may result from either incorrect type assignment (not float or double) or premature rounding (floor or ceiling) before the final processing step.
+
+Both bugs should be addressed to ensure correct program flow and data handling.

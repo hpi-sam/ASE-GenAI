@@ -1,0 +1,15 @@
+1: The declaration of newArray fails when it is null as in the example.
+2: new array and copyArrayGrowl are different types; cannot equal each other
+3: The type variable being used at line 3290 is set up at line 3288. There we see if array and element both are null; then it is set to Object.class. Object classes are not implicitly converted to Strings because this can fail if the Object does not convert directly to a String (it could; but maybe not - thus the fail).    So; you are expecting an IllegalArgumentException from add; but there is no coding of this. You might try throwing an error instead of using Object.class by default. Something on the lines of:    Class<?> type;  if (array != null) {    type = array.getClass().getComponentType(); // if it isn't an array class; fail  } else if (element != null) {    type = element.getClass(); // build the collection on this type otherwise  } else {    throw new IllegalArgumentException("Arguments must not both be null!");  }
+4: You need to change the method to throw IllegalArgumentException when both parameters are null.  It works fine as long as one of the parameters are not null.
+5: We are passing Null values
+6: The inferred type for the array is Object. However; sa which will be bound to the return value has a type of String[]. As the error message states Java can not cast an Object array to a String array.
+7: I THINK THIS ANSWERS
+8: type will end up being a class object after this example. Other than that; I'm lost.
+9: the template ends up with the class being type of string and the result is string[]
+10: I think that the array and string being null is likely to cause a problem in this case.
+11: As mentioned before; we need to first verify that array parm is not null before using getClass on it so that there will be an instance that allows getClass to work. If it were me; I would write a simple if statement that's easy to understand.  The use of the : ? type statement is concise I guess; but when you start nesting them like this you're just begging for trouble; or just showing off in my not so humble opinion.
+12: Yes; type gets set to Object when both parameters to add are null which is what causes the ClassCastException.
+13: <?> is not defined.
+14: Same concept here you are trying to cast an object to an array and you are not allowed to do so.
+15: i think new array value going to be null in this program ; it may be a cause of error

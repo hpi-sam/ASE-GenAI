@@ -1,0 +1,3 @@
+1: it not contion in the version of jdk
+2: The variable e is used in two locations which are both reachable by the program (because both minMiddleIndex and maxMiddleIndex are values that can both evaluate to greater than 0) and it can be changed unintentionally.
+3: s.add method expects one parameter of type timeperiod - in the test; the s.add method is called with two parameters.

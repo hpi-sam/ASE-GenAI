@@ -1,0 +1,3 @@
+1: the for loop is limited up to the value of consumed; while pos is incremented; possibly past the end of input since there are no check conditions.
+2: On line 85; a recursive call is made to the function with an improper number of arguments and expecting a return value.
+3: Think So

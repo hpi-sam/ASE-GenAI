@@ -1,0 +1,17 @@
+1. Incorrect Index Usage in Data Retrieval:
+Variables s (start time) and e (end time) are initialized using this.minMiddleIndex (e.g., lines 299, 301) instead of this.maxMiddleIndex in getDataItem() calls. This leads to incorrect calculation of maxMiddleIndex and assertion failures.
+
+2. Method Signature Mismatch:
+TimePeriodValues.add() is called with two parameters (e.g., SimpleTimePeriod and double), but the method expects a single TimePeriod argument, causing compilation/runtime errors.
+
+3. Uninitialized/Unupdated Count Variable:
+A test asserts count equals 1, but count is initialized to 0 and never modified, resulting in assertion failures. Another note suggests the expected value should be 3 instead of 1.
+
+4. Division by Zero Risk:
+Calculation (e - s) / 2 (or similar) may involve division by zero if e == s, though exact context is unspecified.
+
+5. Type Mismatch in Method Calls:
+updateBounds() is called with an int parameter where a different type (e.g., TimePeriod) might be expected, causing type errors.
+
+6. Variable Confusion in Middle Calculation:
+Variable e in maxMiddle calculation references this.minMiddleIndex (line 301) instead of this.maxMiddleIndex, skewing results.

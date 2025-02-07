@@ -1,0 +1,1 @@
+The type is being set or returned as object when it is expected to be string. This discrepancy could lead to unexpected behavior, especially if other parts of the system rely on type being consistently represented as a string.

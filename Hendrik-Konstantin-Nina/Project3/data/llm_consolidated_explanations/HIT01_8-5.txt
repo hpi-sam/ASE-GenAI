@@ -1,0 +1,3 @@
+The code throws an IllegalArgumentException because the minutes value is incorrectly set to -15. This negative value is outside the valid range for minutes (typically 0-59). While the code checks for minutes exceeding 59, it does not handle negative values for hours before rejecting minutes for being negative. Additionally, the offset variable remains at zero, potentially compounding the out-of-range issue.
+
+In summary, the code lacks a comprehensive validation check for both negative hours and minutes, leading to a failure when minutes are set to a negative value.

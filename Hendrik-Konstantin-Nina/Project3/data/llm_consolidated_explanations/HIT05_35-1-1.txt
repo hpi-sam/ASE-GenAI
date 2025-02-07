@@ -1,0 +1,3 @@
+Bug: A ClassCastException occurs when both parameters passed to the add method are null.
+Cause: When both parameters are null, the variable type is incorrectly set to Object, which triggers the exception during execution.
+This issue requires handling null parameters correctly to avoid the exception.

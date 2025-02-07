@@ -1,0 +1,19 @@
+The bug involves out-of-range index errors when handling a string, particularly related to the pos and pt counters. The main issues are:
+
+Position (pos) Overflow:
+
+The pos counter is incremented by the character count from input, potentially leading it to exceed the input string length. This can trigger a StringIndexOutOfBoundsException.
+On line 95, handling of surrogate pairs and Unicode code points further complicates this, as charCount may return 2, causing pos to increase too rapidly.
+Potential Infinite Loop:
+
+If the array c is null or of size 0, the while loop could run indefinitely without proper termination conditions.
+Pointer (pt) Increment Risk:
+
+pt is incremented without checks to prevent it from surpassing the input length. This poses a risk of array bounds errors.
+Recursive Call on Line 85:
+
+There is a recursive function call with an incorrect number of arguments, which could lead to unexpected errors or crashes.
+Improper Condition Logic:
+
+The loop condition (pt < consumed) might not align with how pos is being updated, leading to mismatched indexing between pt and pos.
+The error stems from improper bounds checks on input string handling, particularly when working with variable-length Unicode characters. The faulty behavior centers around line 95, where pos incrementation can exceed safe limits.

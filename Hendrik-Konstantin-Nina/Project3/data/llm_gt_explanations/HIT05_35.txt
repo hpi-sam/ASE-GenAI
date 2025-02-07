@@ -1,0 +1,2 @@
+When both the array and element parameters passed to the method are null, the type variable defaults to Object.class. This causes copyArrayGrow1 to return an Object[] array, which cannot be cast to the expected String[] (or other specific type), resulting in a ClassCastException. The type inference logic fails to handle the case where both parameters are null, leading to an incompatible array type.
+

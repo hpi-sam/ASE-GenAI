@@ -1,0 +1,10 @@
+1: In the code there is a check that 0 <= minutes < 60 and the minutesOffset is -15 which does not fall into these prarmeters thus throwing an Exception
+2: Minutes are set to -15; which is less then 0 and it throws illegal arg exception
+3: There is a logical check for if minuteOffset is less than 0 or greater than 59 causing it to throw an exception because the value is out of bounds (negative number)
+4: Yes; the variable gets set to -15 through the arguments above. The code specifically encounters the error on line 279 when it tests if minutesOffset < 0; (-15) which is the case; so it throws the error on line 280 : Minutes out of range: with the value provided for that argument -15.
+5: As noted in the comments; valid input for minutes must be in the rage -59 to +59 but on line 279 of the source minutesOffset is checked for < 0. Instead it should be minutesOFfset < -59 . Also noted in comments is that versions before 2.3 minutes had to be zero or positive. "Minutes out of range: + minutesOffset" is our error.
+6: Yes; this line is exactly the one that produces the exception when minutesOffset is <0. As minutesOffset; being the second argument in the function; gets the value -15 in the call to DateTimeZone.forOffsetHoursMinutes(-2; -15)
+7: Line 279 written as "minutesOffset < 0" makes it clear it's the one throwing the Exception; as the -15 in the minutes spot is clearly less than 0.
+8: the offset variable is still zero; making it out of range
+9: You are passing it a negative offset value (-15) and the conditionals are set to reject any offset that is less than 0 or greater than 59 and throw a new exception.
+10: As I seem to have misunderstood the previous question; for the sake of consistency; I will declare Yes; there is an issue BUT No; it is not with the variable "offset". The issue can be attributed to line 279 because the variable "minutesOffSet" is still parameterized to throw an exception if it is < 0; rather it should be: < -59 to correct this issue.

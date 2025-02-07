@@ -1,0 +1,7 @@
+When both the array and element parameters are null in the method being discussed, the type variable is set to Object.class by default. This leads to a cascading failure when copyArrayGrowl() attempts to handle the array since it returns an Object[], causing a ClassCastException during subsequent operations.
+
+Key points:
+
+The method does not verify if both parameters (array and element) are null.
+In the absence of a valid type from either parameter, Object.class is used, which fails later when casting is attempted.
+The failure occurs due to improper type handling and absence of an early exception (IllegalArgumentException) to prevent null type propagation.

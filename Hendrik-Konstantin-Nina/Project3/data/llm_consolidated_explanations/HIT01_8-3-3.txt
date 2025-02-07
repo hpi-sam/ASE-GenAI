@@ -1,0 +1,10 @@
+The minutesOffset variable is being checked incorrectly in the conditional statement on line 279. The code currently throws an exception whenever minutesOffset has a negative value, which conflicts with the documented behavior stating that negative minutesOffset values are valid under specific conditions.
+The issue arises from an assumption that all negative minutes are invalid. However, based on the comment in the code, negative minutes are acceptable when accompanied by a negative hoursOffset. The bug is compounded by a poorly formatted comment with a line break that obscures the critical context about when negative minutes are problematic (only when hours are positive).
+This inconsistency between the code and documentation, as well as the misleading comment, needs to be addressed.
+
+
+
+
+
+
+

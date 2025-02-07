@@ -1,0 +1,18 @@
+1: should be a float number
+2: yes ... should be computed using v; not value.
+3: i believe that some error there in that line
+4: You are calling the Color constructor with three float parameters so the values are allowed to be between 0.0 and 1.0.
+5: there is an issue with colors in that programme
+6: Since the exception seems to be thrown up by Color constructor (seeing message - color parameter outside of expected range); there is a problem with the value of g.
+7: g has to be 0-255. But you are passing in -0.5. I don't know the specifics of the lowerbound and upperbound on the min and max as I am not a Java class expert; but I reckon g comes out negative once the calculation plays out.
+8: I'm not sure if this is the issue but the fact that int g is being defined by (int) could be causing some kind of parameter error.
+9: The color is out of the parameter should be between 0.0 and 1.0
+10: public class IllegalArgumentException extends RuntimeException thrown when a method is passed an illegal or inappropriate argument.    Methods inherited from class java.lang.Throwable  getCause; getLocalizedMessage; getMessage; initCause; printStackTrace; printStackTrace; printStackTrace; toString
+11: variable "g" might be outside the range of the Color class acceptable range values.
+12: The argument value is checked against the lowerBound and upperBound variables; but the resulting variable v is never used in the code. Therefore; the value being -0.5 in this case results in a negative integer value; which is outside the expected 0 to 255 range for a color.
+13: Nothing in this method checks that the lower range of value is positive -- therefore a negative number is not sanitized.
+14: depending on the upperBound and lowerBound values; "g" might exceed -255 or 255 which is not a valid value for the Color object.
+15: The calculation of g appears to result in a negative integer value if the parameter value is negative to begin with. Passing a negative g into Color would produce the error and there is nothing in the definition of g that seeks to prevent that. And the calculation certainly looks like it would come out negative in that scenario. Again without understanding the relevance of lowerbound and upperbound; I cannot be 100 percent certain; as a caveat.
+16: The exception is coming from Color; so it must be g that has a bad value.  I need to see the definition of this.lowerBound and this.upperBound to know what is wrong though.
+17: There is a problem with the argument  public class IllegalArgumentException extends RuntimeException thrown when a method is passed an illegal or inappropriate argument.
+18: The variable "value" is incorrectly used on line 117; where the variable "v" should be used in its place. The variable "value" can exist beyond the range of "this.lowerBound" and "this.upperBound" and is causing this error.

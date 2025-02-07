@@ -1,0 +1,31 @@
+1: Minutes are set to -15; which is less then 0 and it throws illegal arg exception
+2: In the code there is a check that 0 <= minutes < 60 and the minutesOffset is -15 which does not fall into these prarmeters thus throwing an Exception
+3: There is a logical check for if minuteOffset is less than 0 or greater than 59 causing it to throw an exception because the value is out of bounds (negative number)
+4: YES. The issue is on line 279 (as I explained in my first question; of which I misunderstood that I was only being asked about the specific issue; not generalized issue). On line 279 the variable "minutesOffSet" is parameterized to throw an exception if it is < 0 or > 59. Line 279 should read "if (minutesOffset < -59 || minutesOffset > 59) {" because now the method can take in the number of minutes as a negative and will allow the method to properly progress to invoke/call further methods such as those asked about in the two previous questions.
+5: The variable "minutesOffset" is checked incorrectly by the IF statement on line 279. Any negative value for "minutesOffset" will throw this exception; while the documentation states that "minutesOffset" can be negative in some cases.
+6: This variable contains a value of -15 as set by DateTimeZone.forOffsetHoursMinutes(-2; -15). Line 279 checks to see if is a valid value; meaning that is between 0 and 59. Since it is not; an exception error is thrown in line 280.
+7: Yes; the variable gets set to -15 through the arguments above. The code specifically encounters the error on line 279 when it tests if minutesOffset < 0; (-15) which is the case; so it throws the error on line 280 : Minutes out of range: with the value provided for that argument -15.
+8: As noted in the comments; valid input for minutes must be in the rage -59 to +59 but on line 279 of the source minutesOffset is checked for < 0. Instead it should be minutesOFfset < -59 . Also noted in comments is that versions before 2.3 minutes had to be zero or positive. "Minutes out of range: + minutesOffset" is our error.
+9: the variable should be defined as "unsigned int" if we expect it to be always positive
+10: The value of minutes offset does not have valid argument as a result this method will not be called as and argument exception will be displayed.
+11: yep; they are checking if minutesOffset < 0 to throw an exception; and as -15 <0; it gets thrown. looks like they updated the comments but not the code. and this is why comments are evil liars that can't be trusted!
+12: The error is stemming from line 279 because the value of -15 for minutesOffset is < 0. The line should be     if (minutesOffset < -59 || minutesOffset > 59) {
+13: the conditional clause throws an error if the value of minutes is smaller than zero
+14: The argument -15 is less than 0; which causes the if statement conditional on line 279 to pass. This results in the exception on line 280 being thrown. According to the comment block above the method; minutesOffset should be checked for below -59 or above 59.
+15: There may be an issue as it involves not indigenous java
+16: According to the comments; the minute value should be between -59 and +59; but the conditional statement is checking for a value between 0 and 59.
+17: Yes; this line is exactly the one that produces the exception when minutesOffset is <0. As minutesOffset; being the second argument in the function; gets the value -15 in the call to DateTimeZone.forOffsetHoursMinutes(-2; -15)
+18: You are passing it a negative offset value (-15) and the conditionals are set to reject any offset that is less than 0 or greater than 59 and throw a new exception.
+19: the code is incomplete. it properly checks for greater than 59 but neglects to take into account if the hours are negative before rejecting minutes for being negative. it would be more correct though not completely to check for less than -59 instead of less than 0
+20: Line 279 written as "minutesOffset < 0" makes it clear it's the one throwing the Exception; as the -15 in the minutes spot is clearly less than 0.
+21: this cause assumes all negative minutes are bad. from the comment; negative minutes are ok when the hours are negative too. the comments specifically say its bad when the mins are negative but the hours are positive. there is a line break in the middle of that part of the comment which could lead a programmer to miss half of the info.
+22: Yes ; this conditional clause is exactly the place from where the exception is thrown ; because it is not in valid range of "minutes"
+23: It's because of second line negative value.
+24: This conditional will reject any negative minute input; even if the hour input is also negative.
+25: This is the argument exception thrown.
+26: -15 is less then 0; so it throws IllegalArgumentException
+27: Value passed in minutes -15;where as it checks (<0 | >53).
+28: As I seem to have misunderstood the previous question; for the sake of consistency; I will declare Yes; there is an issue BUT No; it is not with the variable "offset". The issue can be attributed to line 279 because the variable "minutesOffSet" is still parameterized to throw an exception if it is < 0; rather it should be: < -59 to correct this issue.
+29: Yes there could be an issue with the parameters passed it will finally give answer millis out of range
+30: the offset variable is still zero; making it out of range
+31: I believe the error is in the offset described in hours in line 284

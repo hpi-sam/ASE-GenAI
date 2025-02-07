@@ -1,0 +1,1 @@
+When converting a floating-point negative zero (e.g., -0.0) to a long, the sign is lost, resulting in value becoming 0. The add(Long.toString(value)) call then appends the string "0" instead of "-0.0", causing test failures where -0.0 is expected. The long type cannot retain the decimal or sign for zero, leading to incorrect string representation in such cases.

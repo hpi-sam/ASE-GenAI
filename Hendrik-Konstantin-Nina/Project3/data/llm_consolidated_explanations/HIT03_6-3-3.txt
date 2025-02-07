@@ -1,0 +1,3 @@
+There is an index out-of-bounds exception occurring around line 95 of the code. The bug is caused by incrementing the pos variable by 2 at line 89, which results in an attempt to access the array at position 2. However, the array only contains two elements (with the highest accessible index being 1), leading to the out-of-bounds error.
+
+Additionally, there is a minor issue where PT++ is used but should be corrected to PT+. This may be causing or contributing to logical errors elsewhere in the code.

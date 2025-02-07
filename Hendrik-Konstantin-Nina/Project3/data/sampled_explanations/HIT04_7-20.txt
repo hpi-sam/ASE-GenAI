@@ -1,0 +1,20 @@
+1: Line 301 is calling assessor functions to set variables to be used to calculate the MaxMiddleIndex. Since the assertion fails when checking the MaxMiddleIndex it is likely there is something wrong with the assessor functions or how the value they return is being manipulated.
+2: it not contion in the version of jdk
+3: 3
+4: There would be an issue cause the function add uses the updatebound with different var type
+5: there is no clear invocation of functions
+6: using minMiddleMindex there ... ? whoops! maybe if the variable names were less insane and verbose (and the methods less verbose) then they would more easily catch errors like that.
+7: Yes; since the method invocations are part of an expression to get the value for variable e where its result impacts the value to set for the maxMiddleIndex variable. But there should be no issue or error on the usage of the method invocations. The error encountered is just a result of an assertion where the expected result is different from the one being returned.
+8: Variable is different
+9: I feel the expression in e should be changed.
+10: You would presumably want the end to refer to maxMiddleIndex.    long e = getDataItem(this.maxMiddleIndex).getPeriod().getEnd().getTime();
+11: i think; instead of 3.0; we need to put 1.0
+12: I believe it should be dealing with the maxMiddleIndex
+13: ??!! both s and e are Long!  maybe just me; but this confuses (play with 's')! There is no TimePeriodValues in pgm.  TimePeriodValues s = new TimePeriodValues("Test");
+14: When we are calculating maxMiddleIndex the value to be considered should be   long e = getDataItem(this.maxMiddleIndex).getPeriod().getEnd()                  .getTime();  instead  long e = getDataItem(this.minMiddleIndex).getPeriod().getEnd()                  .getTime();  is used.  I think changing this value to maxMiddleIndex should work as the mean would be calculated properly.
+15: variable "e" is used as a conditional to determine maxMiddleIndex
+16: There are errors throughout this code.
+17: The method call on line 299 and on line 301 are being invocated on the wrong object. The object should be "this.maxMiddleIndex" instead of "this.minMiddleIndex".
+18: The variable e is used in two locations which are both reachable by the program (because both minMiddleIndex and maxMiddleIndex are values that can both evaluate to greater than 0) and it can be changed unintentionally.
+19: You're initializing assertEquals to believe the count will be one; while the actual count is three.  You need to change the 1 to a 3 on assertEquals.
+20: There might be an error that makes the MaxMiddleIndex take the value of the index and cause the assertion failure.

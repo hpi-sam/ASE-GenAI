@@ -1,0 +1,8 @@
+The method in question is producing an exception in the Color constructor due to an invalid parameter value. The g variable, representing a color component, is calculated as a negative value in some scenarios. Specifically, g must be within the valid range of 0-255 when passed as an argument to the Color class, which throws an exception when it receives a value outside this range.
+
+The underlying issue is:
+
+The calculation of g allows for negative results if the input parameter (value) is negative.
+There is no validation to ensure that g is sanitized to stay within the valid range of 0-255.
+The variable v, rather than value, should be used on line 117 during computation to ensure consistent constraint checks against lowerBound and upperBound.
+These factors lead to g occasionally being passed as an invalid value to the Color constructor, causing an IllegalArgumentException.

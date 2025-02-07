@@ -1,0 +1,1 @@
+When the pos variable increases beyond a certain threshold, it exceeds the boundaries of the CharSequence. This results in an out-of-bounds error or undefined behavior, depending on how the input and pos are handled. The issue likely stems from insufficient boundary checks or conditions controlling the value of pos.

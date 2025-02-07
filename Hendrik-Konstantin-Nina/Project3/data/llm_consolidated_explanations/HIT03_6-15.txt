@@ -1,0 +1,7 @@
+The code contains a potential issue with out-of-range access in string manipulation that can lead to a StringIndexOutOfBoundsException. Specifically:
+
+The pos variable, which tracks the current position in a string, can be incremented beyond the string's length (input.length()). No boundary checks are present to prevent this.
+If codePointAt() is used and returns a Unicode character value above 0x10000, the charCount() function may return 2. This result gets added to pos, potentially causing it to exceed the string length, resulting in an invalid index.
+A related concern is found on line 95, where surrogate pairs might not be handled correctly in UTF-16 encoding. This may further contribute to incorrect position calculations in cases involving multi-byte characters.
+On line 85, a recursive function call is made with an incorrect number of arguments, which might also be part of the broader issue in handling string or character data.
+These issues cause the code to fail when string operations access invalid positions, especially when special characters or multi-byte Unicode characters are encountered.

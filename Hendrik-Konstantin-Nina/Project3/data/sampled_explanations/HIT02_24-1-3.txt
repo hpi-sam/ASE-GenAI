@@ -1,0 +1,1 @@
+1: The exception is coming from Color; so it must be g that has a bad value.  I need to see the definition of this.lowerBound and this.upperBound to know what is wrong though.

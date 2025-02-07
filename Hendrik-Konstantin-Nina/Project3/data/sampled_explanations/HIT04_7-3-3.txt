@@ -1,0 +1,3 @@
+1: I believe that the line should use this.maxMiddleIndex rather than this.minMiddleIndex on line 301.
+2: I beleive the getTime will cause a problem; because you are trying to set s to be variable of type "long"; and getTime is going to return a time value.
+3: Is middle defined?

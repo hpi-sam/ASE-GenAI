@@ -1,0 +1,5 @@
+1: There is a problem with the argument  public class IllegalArgumentException extends RuntimeException thrown when a method is passed an illegal or inappropriate argument.
+2: there is an issue with colors in that programme
+3: Since the exception seems to be thrown up by Color constructor (seeing message - color parameter outside of expected range); there is a problem with the value of g.
+4: The color is out of the parameter should be between 0.0 and 1.0
+5: should be a float number

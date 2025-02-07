@@ -1,0 +1,17 @@
+A StringIndexOutOfBoundsException error occurs in a code section where string manipulation is handled. The issue is centered around the pos variable being incremented to a value that exceeds the length of the input string, particularly around line 95.
+
+Line References:
+
+Line 89: pos is incremented by a value based on the input's character properties.
+Line 95: The Character.codePointAt method attempts to read from the input string at the pos index, which may be out of bounds.
+Condition Details:
+
+The while loop controlling these increments appears to lack a sufficient boundary check for pos against the input length.
+The for loop iterating with pt < consumed does not correlate with ensuring pos remains within valid string index boundaries.
+If the character at pos is a surrogate pair, Character.charCount can add 2 to pos, which can push it beyond the string length.
+Potential Edge Cases:
+
+Surrogate pair handling (characters with Unicode values greater than 0x10000).
+Incrementing pos multiple times without ensuring the input string's length constraint.
+If consumed or input handling within recursive calls is not properly controlled, pos may become invalid in subsequent iterations.
+This bug needs a review of index boundary checks and loop control logic to prevent exceeding the input string length when pos is incremented.

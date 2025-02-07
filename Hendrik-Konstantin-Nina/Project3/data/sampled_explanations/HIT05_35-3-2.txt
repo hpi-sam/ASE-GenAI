@@ -1,0 +1,3 @@
+1: There should not be T() before the newArray
+2: Type of the variable "type" may be incompatible
+3: The inferred type for the array is Object. However; sa which will be bound to the return value has a type of String[]. As the error message states Java can not cast an Object array to a String array.

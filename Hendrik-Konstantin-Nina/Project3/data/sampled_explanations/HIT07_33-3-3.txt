@@ -1,0 +1,3 @@
+1: a null check should be included here. Check if array[i] is null. Check its not null then execute line 910.
+2: There should be some code that says that if array[i] == null; to not attempt to getClass() and just class[i] = null;
+3: The issue is actually with the use of one of the members of the array variable. On line 910; there is no check for whether array[i] is null before array[i] is dereferenced; the second member of the test input array is null; causing the exception to be thrown.

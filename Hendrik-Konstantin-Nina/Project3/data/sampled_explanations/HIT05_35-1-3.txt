@@ -1,0 +1,1 @@
+1: Both the first conditional statment and nested conditional statement are false; therefore the line sets the variable type=Object.class. Since the failure relates to an attempt to cast an object to a string; it seems that this could be where the type object is introduced and therefore may be related to the failure.

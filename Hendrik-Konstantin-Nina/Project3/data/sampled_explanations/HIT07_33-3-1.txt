@@ -1,0 +1,3 @@
+1: The second element of the array is null (which has no class); and the getClass method with produce a NullPointerException in this case.
+2: I think when it gets to array[i] when I is 1. It references null   So calling getClass() on null will give null pointer exception
+3: the template isn't expecting a null pointer - but that's what is being passed in!

@@ -1,0 +1,9 @@
+There is an issue in the code on line 279, where the conditional check on the variable minutesOffset is incorrect. The current condition throws an exception if minutesOffset is less than 0 or greater than 59. This behavior conflicts with the intended logic as outlined in the comments.
+
+The comments indicate that:
+
+The valid range for minutesOffset should be from -59 to +59.
+Negative values for minutesOffset are acceptable if they accompany negative hours.
+The condition on line 279 causes an exception to be thrown when minutesOffset is set to a negative value (e.g., -15), even though such values should be valid under certain conditions. The code only checks for minutesOffset < 0, which leads to rejecting all negative values indiscriminately.
+
+The bug prevents the method from executing further due to an "Minutes out of range" exception being raised erroneously. This misalignment between the code and documented behavior needs to be addressed.

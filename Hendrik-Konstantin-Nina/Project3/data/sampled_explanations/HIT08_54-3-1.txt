@@ -1,0 +1,3 @@
+1: else statement is missing
+2: The fourth character must be the beginning of the country code per the defined format for the string version of locale.  Therefore; characters 3 and 4 represent the country code.  The input is defined strictly requiring these characters to be upper case.  In the test example given; the third character is an underscore ("_") which is not allowed.  Therefore; this code threw the proper exception letting the user know that the string input ("fr__POSIX") was an incorrect format.
+3: ch3 will have a value (an underscore) that falls outside the range of 'A' through 'Z'

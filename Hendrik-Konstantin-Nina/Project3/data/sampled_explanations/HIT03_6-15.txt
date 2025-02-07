@@ -1,0 +1,15 @@
+1: On line 95; there is a space between pos and += which I feel is the wrong syntax. Instead; it should be pos+=. I suspect this threw an exception.
+2: While I am not sure exactly what this portion of the program is trying to accomplish I believe that there is a high likelihood that it could cause the program to crash.  My thoughts are that on line 95 we are incrementing pos by a value associated with input; and then we are repeating this while an unrelated condition (pt < consumed) holds true.  I think there is a strong possibility this would cause us to step out of bounds on input and get the StringIndexOutOfBoundsException we see in the error.
+3: The input "\uD83D\uDE30" needs to be passed through the Class StringEscapeUtils as well.
+4: On line 85; a recursive call is made to the function with an improper number of arguments and expecting a return value.
+5: Yes
+6: That variable is not correct
+7: This code is probably the cause of the StringIndexOutOfBoundsException error.  The String index out of range 2 message seem to indicate that the variable pos is going beyond the size of variable input. On each iteration through the loop; pos is being incremented but it could already be at the end of input; so after it is incremented again; pos is going to be invalid; causing a StringIndexOutOfBoundsException error.
+8: lines 84-97 reference character counts; which seems much more correlated to the concept in the failure of being out of range. It almost seems like the amount should be 0 and that is causing the error.
+9: Ok I get it; it is an issue with index numbers being less than the length
+10: The pos counter is being incremented in line 89 and line 95 within the while; so it could be incremented beyond the len variable.
+11: It might if the position it returns in the string isn't accessible
+12: Checking a character in the string with pos most likely causes an error since the error is a string out of bounds
+13: the for loop is limited up to the value of consumed; while pos is incremented; possibly past the end of input since there are no check conditions.
+14: As I said in my previous answer; I'm pretty sure the issue is with one of the Character.codePointAt method calls.  It also would require the "pos" variable to reach the value of 2 to have thrown the error listed above.  I can't figure out any way for the "pos" variable to reach a value of 2 and still execute another iteration of the loop (which might lead to the execution of line 87 and an exception there).  Each time the "pos" variable is changed (potentially to an invalid amount) the continue keyword sends the program back to line 84 where the "pos" value is checked against the "len" variable for validity.    Therefore; it seems that the only place where the exception could be coming from is line 95.
+15: PT++ Should be PT+

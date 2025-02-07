@@ -1,0 +1,17 @@
+1: The highlighted if statement relates to the treatment of large numbers; not decimals.
+2: I believe that the problem must be in the add method. I do not see the problem in the code that is shown. I think the problem might be in the maybeEndStatement method.
+3: This is on comparison of two obviously non-null strings; for example assertEquals("a"; "b").
+4: I think so there was a syntax error
+5: Could not understand the test case but since most of the processing is happening in this code block so it is probable.
+6: I think so; addbstring converts the null message to the String "null" may be I am wrong
+7: (long)x will cast double to long. However; they might not be equal in many cases when x will have any decimal place. So; if clause may not be true in many cases.
+8: add method not preceded by class name or defined above
+9: Yes. The problem is exactly that when we get to line 260 in our code (add(Long.toString(value));); we actually send 0 as an argument to the "add" method; not -0.0; because variable "value" is defined of type long eliminating our .0 portion of the number and automatically converting the remaining -0 to 0; since it's the same thing to the compiler. As a result; 0 is appended to our string; not -0.0.
+10: Yes there is. This is because this is the part of the code which defines what characters are included in the expression.
+11: Correct the while loop. The problem will be solved.
+12: I don't know what the "add()" method does for sure; but it seems to only build strings. Looks to me like it should be // if (exp >0) // in order to get the correct output.
+13: The problem is that a [-0.] is expected; but not returned. The call to add passes as an argument the string of value that could not be possibly be [-0] as it formerly was a long number; which has no sign on 0. This is the place where the -0. expected might be loss.
+14: The error is in the while loop within the clause which will never be able to exit the loop; for the same reasons I wrote in the first question. Because the error is within the loop; the loop will continue and never reach the end of the method "addNumber" and as such the add method will never be called from outside the source code.
+15: the exp variable not get the value is unusable function so the code not executed allways
+16: I believe "E" within the clause is resulting to the failure.
+17: value would be a long; which does not have a decimal place; that is what was happening in the error. There was only 0; no decimal; meaning that x was either not a float; or double; or it was being floored; or ceilinged just be fore the end.

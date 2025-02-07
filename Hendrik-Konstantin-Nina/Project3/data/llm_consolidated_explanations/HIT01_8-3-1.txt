@@ -1,0 +1,1 @@
+The program throws an IllegalArgumentException if the input value for minutes is negative, regardless of the input value for hours. The current conditional logic checks for negative minute values independently and rejects any such input, even when both hours and minutes are negative. This behavior may be unintended if negative values are meant to be handled as a valid input pair.

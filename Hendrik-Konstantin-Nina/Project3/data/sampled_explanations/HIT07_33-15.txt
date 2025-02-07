@@ -1,0 +1,15 @@
+1: There should be some code that says that if array[i] == null; to not attempt to getClass() and just class[i] = null;
+2: Yes; I think that the NullPointerException is thrown when .getClass is called on the null listing in the middle of the arrays.
+3: Trying to get the class of a null object will throw a nullpointexception
+4: input for the method is passed with null;     new Class[]{String.class; null; Double.class}; ClassUtils.toClass(new Object[]{"Test";null;99d}
+5: The second element of our input array is null. When we call the getClass method on null a NullPointerException is raised.
+6: Yes because the line is trying to get the class of a null object.
+7: As we iterate through Object's dimensions; there are null arrays in the middle. getClass doesn't work on nulls and throws a NullPointerException. You might try testing for these nulls at line 910 like so:    classes[i] = array[i] == null ? null : array[i].getClass();
+8: The for loop itself looks fine. However; the code contained within the for loop on line 910 may be causing the problem; because it may not handle the case where array[i] is null.
+9: I believe index 1 in the array being looped through is a null; so this would cause an exception since getClass expects an object; not null.
+10: The FOR loop should check if the element (array[i]) is null.  If yes; then set classes[i] to null.  Else; assign classes[i] to the return of getClass().
+11: The array is not classified correctly
+12: I think when it gets to array[i] when I is 1. It references null   So calling getClass() on null will give null pointer exception
+13: []array should be [array]
+14: the getClass() method cannot read from null!
+15: I'm not sure if the .getClass() call is actually calling anything that is defined in the programming. This could potentially be causing a null exception.

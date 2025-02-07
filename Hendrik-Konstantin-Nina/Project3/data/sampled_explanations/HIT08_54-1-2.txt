@@ -1,0 +1,1 @@
+1: This can't handle cases where the country code is omitted; but there are extensions in the locale string.

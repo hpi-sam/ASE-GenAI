@@ -1,0 +1,11 @@
+Unassigned Variable (exp): The variable exp does not receive a value, rendering it unusable within its function. This prevents code execution at critical points.
+
+Incorrect Data Type Handling: A value expected to be a float or double is handled as a long, causing truncation. Decimal places are not retained, resulting in incorrect values like 0 instead of precise floating-point numbers. The issue may stem from flooring or ceiling operations occurring just before the final computation.
+
+Infinite Loop: There is a bug in a while loop in the method addNumber. The condition for the loop is flawed, causing the loop to run indefinitely. Consequently, the loop prevents the method addNumber from completing and being called externally.
+
+Conditional Logic Error: An if statement intended to handle large numbers does not correctly address cases involving decimals.
+
+Syntax Error: There is a reported syntax error in the code, though details on its location and specifics are not provided.
+
+These points should guide the developer in diagnosing and addressing the identified issues.

@@ -1,0 +1,2 @@
+The bug occurs because line 115 incorrectly validates the third character (ch3) of the locale string. The correct format requires the third character to be an underscore ('_'), but the condition checks if ch3 is an uppercase letter (A-Z). For valid inputs (e.g., fr__POSIX), ch3 is '_', which fails the check (as '_' > 'Z'), triggering a false IllegalArgumentException. The validation logic mistakenly treats the underscore as part of the country code (which should start after the underscore), leading to incorrect format rejection.
+

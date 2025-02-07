@@ -1,0 +1,1 @@
+The value of "g" in the Color object can exceed the valid range of -255 to 255. This behavior depends on how the upperBound and lowerBound values are handled or calculated. When "g" falls outside this range, it leads to invalid color data, which may cause further errors or rendering issues.

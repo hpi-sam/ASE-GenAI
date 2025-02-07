@@ -1,0 +1,1 @@
+1: I think that the array and string being null is likely to cause a problem in this case.

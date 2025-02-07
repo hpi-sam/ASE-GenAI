@@ -1,0 +1,20 @@
+1: If array is null and element is null it sets type to object class.
+2: I think that the array and string being null is likely to cause a problem in this case.
+3: Both the first conditional statment and nested conditional statement are false; therefore the line sets the variable type=Object.class. Since the failure relates to an attempt to cast an object to a string; it seems that this could be where the type object is introduced and therefore may be related to the failure.
+4: The inferred type for the array is Object. However; sa which will be bound to the return value has a type of String[]. As the error message states Java can not cast an Object array to a String array.
+5: That was my first impression; that the use of generics enforces type; and the copyArrayGrow1 method should return an object of type array; or the code will break. However; I could be wrong.
+6: The code is passing the class type as null.
+7: We are passing Null values
+8: I THINK THIS ANSWERS
+9: Since the inputs are null; then return is an array of [null]. This cannot be cast to a type String.
+10: The declaration of newArray fails when it is null as in the example.
+11: the template ends up with the class being type of string and the result is string[]
+12: type will be object when it should be string
+13: type will end up being a class object after this example. Other than that; I'm lost.
+14: The type variable being used at line 3290 is set up at line 3288. There we see if array and element both are null; then it is set to Object.class. Object classes are not implicitly converted to Strings because this can fail if the Object does not convert directly to a String (it could; but maybe not - thus the fail).    So; you are expecting an IllegalArgumentException from add; but there is no coding of this. You might try throwing an error instead of using Object.class by default. Something on the lines of:    Class<?> type;  if (array != null) {    type = array.getClass().getComponentType(); // if it isn't an array class; fail  } else if (element != null) {    type = element.getClass(); // build the collection on this type otherwise  } else {    throw new IllegalArgumentException("Arguments must not both be null!");  }
+15: ArrayUtils.add() method accepts Object parameters only and not String. So using T type converts your runtime objects to String and not as Objects.  So modify the class to use Objects instead of T type for this operation alone. Use a cast check if required; but stick to Objects for this. Alternatively; you can write your own add() method if you want it to accept String readily.
+16: There should not be T() before the newArray
+17: Because a new object array is being copied to a string type array some elements of the array could not be cast appropriately.
+18: You need to change the method to throw IllegalArgumentException when both parameters are null.  It works fine as long as one of the parameters are not null.
+19: <?> is not defined.
+20: well the generic is recognized to be a String type by the jvm but then the type value is Object

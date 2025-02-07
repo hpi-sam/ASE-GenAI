@@ -1,0 +1,5 @@
+1: I think when it gets to array[i] when I is 1. It references null   So calling getClass() on null will give null pointer exception
+2: I believe index 1 in the array being looped through is a null; so this would cause an exception since getClass expects an object; not null.
+3: getClass() not defined
+4: Trying to get the class of a null object will throw a nullpointexception
+5: a null check should be included here. Check if array[i] is null. Check its not null then execute line 910.

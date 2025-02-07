@@ -1,0 +1,1 @@
+1: I think so; addbstring converts the null message to the String "null" may be I am wrong

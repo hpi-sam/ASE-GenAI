@@ -1,0 +1,1 @@
+The method validating minutesOffset at line 279 incorrectly checks if the value is < 0 or > 59, rejecting all negative values. According to specifications, minutesOffset should be allowed within the range -59 to +59 (e.g., -15). The current implementation throws an IllegalArgumentException for valid negative offsets due to the overly restrictive lower bound check.

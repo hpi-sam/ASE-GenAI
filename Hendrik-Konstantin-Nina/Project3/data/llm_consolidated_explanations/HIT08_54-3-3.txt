@@ -1,0 +1,7 @@
+The code has issues at two points:
+
+Line 115: An exception is thrown due to the conditional statement, as the third character (ch3) in the string is not within the a-z range. Additionally, in one case, an underscore (_) at the fourth character causes the condition to fail.
+
+Lines 121-122: If the issue at line 115 did not occur, another exception would still arise here because the string exceeds 5 characters, and the fifth character (ch5) is not an underscore (_).
+
+Both conditions need to be reviewed for character constraints to prevent these exceptions from being thrown.

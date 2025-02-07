@@ -1,0 +1,5 @@
+Null Dereferencing Issue: In a for-loop, members of an array are being dereferenced without prior checks to confirm whether they are null, leading to potential null pointer exceptions.
+
+Array Initialization Problem: An array is declared and assigned to an object that is initially defined as null, causing potential issues when trying to access or iterate over the array.
+
+Undefined Method: The getClass() method is being called, but it is not defined or accessible within the current scope or context.

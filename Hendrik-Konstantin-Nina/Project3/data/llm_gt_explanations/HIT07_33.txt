@@ -1,0 +1,1 @@
+A NullPointerException occurs on line 910 when iterating through an array. The code dereferences array[i] (via getClass()) without checking if the element is null. Specifically, if array[i] is null (e.g., the second element in the test input), calling getClass() throws the exception. The loop lacks a null check before accessing the method.

@@ -1,0 +1,5 @@
+1: It doesn't have any logic to make sure BOTH cases don't fail (and thus one can be null.)
+2: new array and copyArrayGrowl are different types; cannot equal each other
+3: i think new array value going to be null in this program ; it may be a cause of error
+4: You need to change the method to throw IllegalArgumentException when both parameters are null.  It works fine as long as one of the parameters are not null.
+5: The code is passing the class type as null.

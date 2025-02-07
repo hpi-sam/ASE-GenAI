@@ -1,0 +1,1 @@
+There is a bug related to checking a character in a string using the pos variable. The error occurs due to a string out-of-bounds issue, indicating that pos may point to an index that exceeds the length of the string, leading to a runtime exception or undefined behavior.

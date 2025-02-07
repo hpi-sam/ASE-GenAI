@@ -1,0 +1,5 @@
+The bug resides in the validation logic for the minutesOffset parameter in a method invocation, specifically on line 279. The condition currently reads if (minutesOffset < 0 || minutesOffset > 59), which causes the method to throw an IllegalArgumentException when a negative minutesOffset is provided, such as -15 in the example call DateTimeZone.forOffsetHoursMinutes(-2, -15).
+
+The issue is that the logic incorrectly assumes minutesOffset must always be non-negative. However, according to method documentation and comments, minutesOffset should be valid within the range of -59 to 59, inclusive. Consequently, any negative value within this valid range (e.g., -15) is currently treated as invalid, causing an exception to be thrown on line 280.
+
+This discrepancy between the expected and actual validation criteria results in unintended behavior when handling negative offsets.

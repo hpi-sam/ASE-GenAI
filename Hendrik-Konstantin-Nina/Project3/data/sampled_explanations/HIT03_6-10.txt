@@ -1,0 +1,10 @@
+1: The only place in the code where they are using arrays and dealing with array indexes; high probability of issue being present here
+2: The while loop has a potential to be infinite if the array c is null (I believe Java allows arrays of size 0).
+3: Yes
+4: Think So
+5: I'm a little fuzzy on what is going on with this code because I'm not up on all the details of handling unicode but the purpose of this sections seems to be dealing with the fact that in things like UTF-8 sometimes you get characters that are one byte and sometimes 2. Anyway; the issue seems to be with the for loop on line 94. We are incrementing the variable pt and checking that it is less than consumed but we are accessing the input via the pos variable.    If consumed == 0 on line 86 then we increment pos on line 89. Pos appears to always be incremented at a value of greater than or equal to one for every character in the input. The point is that pos gets incremented at a rate faster than characters from the input are consumed and can become longer than the input length which will raise an error on line 95 when consumed is greater than zero.
+6: pos is trying to add to itself via charcount of an input that is out of range.
+7: depending on the input; the "pos" could be longer than the length of the input.
+8: There is no code to prevent pt++ from exceeding len (where len = input.length();)
+9: The input "\uD83D\uDE30" needs to be passed through the Class StringEscapeUtils as well.
+10: the for loop is limited up to the value of consumed; while pos is incremented; possibly past the end of input since there are no check conditions.

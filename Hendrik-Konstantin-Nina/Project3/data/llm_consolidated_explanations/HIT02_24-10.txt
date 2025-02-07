@@ -1,0 +1,7 @@
+The variable g, intended to be within the valid color range of 0 to 255, can become negative due to improper handling of input values during its calculation. The issue arises because:
+
+Input values, which may include negative numbers, are not correctly validated or bounded by the expected range (this.lowerBound and this.upperBound).
+The calculation results in a negative value for g when negative input is provided.
+The computed value v (derived from input validation) is either misused or ignored, leading to incorrect use of another variable (value) instead.
+This causes the Color constructor to throw an exception as g is outside the expected range.
+This bug is linked to incorrect parameter management, particularly involving the mismatch between v, value, and range checking logic.

@@ -1,0 +1,13 @@
+Incorrect Handling of Object and String Types in ArrayUtils.add():
+
+The ArrayUtils.add() method is designed to work with Object types but not specifically with String types.
+A generic type (T) is being used, leading to runtime objects being converted to Strings instead of remaining as Objects, causing type issues.
+The method needs to properly handle Object types, as there is no implicit conversion of arbitrary Objects to Strings, which can lead to runtime failures.
+Null Value Handling and Type Determination at Lines 3288-3290:
+
+At line 3288, when both the array and element parameters are null, the type variable defaults to Object.class.
+This setup can fail during runtime when operations expecting a String are performed on non-convertible Object instances.
+There is no proper exception handling (e.g., throwing IllegalArgumentException) to prevent this situation. The expected behavior is to fail fast by verifying array or element types and throwing an exception if both are null.
+Null Values Are Being Passed:
+
+The code path involves scenarios where null values are frequently passed to ArrayUtils.add(), which complicates type handling and type safety checks within the method. This impacts reliability due to unchecked null parameter inputs.

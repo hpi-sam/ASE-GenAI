@@ -1,0 +1,1 @@
+The bug occurs because the variable value (instead of the clamped v) is used in calculating g on line 117, resulting in g being outside the valid range (0-255 or 0.0-1.0) when passed to the Color constructor. This triggers an IllegalArgumentException as g becomes negative when value exceeds the bounds defined by lowerBound/upperBound.

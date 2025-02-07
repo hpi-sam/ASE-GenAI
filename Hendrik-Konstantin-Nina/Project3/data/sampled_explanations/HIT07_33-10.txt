@@ -1,0 +1,10 @@
+1: The second element of the array is null (which has no class); and the getClass method with produce a NullPointerException in this case.
+2: The array is not classified correctly
+3: a null check should be included here. Check if array[i] is null. Check its not null then execute line 910.
+4: getClass() not defined
+5: Yes because the line is trying to get the class of a null object.
+6: Yes; I think that the NullPointerException is thrown when .getClass is called on the null listing in the middle of the arrays.
+7: I'm not sure if the .getClass() call is actually calling anything that is defined in the programming. This could potentially be causing a null exception.
+8: The for-loop dereferences members of the array without first checking whether they're null (this is the issue I was referring to before; though it's not technically with the variable "array.")
+9: The FOR loop should check if the element (array[i]) is null.  If yes; then set classes[i] to null.  Else; assign classes[i] to the return of getClass().
+10: I believe index 1 in the array being looped through is a null; so this would cause an exception since getClass expects an object; not null.

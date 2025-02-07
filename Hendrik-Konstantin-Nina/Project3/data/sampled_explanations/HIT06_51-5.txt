@@ -1,0 +1,5 @@
+1: the exp variable not get the value is unusable function so the code not executed allways
+2: This is on comparison of two obviously non-null strings; for example assertEquals("a"; "b").
+3: add method not preceded by class name or defined above
+4: I think so; addbstring converts the null message to the String "null" may be I am wrong
+5: Yes there is. This is because this is the part of the code which defines what characters are included in the expression.

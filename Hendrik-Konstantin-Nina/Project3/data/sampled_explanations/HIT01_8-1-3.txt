@@ -1,0 +1,1 @@
+1: Minutes are set to -15; which is less then 0 and it throws illegal arg exception

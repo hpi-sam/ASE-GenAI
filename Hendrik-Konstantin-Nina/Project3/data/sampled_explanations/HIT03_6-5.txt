@@ -1,0 +1,5 @@
+1: This code is probably the cause of the StringIndexOutOfBoundsException error.  The String index out of range 2 message seem to indicate that the variable pos is going beyond the size of variable input. On each iteration through the loop; pos is being incremented but it could already be at the end of input; so after it is incremented again; pos is going to be invalid; causing a StringIndexOutOfBoundsException error.
+2: Yes; there is an exception with surrogate pairs; so there is an issue in line 95 which deals with surrogate pairs I think. Don't understand Unicode and UTF-16 handling well enough to pinpoint the problem.
+3: PT++ Should be PT+
+4: There is no code to prevent pt++ from exceeding len (where len = input.length();)
+5: the for loop is limited up to the value of consumed; while pos is incremented; possibly past the end of input since there are no check conditions.

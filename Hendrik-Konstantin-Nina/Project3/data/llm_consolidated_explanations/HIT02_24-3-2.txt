@@ -1,0 +1,7 @@
+Unsanitized Input: The method handling the range does not validate that the lower range value is positive. This allows for negative input values to pass through unsanitized.
+
+g Value Calculation: The function calculating g can result in a negative integer if the input parameter is negative. Since g is passed into a color parameter, it generates an error, particularly when there is no safeguard to prevent negative values in the calculation.
+
+Color Parameter Constraint: The output color parameter must stay within the range [0.0, 1.0]. The absence of proper constraints or checks leads to color values that fall outside this acceptable range.
+
+This bug arises from improper input validation and lack of boundary checks in both the parameter handling and color output.

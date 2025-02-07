@@ -1,0 +1,3 @@
+An exception is thrown at line 116 in the code when parsing a locale string under specific conditions. The issue occurs because the character at position 3 (ch3) in the string is expected to be an uppercase letter (A-Z), but the string instead contains an underscore (_). The condition explicitly checks if ch3 is not an uppercase letter and throws an error when this requirement is not met. The character at position 4 (ch4) passes validation, meaning the bug solely concerns the incorrect handling of ch3.
+
+The problem likely arises after a preceding else block and subsequent validation checks. The string format doesn't meet expected criteria, causing failure on this validation rule.
