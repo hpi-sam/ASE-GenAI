@@ -1,10 +1,10 @@
-1: Same concept here you are trying to cast an object to an array and you are not allowed to do so.
-2: Type of the variable "type" may be incompatible
-3: well the generic is recognized to be a String type by the jvm but then the type value is Object
-4: <?> is not defined.
-5: Yes; as with the previous problems "type" gets set to the Object class when both "array" and "element" are null.
-6: As mentioned before; we need to first verify that array parm is not null before using getClass on it so that there will be an instance that allows getClass to work. If it were me; I would write a simple if statement that's easy to understand.  The use of the : ? type statement is concise I guess; but when you start nesting them like this you're just begging for trouble; or just showing off in my not so humble opinion.
-7: ArrayUtils.add() method accepts Object parameters only and not String. So using T type converts your runtime objects to String and not as Objects.  So modify the class to use Objects instead of T type for this operation alone. Use a cast check if required; but stick to Objects for this. Alternatively; you can write your own add() method if you want it to accept String readily.
-8: i think new array value going to be null in this program ; it may be a cause of error
-9: the template ends up with the class being type of string and the result is string[]
-10: I THINK THIS ANSWERS
+1: It doesn't have any logic to make sure BOTH cases don't fail (and thus one can be null.)
+2: element != null ? element.getClass() : Object.class  -- the object is null so this is returning an Object type.
+3: The code is passing the class type as null.
+4: We are passing Null values
+5: Since the inputs are null; then return is an array of [null]. This cannot be cast to a type String.
+6: There should not be T() before the newArray
+7: The declaration of newArray fails when it is null as in the example.
+8: Same concept here you are trying to cast an object to an array and you are not allowed to do so.
+9: Type of the variable "type" may be incompatible
+10: You need to change the method to throw IllegalArgumentException when both parameters are null.  It works fine as long as one of the parameters are not null.

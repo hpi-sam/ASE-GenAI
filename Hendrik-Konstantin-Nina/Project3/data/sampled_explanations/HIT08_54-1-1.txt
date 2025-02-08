@@ -1,1 +1,1 @@
-1: The failure occurs during the execution of lines 115 - 116.  In line 113; ch3 is set to be "_".  In the if statement of line 115; ch3 is checked for being less than 'A'; which is false; but it is also checked for being greater than 'Z'; and it turns out that the value for '_' is greater than 'Z'.  Since this is so; this particular if statement executes; and throws out the failure outlined above.
+1: A and Z need to be lower case.

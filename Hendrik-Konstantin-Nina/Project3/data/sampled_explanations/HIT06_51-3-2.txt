@@ -1,3 +1,3 @@
-1: Yes there is. This is because this is the part of the code which defines what characters are included in the expression.
-2: Could not understand the test case but since most of the processing is happening in this code block so it is probable.
+1: I believe that the problem must be in the add method. I do not see the problem in the code that is shown. I think the problem might be in the maybeEndStatement method.
+2: the exp variable not get the value is unusable function so the code not executed allways
 3: Correct the while loop. The problem will be solved.

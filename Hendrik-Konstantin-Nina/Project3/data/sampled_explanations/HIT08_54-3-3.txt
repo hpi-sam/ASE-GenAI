@@ -1,3 +1,3 @@
-1: ch3 would be "_" which is outside the range on line 115
+1: In this example; the exception is still thrown based on the conditional statement at line 115.  However; there would also be an issue with line 121.  Since the string is greater than 5 characters; and the fifth character is not the expected underscore("_"); this would also throw an exception.
 2: this is the same problem as last time..... line 115 is not going to like the 4th character being an underscore.
-3: THERE IS
+3: We still have the problem from line 115 with ch3 not being a-z; but if that weren't the problem; then line 121-122 would cause the failure as well. Ch5 isn't an underscore.

@@ -1,10 +1,10 @@
-1: they should have specified for each length specifically.
-2: In this example; the exception is still thrown based on the conditional statement at line 115.  However; there would also be an issue with line 121.  Since the string is greater than 5 characters; and the fifth character is not the expected underscore("_"); this would also throw an exception.
-3: The country code is missing. Or rather lines 115/117 are looking at '_P' and the underscore fails the validation.
-4: THERE IS
-5: The fourth character must be the beginning of the country code per the defined format for the string version of locale.  Therefore; characters 3 and 4 represent the country code.  The input is defined strictly requiring these characters to be upper case.  In the test example given; the third character is an underscore ("_") which is not allowed.  Therefore; this code threw the proper exception letting the user know that the string input ("fr__POSIX") was an incorrect format.
-6: The comments say it validates strictly.  There is no Country code ... one could argue it's null I guess.   There are consecutive underscores so ch3 is an underscore and not a Capital Letter so the exception is thrown at line 116.
-7: We still have the problem from line 115 with ch3 not being a-z; but if that weren't the problem; then line 121-122 would cause the failure as well. Ch5 isn't an underscore.
-8: in line 115; if (ch3 > 'A' || ch3 < 'Z' || ch4 >'A' || ch4 < 'Z')
-9: The if statement in line 115 is checking the character at locations 3 and 4; which in this case would be the fourth and fifth characters; "_P". It seems to be checking to make sure they are capital letters; which ch3 is not and rather is an underscore. Therefore either ch3 < 'A' or ch3 > 'Z' would return false; prompting the throwing of the IllegalArgumentException.      There are other possibilities for this same exception to be thrown before line 116; but our string should pass those without any issues.
-10: The failure occurs during the execution of lines 115 - 116.  In line 113; ch3 is set to be "_".  In the if statement of line 115; ch3 is checked for being less than 'A'; which is false; but it is also checked for being greater than 'Z'; and it turns out that the value for '_' is greater than 'Z'.  Since this is so; this particular if statement executes; and throws out the failure outlined above.
+1: Line 114 was not the correct input
+2: ch3 is an underscore; not an A-Z character. These lines of code tell it to throw an error when ch3 is not A-Z.
+3: A and Z need to be lower case.
+4: The comments say it validates strictly.  There is no Country code ... one could argue it's null I guess.   There are consecutive underscores so ch3 is an underscore and not a Capital Letter so the exception is thrown at line 116.
+5: It is checking the 3rd and 4th characters are uppercase. The fourth character is an underscore. Write more descriptive errors next time.
+6: The if statement in line 115 is checking the character at locations 3 and 4; which in this case would be the fourth and fifth characters; "_P". It seems to be checking to make sure they are capital letters; which ch3 is not and rather is an underscore. Therefore either ch3 < 'A' or ch3 > 'Z' would return false; prompting the throwing of the IllegalArgumentException.      There are other possibilities for this same exception to be thrown before line 116; but our string should pass those without any issues.
+7: The failure occurs during the execution of lines 115 - 116.  In line 113; ch3 is set to be "_".  In the if statement of line 115; ch3 is checked for being less than 'A'; which is false; but it is also checked for being greater than 'Z'; and it turns out that the value for '_' is greater than 'Z'.  Since this is so; this particular if statement executes; and throws out the failure outlined above.
+8: they should have specified for each length specifically.
+9: The input 'fr__POSIX' is not following the expected format outlined in the javadoc: the fourth character is part of the country code and "must be uppercase" (not an underscore)
+10: THERE IS

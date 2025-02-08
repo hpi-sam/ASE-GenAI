@@ -1,1 +1,1 @@
-1: Minutes are set to -15; which is less then 0 and it throws illegal arg exception
+1: This conditional will reject any negative minute input; even if the hour input is also negative.

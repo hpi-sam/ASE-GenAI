@@ -1,25 +1,25 @@
-1: low version jdk not support
-2: There might be an error that makes the MaxMiddleIndex take the value of the index and cause the assertion failure.
-3: e is referencing minMiddleIndex instead of maxMiddleIndex on line 301
-4: I'm going to assume TimePeriodValues have a constructor that takes a String and first line is okay. However; I don't see an add method in TimePeriodValues that take a SimpleTimePeriod and a double.  I'm lead to belief there's some else in the code I can't see that's calling a method with the signature TimePeriodValues.add(SimpleTimePeriod; double).  Because the output indicates the code compiles and doesn't receive a runtime exception.    Assuming the method with the signature TimePeriodValues.add(SimpleTimePeriod; double) is calling updateBounds(TimePeriod; int); this seems a little off because updateBounds takes an int.    There seems to be a few type mismatch issues in the code above and below.  Also; I feel like I'm missing additional code if the output above is returned.
-5: Line 301 is calling assessor functions to set variables to be used to calculate the MaxMiddleIndex. Since the assertion fails when checking the MaxMiddleIndex it is likely there is something wrong with the assessor functions or how the value they return is being manipulated.
-6: I believe it should be dealing with the maxMiddleIndex
-7: There are errors throughout this code.
-8: ??!! both s and e are Long!  maybe just me; but this confuses (play with 's')! There is no TimePeriodValues in pgm.  TimePeriodValues s = new TimePeriodValues("Test");
-9: line 299 should be:      long s = getDataItem(this.maxMiddleIndex).getPeriod().getStart().getTime();    and line 300 should also be corrected; otherwise there will be another assertion failure:      long e = getDataItem(this.maxMiddleIndex).getPeriod().getEnd().getTime();
-10: You would presumably want the end to refer to maxMiddleIndex.    long e = getDataItem(this.maxMiddleIndex).getPeriod().getEnd().getTime();
-11: There would be an issue cause the function add uses the updatebound with different var type
-12: Error: Could not find or load main class undefined
-13: s should be defined as long s = getDataItem(this.maxMiddleIndex).getPeriod().getStart().getTime()
-14: You're initializing assertEquals to believe the count will be one; while the actual count is three.  You need to change the 1 to a 3 on assertEquals.
-15: In the code; in the previous if; you are checking whether maxIndex is greater than 0; but then using MinIndex(L 298). You should check; before calling that code; whether it's within index.
-16: i think; instead of 3.0; we need to put 1.0
-17: You want to check for maxMiddleIndex to see if its value makes sense with the updated bounds. However; when calculating the maxMiddleIndex; you use this.minMiddleIndex instead of this.maxMiddleIndex as your index for retrieving the period. This should give you the wrong time span.
-18: s.add method expects one parameter of type timeperiod - in the test; the s.add method is called with two parameters.
-19: middle index is returned from this part of the code
-20: Is middle defined?
-21: Variable is different
-22: it not contion in the version of jdk
-23: long maxMiddle = s + (e - s) / 2;              if (middle > maxMiddle) {                  this.maxMiddleIndex = index;
-24: Well; since I cannot see how "getDataItem" is defined within the class; I am not sure if it is throwing that error or not.  Plus; I don't see where there could be a try ... catch block that could throw the AssertionFailedError.  It could be something in the "getDataItem" method or one of the subsequent stacked method calls that are after it.  There is truly not enough code to make a decision.
-25: The variable e is used in two locations which are both reachable by the program (because both minMiddleIndex and maxMiddleIndex are values that can both evaluate to greater than 0) and it can be changed unintentionally.
+1: e is referencing minMiddleIndex instead of maxMiddleIndex on line 301
+2: line number 299-302 should be like below :     long s = getDataItem(this.maxMiddleIndex).getPeriod().getStart()                  .getTime();              long e = getDataItem(this.maxMiddleIndex).getPeriod().getEnd()                  .getTime();
+3: Is middle defined?
+4: it not contion in the version of jdk
+5: s should be defined as long s = getDataItem(this.maxMiddleIndex).getPeriod().getStart().getTime()
+6: I feel the expression in e should be changed.
+7: Error: Could not find or load main class undefined
+8: s.add method expects one parameter of type timeperiod - in the test; the s.add method is called with two parameters.
+9: In the code; in the previous if; you are checking whether maxIndex is greater than 0; but then using MinIndex(L 298). You should check; before calling that code; whether it's within index.
+10: there is no clear invocation of functions
+11: I'm going to assume TimePeriodValues have a constructor that takes a String and first line is okay. However; I don't see an add method in TimePeriodValues that take a SimpleTimePeriod and a double.  I'm lead to belief there's some else in the code I can't see that's calling a method with the signature TimePeriodValues.add(SimpleTimePeriod; double).  Because the output indicates the code compiles and doesn't receive a runtime exception.    Assuming the method with the signature TimePeriodValues.add(SimpleTimePeriod; double) is calling updateBounds(TimePeriod; int); this seems a little off because updateBounds takes an int.    There seems to be a few type mismatch issues in the code above and below.  Also; I feel like I'm missing additional code if the output above is returned.
+12: parameter for s is already set for 3 but expected value 1 so there is an issue
+13: At line 299; variable "s" is declared which contributes to setting "maxMiddleIndex"
+14: ??!! both s and e are Long!  maybe just me; but this confuses (play with 's')! There is no TimePeriodValues in pgm.  TimePeriodValues s = new TimePeriodValues("Test");
+15: Well; since I cannot see how "getDataItem" is defined within the class; I am not sure if it is throwing that error or not.  Plus; I don't see where there could be a try ... catch block that could throw the AssertionFailedError.  It could be something in the "getDataItem" method or one of the subsequent stacked method calls that are after it.  There is truly not enough code to make a decision.
+16: line 299 should be:      long s = getDataItem(this.maxMiddleIndex).getPeriod().getStart().getTime();    and line 300 should also be corrected; otherwise there will be another assertion failure:      long e = getDataItem(this.maxMiddleIndex).getPeriod().getEnd().getTime();
+17: I beleive the getTime will cause a problem; because you are trying to set s to be variable of type "long"; and getTime is going to return a time value.
+18: I believe that the line should use this.maxMiddleIndex rather than this.minMiddleIndex on line 301.
+19: long maxMiddle = s + (e - s) / 2;              if (middle > maxMiddle) {                  this.maxMiddleIndex = index;
+20: The method call on line 299 and on line 301 are being invocated on the wrong object. The object should be "this.maxMiddleIndex" instead of "this.minMiddleIndex".
+21: There would be an issue cause the function add uses the updatebound with different var type
+22: Line 301 is calling assessor functions to set variables to be used to calculate the MaxMiddleIndex. Since the assertion fails when checking the MaxMiddleIndex it is likely there is something wrong with the assessor functions or how the value they return is being manipulated.
+23: In the initialization of e and s; the parameters for getDataItem is this.minMiddleIndex. It should be this.maxMiddleIndex
+24: When we are calculating maxMiddleIndex the value to be considered should be   long e = getDataItem(this.maxMiddleIndex).getPeriod().getEnd()                  .getTime();  instead  long e = getDataItem(this.minMiddleIndex).getPeriod().getEnd()                  .getTime();  is used.  I think changing this value to maxMiddleIndex should work as the mean would be calculated properly.
+25: low version jdk not support

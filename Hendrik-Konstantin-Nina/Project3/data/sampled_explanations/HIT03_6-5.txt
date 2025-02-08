@@ -1,5 +1,5 @@
-1: This code is probably the cause of the StringIndexOutOfBoundsException error.  The String index out of range 2 message seem to indicate that the variable pos is going beyond the size of variable input. On each iteration through the loop; pos is being incremented but it could already be at the end of input; so after it is incremented again; pos is going to be invalid; causing a StringIndexOutOfBoundsException error.
-2: Yes; there is an exception with surrogate pairs; so there is an issue in line 95 which deals with surrogate pairs I think. Don't understand Unicode and UTF-16 handling well enough to pinpoint the problem.
-3: PT++ Should be PT+
-4: There is no code to prevent pt++ from exceeding len (where len = input.length();)
-5: the for loop is limited up to the value of consumed; while pos is incremented; possibly past the end of input since there are no check conditions.
+1: The while loop has a potential to be infinite if the array c is null (I believe Java allows arrays of size 0).
+2: If the codePointAt method returns a unicode character value greater than 0x10000; then charCount returns 2; which would be potentially added to pos to create a larger index value than the string length.
+3: While I am not sure exactly what this portion of the program is trying to accomplish I believe that there is a high likelihood that it could cause the program to crash.  My thoughts are that on line 95 we are incrementing pos by a value associated with input; and then we are repeating this while an unrelated condition (pt < consumed) holds true.  I think there is a strong possibility this would cause us to step out of bounds on input and get the StringIndexOutOfBoundsException we see in the error.
+4: I think you're incrementing 'pos' by two in line 89 then when it gets to 95 you're asking for the code point at position 2 but since there are only 2 positions; the highest address is 1 and that's why you're getting index out of bounds.
+5: pos is trying to add to itself via charcount of an input that is out of range.

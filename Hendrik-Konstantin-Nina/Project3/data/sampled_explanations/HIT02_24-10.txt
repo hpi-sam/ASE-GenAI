@@ -1,10 +1,10 @@
-1: The color is out of the parameter should be between 0.0 and 1.0
-2: The variable "value" is incorrectly used on line 117; where the variable "v" should be used in its place. The variable "value" can exist beyond the range of "this.lowerBound" and "this.upperBound" and is causing this error.
-3: there is an issue with colors in that programme
-4: I'm not sure if this is the issue but the fact that int g is being defined by (int) could be causing some kind of parameter error.
-5: depending on the upperBound and lowerBound values; "g" might exceed -255 or 255 which is not a valid value for the Color object.
-6: should be a float number
-7: i believe that some error there in that line
-8: The argument value is checked against the lowerBound and upperBound variables; but the resulting variable v is never used in the code. Therefore; the value being -0.5 in this case results in a negative integer value; which is outside the expected 0 to 255 range for a color.
+1: variable "g" might be outside the range of the Color class acceptable range values.
+2: I'm not sure if this is the issue but the fact that int g is being defined by (int) could be causing some kind of parameter error.
+3: i believe that some error there in that line
+4: The argument value is checked against the lowerBound and upperBound variables; but the resulting variable v is never used in the code. Therefore; the value being -0.5 in this case results in a negative integer value; which is outside the expected 0 to 255 range for a color.
+5: g has to be 0-255. But you are passing in -0.5. I don't know the specifics of the lowerbound and upperbound on the min and max as I am not a Java class expert; but I reckon g comes out negative once the calculation plays out.
+6: The variable "value" is incorrectly used on line 117; where the variable "v" should be used in its place. The variable "value" can exist beyond the range of "this.lowerBound" and "this.upperBound" and is causing this error.
+7: Since the exception seems to be thrown up by Color constructor (seeing message - color parameter outside of expected range); there is a problem with the value of g.
+8: The calculation of g appears to result in a negative integer value if the parameter value is negative to begin with. Passing a negative g into Color would produce the error and there is nothing in the definition of g that seeks to prevent that. And the calculation certainly looks like it would come out negative in that scenario. Again without understanding the relevance of lowerbound and upperbound; I cannot be 100 percent certain; as a caveat.
 9: The exception is coming from Color; so it must be g that has a bad value.  I need to see the definition of this.lowerBound and this.upperBound to know what is wrong though.
 10: yes ... should be computed using v; not value.

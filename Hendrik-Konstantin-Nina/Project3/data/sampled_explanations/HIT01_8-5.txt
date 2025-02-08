@@ -1,5 +1,5 @@
-1: Yes there could be an issue with the parameters passed it will finally give answer millis out of range
-2: You are passing it a negative offset value (-15) and the conditionals are set to reject any offset that is less than 0 or greater than 59 and throw a new exception.
-3: There is a logical check for if minuteOffset is less than 0 or greater than 59 causing it to throw an exception because the value is out of bounds (negative number)
+1: Minutes are set to -15; which is less then 0 and it throws illegal arg exception
+2: the offset variable is still zero; making it out of range
+3: the conditional clause throws an error if the value of minutes is smaller than zero
 4: the code is incomplete. it properly checks for greater than 59 but neglects to take into account if the hours are negative before rejecting minutes for being negative. it would be more correct though not completely to check for less than -59 instead of less than 0
-5: The argument -15 is less than 0; which causes the if statement conditional on line 279 to pass. This results in the exception on line 280 being thrown. According to the comment block above the method; minutesOffset should be checked for below -59 or above 59.
+5: Yes ; this conditional clause is exactly the place from where the exception is thrown ; because it is not in valid range of "minutes"

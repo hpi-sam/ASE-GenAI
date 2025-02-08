@@ -1,3 +1,3 @@
-1: as pos gets larger; it will go past CharSequence at given (input; pos)
+1: Checking a character in the string with pos most likely causes an error since the error is a string out of bounds
 2: The pos counter is being incremented in line 89 and line 95 within the while; so it could be incremented beyond the len variable.
-3: Calling the translate method with in it's body .
+3: While I am not sure exactly what this portion of the program is trying to accomplish I believe that there is a high likelihood that it could cause the program to crash.  My thoughts are that on line 95 we are incrementing pos by a value associated with input; and then we are repeating this while an unrelated condition (pt < consumed) holds true.  I think there is a strong possibility this would cause us to step out of bounds on input and get the StringIndexOutOfBoundsException we see in the error.

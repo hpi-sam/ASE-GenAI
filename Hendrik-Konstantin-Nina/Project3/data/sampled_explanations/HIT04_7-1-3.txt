@@ -1,1 +1,1 @@
-1: s should be defined as long s = getDataItem(this.maxMiddleIndex).getPeriod().getStart().getTime()
+1: You initialise count to 0; then you never change that value. You assert that it is expected to be 1. The method is behaving correctly.

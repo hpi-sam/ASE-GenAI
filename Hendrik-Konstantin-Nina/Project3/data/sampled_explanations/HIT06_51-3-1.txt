@@ -1,3 +1,3 @@
-1: the exp variable not get the value is unusable function so the code not executed allways
-2: value would be a long; which does not have a decimal place; that is what was happening in the error. There was only 0; no decimal; meaning that x was either not a float; or double; or it was being floored; or ceilinged just be fore the end.
-3: The error is in the while loop within the clause which will never be able to exit the loop; for the same reasons I wrote in the first question. Because the error is within the loop; the loop will continue and never reach the end of the method "addNumber" and as such the add method will never be called from outside the source code.
+1: Could not understand the test case but since most of the processing is happening in this code block so it is probable.
+2: The error is in the while loop within the clause which will never be able to exit the loop; for the same reasons I wrote in the first question. Because the error is within the loop; the loop will continue and never reach the end of the method "addNumber" and as such the add method will never be called from outside the source code.
+3: value would be a long; which does not have a decimal place; that is what was happening in the error. There was only 0; no decimal; meaning that x was either not a float; or double; or it was being floored; or ceilinged just be fore the end.

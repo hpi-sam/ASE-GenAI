@@ -1,1 +1,1 @@
-1: I think that the array and string being null is likely to cause a problem in this case.
+1: Yes; type gets set to Object when both parameters to add are null which is what causes the ClassCastException.

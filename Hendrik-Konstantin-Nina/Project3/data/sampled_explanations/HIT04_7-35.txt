@@ -1,35 +1,35 @@
-1: s.add method expects one parameter of type timeperiod - in the test; the s.add method is called with two parameters.
-2: Error: Could not find or load main class undefined
-3: There might be an error that makes the MaxMiddleIndex take the value of the index and cause the assertion failure.
-4: line number 299-302 should be like below :     long s = getDataItem(this.maxMiddleIndex).getPeriod().getStart()                  .getTime();              long e = getDataItem(this.maxMiddleIndex).getPeriod().getEnd()                  .getTime();
-5: I believe that the line should use this.maxMiddleIndex rather than this.minMiddleIndex on line 301.
-6: long maxMiddle = s + (e - s) / 2;              if (middle > maxMiddle) {                  this.maxMiddleIndex = index;
-7: I beleive the getTime will cause a problem; because you are trying to set s to be variable of type "long"; and getTime is going to return a time value.
-8: At line 299; variable "s" is declared which contributes to setting "maxMiddleIndex"
-9: s should be defined as long s = getDataItem(this.maxMiddleIndex).getPeriod().getStart().getTime()
-10: You're initializing assertEquals to believe the count will be one; while the actual count is three.  You need to change the 1 to a 3 on assertEquals.
-11: using minMiddleMindex there ... ? whoops! maybe if the variable names were less insane and verbose (and the methods less verbose) then they would more easily catch errors like that.
-12: You want to check for maxMiddleIndex to see if its value makes sense with the updated bounds. However; when calculating the maxMiddleIndex; you use this.minMiddleIndex instead of this.maxMiddleIndex as your index for retrieving the period. This should give you the wrong time span.
-13: variable "e" is used as a conditional to determine maxMiddleIndex
-14: Yes; since the method invocations are part of an expression to get the value for variable e where its result impacts the value to set for the maxMiddleIndex variable. But there should be no issue or error on the usage of the method invocations. The error encountered is just a result of an assertion where the expected result is different from the one being returned.
-15: The variable e is used in two locations which are both reachable by the program (because both minMiddleIndex and maxMiddleIndex are values that can both evaluate to greater than 0) and it can be changed unintentionally.
-16: When we are calculating maxMiddleIndex the value to be considered should be   long e = getDataItem(this.maxMiddleIndex).getPeriod().getEnd()                  .getTime();  instead  long e = getDataItem(this.minMiddleIndex).getPeriod().getEnd()                  .getTime();  is used.  I think changing this value to maxMiddleIndex should work as the mean would be calculated properly.
-17: division with 0 does not work
-18: There are errors throughout this code.
-19: There would be an issue cause the function add uses the updatebound with different var type
-20: You would presumably want the end to refer to maxMiddleIndex.    long e = getDataItem(this.maxMiddleIndex).getPeriod().getEnd().getTime();
-21: Variable is different
-22: From looking at the source code; perhaps you would want to check with the getDataItem parameter. You are passing minMiddleIndex; though we are checking for maxMiddleIndex.
-23: In the initialization of e and s; the parameters for getDataItem is this.minMiddleIndex. It should be this.maxMiddleIndex
-24: i think; instead of 3.0; we need to put 1.0
-25: Is middle defined?
-26: parameter for s is already set for 3 but expected value 1 so there is an issue
-27: ??!! both s and e are Long!  maybe just me; but this confuses (play with 's')! There is no TimePeriodValues in pgm.  TimePeriodValues s = new TimePeriodValues("Test");
-28: Well; since I cannot see how "getDataItem" is defined within the class; I am not sure if it is throwing that error or not.  Plus; I don't see where there could be a try ... catch block that could throw the AssertionFailedError.  It could be something in the "getDataItem" method or one of the subsequent stacked method calls that are after it.  There is truly not enough code to make a decision.
-29: At line 299; it should be "getDataItem(this.maxMiddleIndex)" instead of "getDataItem(this.minMiddleIndex)". As the code is currently written; it compares a possible new maxMiddle against the current minMiddle; when it should be comparing against the maxMiddle on that line and the next line (299 and 300).
-30: e is referencing minMiddleIndex instead of maxMiddleIndex on line 301
-31: it not contion in the version of jdk
-32: In the code; in the previous if; you are checking whether maxIndex is greater than 0; but then using MinIndex(L 298). You should check; before calling that code; whether it's within index.
+1: Error: Could not find or load main class undefined
+2: i think; instead of 3.0; we need to put 1.0
+3: The variable e is used in two locations which are both reachable by the program (because both minMiddleIndex and maxMiddleIndex are values that can both evaluate to greater than 0) and it can be changed unintentionally.
+4: I believe that the line should use this.maxMiddleIndex rather than this.minMiddleIndex on line 301.
+5: When we are calculating maxMiddleIndex the value to be considered should be   long e = getDataItem(this.maxMiddleIndex).getPeriod().getEnd()                  .getTime();  instead  long e = getDataItem(this.minMiddleIndex).getPeriod().getEnd()                  .getTime();  is used.  I think changing this value to maxMiddleIndex should work as the mean would be calculated properly.
+6: At line 301 the argument of "getDataItem" should be "this.maxMiddleIndex" but is instead "this.minMiddleIndex".This call is part of a method that updates bounds for all index variables( "minStartIndex"; "maxStartIndex"; "minMiddleIndex"; etc)and more specifically the section of that code that updates the "maxMiddleIndex". Information that was retrieved using the "getTime" method erroneously retrieved it from the "minMiddleIndex" which led to bounds being updated incorrectly.
+7: In the initialization of e and s; the parameters for getDataItem is this.minMiddleIndex. It should be this.maxMiddleIndex
+8: There might be an error that makes the MaxMiddleIndex take the value of the index and cause the assertion failure.
+9: Is middle defined?
+10: long maxMiddle = s + (e - s) / 2;              if (middle > maxMiddle) {                  this.maxMiddleIndex = index;
+11: There are errors throughout this code.
+12: parameter for s is already set for 3 but expected value 1 so there is an issue
+13: it not contion in the version of jdk
+14: s should be defined as long s = getDataItem(this.maxMiddleIndex).getPeriod().getStart().getTime()
+15: I believe it should be dealing with the maxMiddleIndex
+16: division with 0 does not work
+17: variable "e" is used as a conditional to determine maxMiddleIndex
+18: You initialise count to 0; then you never change that value. You assert that it is expected to be 1. The method is behaving correctly.
+19: low version jdk not support
+20: there is no clear invocation of functions
+21: line 299 should be:      long s = getDataItem(this.maxMiddleIndex).getPeriod().getStart().getTime();    and line 300 should also be corrected; otherwise there will be another assertion failure:      long e = getDataItem(this.maxMiddleIndex).getPeriod().getEnd().getTime();
+22: line number 299-302 should be like below :     long s = getDataItem(this.maxMiddleIndex).getPeriod().getStart()                  .getTime();              long e = getDataItem(this.maxMiddleIndex).getPeriod().getEnd()                  .getTime();
+23: You're initializing assertEquals to believe the count will be one; while the actual count is three.  You need to change the 1 to a 3 on assertEquals.
+24: e is referencing minMiddleIndex instead of maxMiddleIndex on line 301
+25: 3
+26: I feel the expression in e should be changed.
+27: I beleive the getTime will cause a problem; because you are trying to set s to be variable of type "long"; and getTime is going to return a time value.
+28: Variable is different
+29: From looking at the source code; perhaps you would want to check with the getDataItem parameter. You are passing minMiddleIndex; though we are checking for maxMiddleIndex.
+30: Well; since I cannot see how "getDataItem" is defined within the class; I am not sure if it is throwing that error or not.  Plus; I don't see where there could be a try ... catch block that could throw the AssertionFailedError.  It could be something in the "getDataItem" method or one of the subsequent stacked method calls that are after it.  There is truly not enough code to make a decision.
+31: The method call on line 299 and on line 301 are being invocated on the wrong object. The object should be "this.maxMiddleIndex" instead of "this.minMiddleIndex".
+32: You would presumably want the end to refer to maxMiddleIndex.    long e = getDataItem(this.maxMiddleIndex).getPeriod().getEnd().getTime();
 33: middle index is returned from this part of the code
-34: line 299 should be:      long s = getDataItem(this.maxMiddleIndex).getPeriod().getStart().getTime();    and line 300 should also be corrected; otherwise there will be another assertion failure:      long e = getDataItem(this.maxMiddleIndex).getPeriod().getEnd().getTime();
-35: I feel the expression in e should be changed.
+34: In the code; in the previous if; you are checking whether maxIndex is greater than 0; but then using MinIndex(L 298). You should check; before calling that code; whether it's within index.
+35: Line 301 is calling assessor functions to set variables to be used to calculate the MaxMiddleIndex. Since the assertion fails when checking the MaxMiddleIndex it is likely there is something wrong with the assessor functions or how the value they return is being manipulated.

@@ -1,5 +1,5 @@
-1: The variable e is used in two locations which are both reachable by the program (because both minMiddleIndex and maxMiddleIndex are values that can both evaluate to greater than 0) and it can be changed unintentionally.
-2: I believe that the line should use this.maxMiddleIndex rather than this.minMiddleIndex on line 301.
-3: line number 299-302 should be like below :     long s = getDataItem(this.maxMiddleIndex).getPeriod().getStart()                  .getTime();              long e = getDataItem(this.maxMiddleIndex).getPeriod().getEnd()                  .getTime();
+1: middle index is returned from this part of the code
+2: At line 299; variable "s" is declared which contributes to setting "maxMiddleIndex"
+3: s should be defined as long s = getDataItem(this.maxMiddleIndex).getPeriod().getStart().getTime()
 4: 3
-5: there is no clear invocation of functions
+5: Line 301 is calling assessor functions to set variables to be used to calculate the MaxMiddleIndex. Since the assertion fails when checking the MaxMiddleIndex it is likely there is something wrong with the assessor functions or how the value they return is being manipulated.

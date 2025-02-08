@@ -1,3 +1,3 @@
-1: i believe that some error there in that line
-2: should be a float number
-3: The exception is coming from Color; so it must be g that has a bad value.  I need to see the definition of this.lowerBound and this.upperBound to know what is wrong though.
+1: Nothing in this method checks that the lower range of value is positive -- therefore a negative number is not sanitized.
+2: The calculation of g appears to result in a negative integer value if the parameter value is negative to begin with. Passing a negative g into Color would produce the error and there is nothing in the definition of g that seeks to prevent that. And the calculation certainly looks like it would come out negative in that scenario. Again without understanding the relevance of lowerbound and upperbound; I cannot be 100 percent certain; as a caveat.
+3: The color is out of the parameter should be between 0.0 and 1.0

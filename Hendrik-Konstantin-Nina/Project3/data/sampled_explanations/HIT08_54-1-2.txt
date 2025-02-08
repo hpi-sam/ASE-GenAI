@@ -1,1 +1,1 @@
-1: This can't handle cases where the country code is omitted; but there are extensions in the locale string.
+1: The comments say it validates strictly.  There is no Country code ... one could argue it's null I guess.   There are consecutive underscores so ch3 is an underscore and not a Capital Letter so the exception is thrown at line 116.

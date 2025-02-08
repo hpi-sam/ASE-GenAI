@@ -1,1 +1,1 @@
-1: there is an issue with colors in that programme
+1: depending on the upperBound and lowerBound values; "g" might exceed -255 or 255 which is not a valid value for the Color object.

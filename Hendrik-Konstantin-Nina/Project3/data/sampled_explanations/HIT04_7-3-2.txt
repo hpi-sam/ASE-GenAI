@@ -1,3 +1,3 @@
-1: From looking at the source code; perhaps you would want to check with the getDataItem parameter. You are passing minMiddleIndex; though we are checking for maxMiddleIndex.
-2: middle index is returned from this part of the code
-3: At line 299; variable "s" is declared which contributes to setting "maxMiddleIndex"
+1: I feel the expression in e should be changed.
+2: There would be an issue cause the function add uses the updatebound with different var type
+3: Variable is different

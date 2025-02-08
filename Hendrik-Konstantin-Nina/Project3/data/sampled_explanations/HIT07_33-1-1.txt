@@ -1,1 +1,1 @@
-1: getClass() not defined
+1: As we iterate through Object's dimensions; there are null arrays in the middle. getClass doesn't work on nulls and throws a NullPointerException. You might try testing for these nulls at line 910 like so:    classes[i] = array[i] == null ? null : array[i].getClass();

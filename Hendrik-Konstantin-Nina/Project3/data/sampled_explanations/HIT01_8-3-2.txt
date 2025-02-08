@@ -1,3 +1,3 @@
-1: The value of minutes offset does not have valid argument as a result this method will not be called as and argument exception will be displayed.
-2: The variable "minutesOffset" is checked incorrectly by the IF statement on line 279. Any negative value for "minutesOffset" will throw this exception; while the documentation states that "minutesOffset" can be negative in some cases.
-3: Value passed in minutes -15;where as it checks (<0 | >53).
+1: This variable contains a value of -15 as set by DateTimeZone.forOffsetHoursMinutes(-2; -15). Line 279 checks to see if is a valid value; meaning that is between 0 and 59. Since it is not; an exception error is thrown in line 280.
+2: the offset variable is still zero; making it out of range
+3: According to the comments; the minute value should be between -59 and +59; but the conditional statement is checking for a value between 0 and 59.

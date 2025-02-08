@@ -1,10 +1,10 @@
-1: the exp variable not get the value is unusable function so the code not executed allways
-2: Yes. The problem is exactly that when we get to line 260 in our code (add(Long.toString(value));); we actually send 0 as an argument to the "add" method; not -0.0; because variable "value" is defined of type long eliminating our .0 portion of the number and automatically converting the remaining -0 to 0; since it's the same thing to the compiler. As a result; 0 is appended to our string; not -0.0.
-3: I believe that the problem must be in the add method. I do not see the problem in the code that is shown. I think the problem might be in the maybeEndStatement method.
-4: The highlighted if statement relates to the treatment of large numbers; not decimals.
+1: I think so there was a syntax error
+2: value would be a long; which does not have a decimal place; that is what was happening in the error. There was only 0; no decimal; meaning that x was either not a float; or double; or it was being floored; or ceilinged just be fore the end.
+3: Correct the while loop. The problem will be solved.
+4: add method not preceded by class name or defined above
 5: I think so; addbstring converts the null message to the String "null" may be I am wrong
-6: Correct the while loop. The problem will be solved.
-7: add method not preceded by class name or defined above
-8: This is on comparison of two obviously non-null strings; for example assertEquals("a"; "b").
-9: Could not understand the test case but since most of the processing is happening in this code block so it is probable.
-10: I think so there was a syntax error
+6: This is on comparison of two obviously non-null strings; for example assertEquals("a"; "b").
+7: The highlighted if statement relates to the treatment of large numbers; not decimals.
+8: The problem is that a [-0.] is expected; but not returned. The call to add passes as an argument the string of value that could not be possibly be [-0] as it formerly was a long number; which has no sign on 0. This is the place where the -0. expected might be loss.
+9: I believe "E" within the clause is resulting to the failure.
+10: Yes. The problem is exactly that when we get to line 260 in our code (add(Long.toString(value));); we actually send 0 as an argument to the "add" method; not -0.0; because variable "value" is defined of type long eliminating our .0 portion of the number and automatically converting the remaining -0 to 0; since it's the same thing to the compiler. As a result; 0 is appended to our string; not -0.0.

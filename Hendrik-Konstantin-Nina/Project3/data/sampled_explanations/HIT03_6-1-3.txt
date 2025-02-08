@@ -1,1 +1,1 @@
-1: That variable is not correct
+1: Checking a character in the string with pos most likely causes an error since the error is a string out of bounds

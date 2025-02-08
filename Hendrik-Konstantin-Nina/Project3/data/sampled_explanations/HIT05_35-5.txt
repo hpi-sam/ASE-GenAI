@@ -1,5 +1,5 @@
-1: It doesn't have any logic to make sure BOTH cases don't fail (and thus one can be null.)
-2: new array and copyArrayGrowl are different types; cannot equal each other
-3: i think new array value going to be null in this program ; it may be a cause of error
-4: You need to change the method to throw IllegalArgumentException when both parameters are null.  It works fine as long as one of the parameters are not null.
-5: The code is passing the class type as null.
+1: The type should be directly inferred from the Template argument types. The array should be made of the type specified; not the getClass() of either the array or the element.
+2: We are passing Null values
+3: I believe the error is likely to be somewhere in this line given that the failure is a class cast exception and this is the line where the classes are being retrieved. I'm not confident in which part specifically the issue is though.
+4: ArrayUtils.add() method accepts Object parameters only and not String. So using T type converts your runtime objects to String and not as Objects.  So modify the class to use Objects instead of T type for this operation alone. Use a cast check if required; but stick to Objects for this. Alternatively; you can write your own add() method if you want it to accept String readily.
+5: There should not be T() before the newArray

@@ -1,1 +1,1 @@
-1: Yes. The problem is exactly that when we get to line 260 in our code (add(Long.toString(value));); we actually send 0 as an argument to the "add" method; not -0.0; because variable "value" is defined of type long eliminating our .0 portion of the number and automatically converting the remaining -0 to 0; since it's the same thing to the compiler. As a result; 0 is appended to our string; not -0.0.
+1: I believe that the problem must be in the add method. I do not see the problem in the code that is shown. I think the problem might be in the maybeEndStatement method.

@@ -1,1 +1,1 @@
-1: The input "\uD83D\uDE30" needs to be passed through the Class StringEscapeUtils as well.
+1: It might if the position it returns in the string isn't accessible

@@ -1,5 +1,5 @@
-1: This can't handle cases where the country code is omitted; but there are extensions in the locale string.
-2: in line 115; if (ch3 > 'A' || ch3 < 'Z' || ch4 >'A' || ch4 < 'Z')
-3: A and Z need to be lower case.
-4: Line 114 was not the correct input
-5: We still have the problem from line 115 with ch3 not being a-z; but if that weren't the problem; then line 121-122 would cause the failure as well. Ch5 isn't an underscore.
+1: YOU MAY HAVE
+2: The input 'fr__POSIX' is not following the expected format outlined in the javadoc: the fourth character is part of the country code and "must be uppercase" (not an underscore)
+3: in line 115; if (ch3 > 'A' || ch3 < 'Z' || ch4 >'A' || ch4 < 'Z')
+4: ch3 would be "_" which is outside the range on line 115
+5: It is checking the 3rd and 4th characters are uppercase. The fourth character is an underscore. Write more descriptive errors next time.

@@ -1,3 +1,3 @@
-1: I think that the array and string being null is likely to cause a problem in this case.
-2: We are passing Null values
-3: the template ends up with the class being type of string and the result is string[]
+1: type will be object when it should be string
+2: The declaration of newArray fails when it is null as in the example.
+3: Since the inputs are null; then return is an array of [null]. This cannot be cast to a type String.

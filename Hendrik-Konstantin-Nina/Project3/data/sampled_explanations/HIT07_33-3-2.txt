@@ -1,3 +1,3 @@
-1: Yes because the line is trying to get the class of a null object.
-2: getClass() not defined
-3: input for the method is passed with null;     new Class[]{String.class; null; Double.class}; ClassUtils.toClass(new Object[]{"Test";null;99d}
+1: The for-loop dereferences members of the array without first checking whether they're null (this is the issue I was referring to before; though it's not technically with the variable "array.")
+2: The array is being declared and pointing to an object; but the object is defined as null.
+3: getClass() method not defined

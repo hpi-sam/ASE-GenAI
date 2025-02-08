@@ -1,1 +1,1 @@
-1: Yes; I think that the NullPointerException is thrown when .getClass is called on the null listing in the middle of the arrays.
+1: getClass() method not defined

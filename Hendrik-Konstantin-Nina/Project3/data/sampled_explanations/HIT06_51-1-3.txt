@@ -1,1 +1,1 @@
-1: Correct the while loop. The problem will be solved.
+1: I think so there was a syntax error

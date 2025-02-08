@@ -1,1 +1,1 @@
-1: I think so; addbstring converts the null message to the String "null" may be I am wrong
+1: add method not preceded by class name or defined above
