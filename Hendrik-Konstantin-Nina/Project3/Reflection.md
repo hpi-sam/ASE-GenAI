@@ -1,5 +1,48 @@
 # Reflection
 
+## Task 01
+
+### Impact of Adding Non-Students to the Holdout Set  
+**Question 1.1:** How many “Non-Students” need to be added to the holdout set, on average, to observe a 5% or 10% impact on precision and recall?  
+
+Our analysis found no significant impact at the 10% level, even when all 1002 Non-Students were added to the holdout set. This suggests that our XGBoost classifier remains highly robust to dataset imbalance.  
+For the 5% level, we observed a slight impact on recall when adding all 1002 Non-Students.
+
+To test the model’s sensitivity, we deliberately increased overfitting potential by setting the `max_depth` to 200 and the number of estimators to 500. Despite these adjustments, performance on the holdout set remained strong.  
+
+The only metrics affected by adding all Non-Students were the **Recall** and **MCC** for Non-Students. Both increased consistently as more Non-Students were included in the holdout set. This **6% recall increase** can be attributed to distribution shifts. If Non-Students are easier to classify correctly than Students, recall naturally improves. The fact that the model was trained primarily on Students but still generalizes well to Non-Students suggests that the decision boundaries it learned for Students also apply effectively to Non-Students.  
+
+![Shifts of Key Metrics when adding Non-Students](data/figures/non-student_shifts.png)  
+
+Additionally, this result indicates that the two groups do not differ significantly in terms of key features. To verify this, we conducted a **t-test for independence** on “Answer.duration,” the model’s most important feature. The test yielded a **P-value of 0.926** with **2578 degrees of freedom**, suggesting strong similarity between the two groups for this feature. We expect similar results for other features as well.  
+
+We also measured the impact of adding only Professional Developers to the holdout set. This showed no significant difference compared to the Non-Students.
+
+---
+
+### Training a Model Exclusively on Non-Students  
+**Question 1.2:** What is the minimum number of Non-Students required to train a model that achieves similar performance to the mixed-data model from Mini Project 2?  
+
+After discovering that the Mini Project 2 model was trained on incorrect ground truth labels, we corrected this issue and updated the model accordingly. The revised model, available in **[task1_project2_fixed.ipynb](task1_project2_fixed.ipynb)**, achieved the following **5-Fold Cross Validation** results:  
+- **Average Precision:** 0.8498 (+/- 0.0467)  
+- **Average Recall:** 0.8806 (+/- 0.0394)  
+- **Average F1:** 0.8647 (+/- 0.0300)  
+
+Since "similar" is not explicitly defined, we define a model as similar if its performance difference from the above results remains within **0.05**. This threshold was first met when **24 Non-Students** were included in the training set:  
+- **Precision:** 0.8643  
+- **Recall:** 0.8617  
+- **F1:** 0.8630  
+
+![Shift of Key Metrics when training with Non-Students](data/figures/model_non_student_training.png)  
+
+However, given the randomness in training data selection, this result may not be stable. As more Non-Students are added, performance fluctuations decrease, and the model’s stability improves.  
+
+For training sets with **400+ Non-Students**, performance stabilizes within the following ranges:  
+- **Average Precision:** 0.80–0.84  
+- **Average Recall:** 0.87–0.89  
+- **Average F1:** 0.84–0.87
+
+
 ## Task 02
 
 **Question 2.1 :** Define thresholds on readability and semantic similarity to reason about if and how many explanation(s) need to be added to the final consolidated explanations.
