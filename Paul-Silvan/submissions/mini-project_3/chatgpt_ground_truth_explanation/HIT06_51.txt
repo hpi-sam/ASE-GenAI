@@ -1,0 +1,1 @@
+The bug is due to the incorrect handling of the value as a long type instead of a floating point number. This causes issues with string representation, where the expected value "-0.0" is returned as "0". Additionally, the while loop condition and the handling of non-null string comparisons may also contribute to the problem.

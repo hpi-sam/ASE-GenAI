@@ -1,0 +1,1 @@
+The bug is caused by the pos variable being incremented too much, potentially going beyond the length of the input string. This happens because pos is incremented both in the while loop and when handling surrogate pairs, leading to a StringIndexOutOfBoundsException. The issue likely occurs around line 95, where pos may exceed the valid range for the input string.

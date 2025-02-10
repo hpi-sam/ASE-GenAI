@@ -1,0 +1,1 @@
+The bug is on line 279, where minutesOffset is incorrectly checked with if (minutesOffset < 0 || minutesOffset > 59). According to the documentation, minutesOffset should allow values between -59 and 59. The condition should be updated to if (minutesOffset < -59 || minutesOffset > 59) to properly handle negative values when the hour offset is also negative.

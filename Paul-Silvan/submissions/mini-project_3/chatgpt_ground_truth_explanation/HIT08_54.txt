@@ -1,0 +1,1 @@
+The bug occurs because the character at position 3 (ch3) is an underscore ('_'), but the code expects it to be a capital letter (A-Z). This triggers an IllegalArgumentException in line 115, where ch3 is checked against the range 'A' to 'Z'. To fix this, the code should handle cases where ch3 is an underscore or non-uppercase character more gracefully.
