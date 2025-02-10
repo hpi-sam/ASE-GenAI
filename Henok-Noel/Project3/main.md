@@ -18,8 +18,8 @@ punishes long words and long sentences.
 
 For Semantic Similarity we chose the BLEU score as we are familiar with it from the last exercise.
 As the BLEU score needs the compared text to be of similar length we have to make some adjustments and 
-accept a very low BLEU score as threshold. A set of explanation were the 
-#TODO
+accept a very low BLEU score as threshold. 
+## todo: define similarity threshold
 
 We generate the ground truths using ChatGPT.
 We provide ChatGPT with all true positive answers per task and the following prompt:
