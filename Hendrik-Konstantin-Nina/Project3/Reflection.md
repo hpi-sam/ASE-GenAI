@@ -1,3 +1,60 @@
+# Reflection
+
+## Task 02
+
+**Question 2.1 :** Define thresholds on readability and semantic similarity to reason about if and how many explanation(s) need to be added to the final consolidated explanations.
+
+### Ground Truth Generation
+
+For generating our ground truth, we utilized the deepseek r1 model with a specific prompt designed for bug fix consolidation:
+
+```{text}
+You are a developer whose job is to consolidate bug fixes based on the answers provided by colleagues of yours. Your professionalism is being measured by your ability to describe the bug as crisp, but still correct as possible such that another developer who actually has access to the codebase can fix the code in no time, without having to read through too much of your explanation. Make sure that your explanation contains all necessary and sufficient information to understand and fix the bug. Do not provide information on how to fix the bug, as this is the job of another developer. Only explain what the bug is.
+```
+
+Together with the prompt, we provided the model a text file with the explanations.
+
+The model produced excellent results. Since LLMs don't have an assigned thinking process but generate text based on probabilities, providing space for "thinking" output allows the model to focus on the final answer without including the reasoning process. Without this approach, the model tends to incorporate reasoning processes in the final answer, leading to suboptimal results.
+
+### Sampling Strategy
+
+Our sampling approach utilized random sampling with a fixed seed to obtain different counts of explanations. For smaller sample sizes (1 and 3), we conducted sampling three times due to the high variance in explanation quality, ensuring a better representation. Larger sample sizes only required one sampling iteration since they naturally included more explanations from the total pool.
+
+### Consolidation Process
+
+For the consolidation process, we used ChatGPT-4o using the same prompt as the ground truth generation. We provided the sampled explanations alongside the prompt and used a new chat context for each request to ensure consistent results.
+
+### Readability Metric
+
+We chose the Flesch Reading Ease score for several reasons. First, it provides an intuitive interpretation on a 0-100 scale, where higher scores indicate easier readability. Second, the metric effectively balances both sentence and word complexity by considering sentence length and syllable count per word. Finally, research has demonstrated strong correlations between Flesch Reading Ease scores and actual reading comprehension levels across various age groups.
+
+### Readability Results
+
+In our analysis of the consolidated explanations' readability, we normalized the scores by the mean readability score for each bug to exclude variance due to different bugs. This allows us to correctly analyze how the readability of the consolidated explanations changes with the number of explanations.
+
+![Normalized Readability vs Number of Explanations](data/figures/normalized_readability_vs_num_of_explanations.png)
+
+The results indicate that the overall readability remains relatively stable regardless of the number of explanations. However, we observed that the variance in readability scores decreases as the number of explanations increases. This suggests that for fewer explanations, the result heavily depends on the quality and information density of the given explanations.Also, it is important to note that the readability does not have any indication of the correctness of the explanations. Short and simple explanations might be readable, but do not have to include any relevant information. Larger sets of explanations tend to produce more consistent readability scores and are less dependent on the quality of the individual explanations.
+
+### Semantic Similarity Metric
+
+For semantic similarity measurement, we employed cosine similarity, which measures the similarity between two vectors. We converted the explanations into embeddings using the `sentence-transformers/all-mpnet-base-v2` model. Research has demonstrated that this embedding approach effectively captures semantic meaning by positioning semantically similar texts close to each other in the embedding space. The cosine similarity measurement then allows us to quantify the semantic relationships between these embeddings.
+
+### Semantic Similarity Results
+
+The semantic similarity analysis yielded particularly interesting results. After normalizing by the mean semantic similarity score for each bug, we observed several key patterns.
+
+![Normalized Semantic Similarity vs Number of Explanations](data/figures/normalizes_semantic_similarity_vs_num_of_explanations.png)
+
+Similar to readability, the variance in semantic similarity decreases with more explanations, indicating that fewer explanations make the semantic similarity highly dependent on individual explanation quality.
+
+The similarity score shows a distinct pattern: starting very low with one explanation, it increases rapidly with additional explanations, peaking at 15 explanations before slightly declining. This pattern suggests that there is a minimum number of explanations that is needed to achieve a good consolidation. Also, the similarity isn't solely dependent on explanation quantity but also quality, as some consolidated explanations with fewer inputs (1 or 3) demonstrated higher similarity to the ground truth than those with more explanations.
+
+### Conclusion
+
+Based on our analysis, while the number of explanations doesn't significantly impact readability scores, but to decrease the variance, a minimum of 5-10 explanations are needed.
+The semantic similarity however is notably influenced by the number of explanations. The data indicates optimal results are achieved with approx. 15 explanations.
+
 ## Task 03
 **Question 3.1 :** how would you measure diversity? E.g., entropy of each feature
 
