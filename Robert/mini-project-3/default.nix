@@ -3,6 +3,8 @@ let
 in pkgs.mkShell {
   buildInputs = with pkgs; [
     python312
+    python312Packages.jupyterlab-server
+      #python312Packages.ipykernel
     python312Packages.scikit-learn
     python312Packages.pandas
     python312Packages.numpy

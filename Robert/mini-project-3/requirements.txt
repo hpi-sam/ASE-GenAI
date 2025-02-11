@@ -1,0 +1,11 @@
+scikit-learn
+pandas
+numpy
+matplotlib
+seaborn
+openai
+ollama
+python-dotenv
+textstat
+FlagEmbedding
+transformers
